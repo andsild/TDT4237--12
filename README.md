@@ -1,4 +1,4 @@
 TDT4237--12
 ===========
 
-Prosjektarbeid
+Prosjektarbeid TDT4237 - Programvaresikkerhet
