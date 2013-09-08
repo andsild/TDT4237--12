@@ -1,0 +1,426 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <TITLE>OpenVAS Scan Report</TITLE>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <style type="text/css">
+ <!--
+  BODY {
+	BACKGROUND-COLOR: #ffffff
+ }
+  A {	TEXT-DECORATION: none }
+  A:visited {	COLOR: #0000cf; TEXT-DECORATION: none }
+  A:link {	COLOR: #0000cf; TEXT-DECORATION: none }
+  A:active {	COLOR: #0000cf; TEXT-DECORATION: underline }
+  A:hover {	COLOR: #0000cf; TEXT-DECORATION: underline }
+  OL {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  UL {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  P {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  BODY {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  TD {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  TR {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  TH {	COLOR: #333333; FONT-FAMILY: tahoma,helvetica,sans-serif }
+  FONT.title {	BACKGROUND-COLOR: white; COLOR: #363636; FONT-FAMILY:                   tahoma,helvetica,verdana,lucida console,utopia; FONT-SIZE: 10pt; FONT-WEIGHT: bold }
+  FONT.sub {	BACKGROUND-COLOR: white; COLOR: #000000; FONT-FAMILY:                   tahoma,helvetica,verdana,lucida console,utopia; FONT-SIZE: 10pt }
+  FONT.layer {	COLOR: #ff0000; FONT-FAMILY: courrier,sans-serif,arial,helvetica; FONT-SIZE: 8pt; TEXT-ALIGN: left }
+  TD.title {	BACKGROUND-COLOR: #A2B5CD; COLOR: #555555; FONT-FAMILY:                   tahoma,helvetica,verdana,lucida console,utopia; FONT-SIZE: 10pt; FONT-WEIGHT: bold; HEIGHT: 20px; TEXT-ALIGN: right }
+  TD.sub {	BACKGROUND-COLOR: #DCDCDC; COLOR: #555555; FONT-FAMILY:                   tahoma,helvetica,verdana,lucida console,utopia; FONT-SIZE: 10pt; FONT-WEIGHT: bold; HEIGHT: 18px; TEXT-ALIGN: left }
+  TD.content {	BACKGROUND-COLOR: white; COLOR: #000000; FONT-FAMILY:                   tahoma,arial,helvetica,verdana,lucida console,utopia; FONT-SIZE: 8pt; TEXT-ALIGN: left; VERTICAL-ALIGN: middle }
+  TD.default {	BACKGROUND-COLOR: WHITE; COLOR: #000000; FONT-FAMILY:                   tahoma,arial,helvetica,verdana,lucida console,utopia; FONT-SIZE: 8pt; }
+  TD.border {	BACKGROUND-COLOR: #cccccc; COLOR: black; FONT-FAMILY:                   tahoma,helvetica,verdana,lucida console,utopia; FONT-SIZE: 10pt; HEIGHT: 25px }
+  TD.border-HILIGHT {	BACKGROUND-COLOR: #ffffcc; COLOR: black; FONT-FAMILY:                   verdana,arial,helvetica,lucida console,utopia; FONT-SIZE: 10pt; HEIGHT: 25px }
+-->
+</style>
+</HEAD>
+<BODY>
+<table bgcolor="#a1a1a1" border=0 cellpadding=0 cellspacing=0 width="95%">
+<tbody>
+	<tr><td>
+<table border=0 cellpadding=2 cellspacing=1 width="100%">
+	<tbody>
+   <tr>
+	<td class=title>OpenVAS Scan Report</td></tr>
+   <tr>
+	<td class=content>This report gives details on hosts that were tested
+		and issues that were found. Please follow the recommended
+		steps and procedures to eradicate these threats.
+</td></tr></tbody></table></td></tr></tbody></table><br>
+
+<table bgcolor="#a1a1a1" border=0 cellpadding=0 cellspacing=0  width="60%">
+<tbody><tr><td>
+    <table border=0 cellpadding=2 cellspacing=1 width="100%">
+   <tbody>
+    <tr>
+	<td class=title colspan=2>Scan Details</td></tr>
+    <tr>
+	<td class=default width="60%">Hosts which were alive and responding during test</td>
+	<td class=default width="30%">1</td></tr>
+   <tr>
+	<td class=default width="60%">Number of security holes</td>
+	<td class=default width="30%">4</td></tr>
+   <tr>
+	<td class=default width="60%">Number of security warnings</td>
+	<td class=default width="30%">1</td></tr>
+   <tr>
+	<td class=default width="60%">Number of security notes</td>
+	<td class=default width="30%">8</td></tr>
+   <tr>
+	<td class=default width="60%">Number of false positives</td>
+	<td class=default width="30%">0</td></tr>
+</tbody></table></td></tr></tbody></table><br><br>
+<a name="toc"></a>
+<table bgcolor="#a1a1a1" border=0 cellpadding=0 cellspacing=0  width="60%">
+<tbody><tr><td>
+   <table border=0 cellpadding=2 cellspacing=1 width="100%">
+   <tbody>
+   <tr>
+	<td class=title colspan=2>Host List</td></tr>
+   <tr>
+	<td class=sub width="60%">Host(s)</td>
+	<td class=sub width="40%">Possible Issue</td></tr>
+   <tr>
+	 <td class=default width="60%"><a href="#129_241_106_198">129.241.106.198</a></td>
+	<td class=default width="40%"><font color=red>Security hole(s)</font></td></tr>
+</tbody></table></td></tr></tbody></table>
+
+<a name="129_241_106_198"></a>
+<a name="129_241_106_198_toc"></a>
+<div align="left"><font size=-2><a href="#toc">[ return to top ]</a></font></div><br><br>
+<table bgcolor="#a1a1a1" border=0 cellpadding=0 cellspacing=0 width="60%">
+<tbody><tr><td>
+   <table cellpadding=2 cellspacing=1 border=0 width="100%">
+   <tbody>
+   <tr>
+	<td class=title colspan=3>Analysis of Host</td></tr>
+   <tr>
+	<td class=sub width="20%">Address of Host</td>
+	<td class=sub width="30%">Port/Service</td>
+	<td class=sub width="30%">Issue regarding Port</td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%"><a href="#129_241_106_198_6280_tcp">unknown (6280/tcp)</a></td>
+	<td class=default width="30%">Security warning(s) </td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%"><a href="#129_241_106_198_general_tcp">general/tcp</a></td>
+	<td class=default width="30%"><font color=red>Security hole(s) </font></td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%"><a href="#129_241_106_198_22_tcp">ssh (22/tcp)</a></td>
+	<td class=default width="30%">Security note(s) </td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%">general/IT-Grundschutz</td>
+	<td class=default width="30%">No Information</td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%">general/SMBClient</td>
+	<td class=default width="30%">No Information</td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%"><a href="#129_241_106_198_general_icmp">general/icmp</a></td>
+	<td class=default width="30%">Security note(s) </td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%">general/HOST-T</td>
+	<td class=default width="30%">No Information</td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%">general/IT-Grundschutz-T</td>
+	<td class=default width="30%">No Information</td></tr>
+   <tr>
+	<td class=default width="20%">129.241.106.198</td>
+	<td class=default width="30%">general/CPE</td>
+	<td class=default width="30%">No Information</td></tr>
+</tbody></table></td></tr></tbody></table><br><br>
+<table bgcolor="#a1a1a1" cellpadding=0 cellspacing=0 border=0 width="75%">
+<tbody><tr><td>
+	<table cellpadding=2 cellspacing=1 border=0 width="100%">
+		<tr><td class=title colspan=3>Security Issues and Fixes: 129.241.106.198</td></tr>
+		<tr>
+		<td class=sub width="10%">Type</td>
+		<td class=sub width="10%">Port</td>
+		<td class=sub width="80%">Issue and Fix</td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Warning</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_6280_tcp"></a>unknown (6280/tcp)</td>
+	<td class=default width="80%"><br>
+  Summary:<br>
+  The host is running GlassFish Server and is prone to denial of<br>
+  service vulnerability.<br>
+<br>
+  Vulnerability Insight:<br>
+  The flaw is due to an error within a hash generation function when<br>
+  hashing form posts and updating a hash table. This can be exploited to cause<br>
+  a hash collision resulting in high CPU consumption via a specially crafted<br>
+  form sent in a HTTP POST request.<br>
+<br>
+  Impact:<br>
+  Successful exploitation could allow remote attackers to cause a denial<br>
+  of service via a specially crafted form sent in a HTTP POST request.<br>
+<br>
+  Impact Level: Application/System<br>
+<br>
+  Affected Software/OS:<br>
+  Oracle GlassFish version 3.1.1 and prior.<br>
+<br>
+  Solution:<br>
+  No solution or patch is available as of 05th January, 2012. Information<br>
+  regarding this issue will be updated once the solution details are available.<br>
+  For updates refer to <a href="http://glassfish.java.net/">http://glassfish.java.net/</a><br>
+CVE : <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5035">CVE-2011-5035</a><br>
+BID : <a href="http://www.securityfocus.com/bid/51194">51194</a><br>
+Other references : URL:<a href="http://www.kb.cert.org/vuls/id/903934,">http://www.kb.cert.org/vuls/id/903934,</a> URL:<a href="http://www.ocert.org/advisories/ocert-2011-003.html">http://www.ocert.org/advisories/ocert-2011-003.html</a><br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.802409">1.3.6.1.4.1.25623.1.0.802409</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_6280_tcp"></a>unknown (6280/tcp)</td>
+	<td class=default width="80%">A web server is running on this port<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.10330">1.3.6.1.4.1.25623.1.0.10330</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_6280_tcp"></a>unknown (6280/tcp)</td>
+	<td class=default width="80%">The remote web server type is :<br>
+<br>
+GlassFish Server Open Source Edition  4.0 <br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.10107">1.3.6.1.4.1.25623.1.0.10107</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_6280_tcp"></a>unknown (6280/tcp)</td>
+	<td class=default width="80%"><br>
+<br>
+ Overview:<br>
+  GlassFish, an application server project led by Sun Microsystems for<br>
+  the Java EE platform is running at this host.<br>
+<br>
+ See also:<br>
+  <a href="https://glassfish.dev.java.net/">https://glassfish.dev.java.net/</a><br>
+<br>
+ Risk factor : None<br>
+<br>
+GlassFish Version 'unknown' was detected on the remote host<br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.100190">1.3.6.1.4.1.25623.1.0.100190</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%"><font color=red>Vulnerability</font></td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%"><br>
+  Summary:<br>
+  This host is installed with OpenSC and is prone to multiple buffer<br>
+  overflow vulnerabilities.<br>
+<br>
+  Vulnerability Insight:<br>
+  The flaws are due to boundary errors in the 'acos_get_serialnr()',<br>
+  'acos5_get_serialnr()', and 'starcos_get_serialnr()' functions when reading<br>
+  out the serial number of smart cards.<br>
+<br>
+  Impact:<br>
+  Successful exploitation could allow remote attackers to execute arbitrary<br>
+  code in the context of the application. Failed attacks will cause denial<br>
+  of service conditions.<br>
+<br>
+  Impact Level: Application<br>
+<br>
+  Affected Software/OS:<br>
+  OpenSC version 0.11.13 and prior.<br>
+<br>
+  Solution:<br>
+  Upgrade to OpenSC 0.12.0 or later.<br>
+  For updates refer to <a href="http://www.opensc-project.org/opensc">http://www.opensc-project.org/opensc</a><br>
+CVE : <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-4523">CVE-2010-4523</a><br>
+BID : <a href="http://www.securityfocus.com/bid/45435">45435</a><br>
+Other references : URL:<a href="http://secunia.com/advisories/42658,">http://secunia.com/advisories/42658,</a> URL:<a href="https://www.opensc-project.org/opensc/changeset/4913,">https://www.opensc-project.org/opensc/changeset/4913,</a> URL:<a href="http://labs.mwrinfosecurity.com/files/Advisories/mwri_opensc-get-serial-buffer-overflow_2010-12-13.pdf">http://labs.mwrinfosecurity.com/files/Advisories/mwri_opensc-get-serial-buffer-overflow_2010-12-13.pdf</a><br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.901175">1.3.6.1.4.1.25623.1.0.901175</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%"><font color=red>Vulnerability</font></td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%"><br>
+  Summary:<br>
+  This host is installed with IBM Lotus Symphony and is prone to<br>
+  integer overflow vulnerability.<br>
+<br>
+  Vulnerability Insight:<br>
+  The flaw is due to an integer overflow error when processing embedded<br>
+  image objects. This can be exploited to cause a heap-based buffer overflow<br>
+  via a specially crafted JPEG object within a DOC file.<br>
+<br>
+  Impact:<br>
+  Successful exploitation will allow attacker to execute arbitrary code in<br>
+  the context of affected applications. Failed exploit attempts will likely<br>
+  result in denial-of-service conditions.<br>
+<br>
+  Impact Level: Application<br>
+<br>
+  Affected Software/OS:<br>
+  IBM Lotus Symphony versions 3.0.0 FP3 and prior.<br>
+<br>
+  Solution:<br>
+  Upgrade to IBM Lotus Symphony version 3.0.1 or later,<br>
+  For updates refer to <a href="http://www.ibm.com/software/lotus/symphony/home.nsf/home">http://www.ibm.com/software/lotus/symphony/home.nsf/home</a><br>
+CVE : <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0192">CVE-2012-0192</a><br>
+BID : <a href="http://www.securityfocus.com/bid/51591">51591</a><br>
+Other references : URL:<a href="http://secunia.com/advisories/47245,">http://secunia.com/advisories/47245,</a> URL:<a href="http://www.securityfocus.com/bid/51591,">http://www.securityfocus.com/bid/51591,</a> URL:<a href="http://xforce.iss.net/xforce/xfdb/72424,">http://xforce.iss.net/xforce/xfdb/72424,</a> URL:<a href="http://www-01.ibm.com/support/docview.wss?uid=swg21578684">http://www-01.ibm.com/support/docview.wss?uid=swg21578684</a><br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.902808">1.3.6.1.4.1.25623.1.0.902808</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%"><font color=red>Vulnerability</font></td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%"><br>
+  Summary:<br>
+  The host is installed Wireshark and is prone to Denial of Service<br>
+  Vulnerability.<br>
+<br>
+  Vulnerability Insight:<br>
+  The flaw is due to uninitialized pointer during processing of a '.pcap'<br>
+  file in the pcap-ng format.<br>
+<br>
+  Impact:<br>
+  Successful exploitation could allow attackers to cause a denial of<br>
+  service, execution of arbitrary code.<br>
+<br>
+  Impact Level: Application<br>
+<br>
+  Affected Software/OS:<br>
+  Wireshark version 1.4.3 and prior<br>
+  Wireshark version 1.5.0<br>
+<br>
+  Solution:<br>
+  No solution or patch is available as of 11th February 2011. Information<br>
+  regarding this issue will be updated once the solution details are available.<br>
+  For updates refer to <a href="http://www.wireshark.org/download.html">http://www.wireshark.org/download.html</a><br>
+CVE : <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-0538">CVE-2011-0538</a><br>
+BID : <a href="http://www.securityfocus.com/bid/46167">46167</a><br>
+Other references : URL:<a href="http://openwall.com/lists/oss-security/2011/02/04/1,">http://openwall.com/lists/oss-security/2011/02/04/1,</a> URL:<a href="https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=5652">https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=5652</a><br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.801743">1.3.6.1.4.1.25623.1.0.801743</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%"><font color=red>Vulnerability</font></td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%"><br>
+  Summary:<br>
+  This host is installed with IBM Lotus Symphony and is prone to<br>
+  integer overflow vulnerability.<br>
+<br>
+  Vulnerability Insight:<br>
+  The flaw is due to an integer overflow error when processing embedded<br>
+  image objects. This can be exploited to cause a heap-based buffer overflow<br>
+  via a specially crafted JPEG object within a DOC file.<br>
+<br>
+  Impact:<br>
+  Successful exploitation will allow attacker to execute arbitrary code in<br>
+  the context of affected applications. Failed exploit attempts will likely<br>
+  result in denial-of-service conditions.<br>
+<br>
+  Impact Level: Application<br>
+<br>
+  Affected Software/OS:<br>
+  IBM Lotus Symphony versions 3.0.0 FP3 and prior.<br>
+<br>
+  Solution:<br>
+  Upgrade to IBM Lotus Symphony version 3.0.1 or later,<br>
+  For updates refer to <a href="http://www.ibm.com/software/lotus/symphony/home.nsf/home">http://www.ibm.com/software/lotus/symphony/home.nsf/home</a><br>
+CVE : <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0192">CVE-2012-0192</a><br>
+BID : <a href="http://www.securityfocus.com/bid/51591">51591</a><br>
+Other references : URL:<a href="http://secunia.com/advisories/47245,">http://secunia.com/advisories/47245,</a> URL:<a href="http://www.securityfocus.com/bid/51591,">http://www.securityfocus.com/bid/51591,</a> URL:<a href="http://xforce.iss.net/xforce/xfdb/72424,">http://xforce.iss.net/xforce/xfdb/72424,</a> URL:<a href="http://www-01.ibm.com/support/docview.wss?uid=swg21578684">http://www-01.ibm.com/support/docview.wss?uid=swg21578684</a><br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.902809">1.3.6.1.4.1.25623.1.0.902809</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%">ICMP based OS fingerprint results: <br>
+<br>
+Linux Kernel 2.6.11 (accuracy 83%)<br>
+Linux Kernel 2.6.10 (accuracy 83%)<br>
+Linux Kernel 2.6.9 (accuracy 83%)<br>
+Linux Kernel 2.6.8 (accuracy 83%)<br>
+Linux Kernel 2.6.7 (accuracy 83%)<br>
+Linux Kernel 2.6.6 (accuracy 83%)<br>
+Linux Kernel 2.6.5 (accuracy 83%)<br>
+Linux Kernel 2.6.4 (accuracy 83%)<br>
+Linux Kernel 2.6.3 (accuracy 83%)<br>
+Linux Kernel 2.6.2 (accuracy 83%)<br>
+Linux Kernel 2.6.1 (accuracy 83%)<br>
+Linux Kernel 2.6.0 (accuracy 83%)<br>
+Linux Kernel 2.4.30 (accuracy 83%)<br>
+Linux Kernel 2.4.29 (accuracy 83%)<br>
+Linux Kernel 2.4.28 (accuracy 83%)<br>
+Linux Kernel 2.4.27 (accuracy 83%)<br>
+Linux Kernel 2.4.26 (accuracy 83%)<br>
+Linux Kernel 2.4.25 (accuracy 83%)<br>
+Linux Kernel 2.4.24 (accuracy 83%)<br>
+Linux Kernel 2.4.23 (accuracy 83%)<br>
+Linux Kernel 2.4.22 (accuracy 83%)<br>
+Linux Kernel 2.4.21 (accuracy 83%)<br>
+Linux Kernel 2.4.20 (accuracy 83%)<br>
+Linux Kernel 2.4.19 (accuracy 83%)<br>
+Linux Kernel 2.0.36 (accuracy 83%)<br>
+Linux Kernel 2.0.34 (accuracy 83%)<br>
+Linux Kernel 2.0.30 (accuracy 83%)<br>
+<br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.102002">1.3.6.1.4.1.25623.1.0.102002</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_tcp"></a>general/tcp</td>
+	<td class=default width="80%"><br>
+Synopsis :<br>
+<br>
+The remote service implements TCP timestamps.<br>
+<br>
+Description :<br>
+<br>
+The remote host implements TCP timestamps, as defined by RFC1323.<br>
+A side effect of this feature is that the uptime of the remote <br>
+host can sometimes be computed.<br>
+<br>
+See also :<br>
+<br>
+<a href="http://www.ietf.org/rfc/rfc1323.txt">http://www.ietf.org/rfc/rfc1323.txt</a><br>
+<br>
+Risk factor : <br>
+<br>
+None<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.80091">1.3.6.1.4.1.25623.1.0.80091</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_22_tcp"></a>ssh (22/tcp)</td>
+	<td class=default width="80%">Remote SSH version : SSH-2.0-OpenSSH_6.1p1 Debian-4<br>
+<br>
+Remote SSH supported authentication : publickey,password<br>
+<br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.10267">1.3.6.1.4.1.25623.1.0.10267</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_22_tcp"></a>ssh (22/tcp)</td>
+	<td class=default width="80%"><br>
+<br>
+Overview:<br>
+The remote SSH Server supports the following SSH Protocol Versions:<br>
+<br>
+1.99<br>
+2.0<br>
+<br>
+SSHv2 Fingerprint: 69:28:43:9b:e6:04:75:4f:9e:5b:fe:59:04:89:41:b4<br>
+<br>
+<br>
+Risk factor : None<br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.100259">1.3.6.1.4.1.25623.1.0.100259</a></td></tr>
+   <tr>
+	<td valign=top class=default width="10%">Informational</td>
+	<td valign=top class=default width="10%"><a name="129_241_106_198_general_icmp"></a>general/icmp</td>
+	<td class=default width="80%">Here is the route recorded between 78.91.13.192 and 129.241.106.198 :<br>
+129.241.77.82.<br>
+129.241.76.129.<br>
+129.241.106.1.<br>
+129.241.106.198.<br>
+129.241.106.198.<br>
+129.241.76.130.<br>
+129.241.77.81.<br>
+78.91.12.31.<br>
+<br>
+OID : <a href="http://www.openvas.org/?oid=1.3.6.1.4.1.25623.1.0.12264">1.3.6.1.4.1.25623.1.0.12264</a></td></tr>
+</table></td></tr></tbody></table>
+<hr>
+<i>This file was generated by the <a href="http://www.openvas.org">OpenVAS</a> security scanner.</i>
+</BODY>
+</HTML>
