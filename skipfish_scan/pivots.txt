@@ -1,0 +1,95 @@
+GET http://paris.idi.ntnu.no:6280/ name=http://paris.idi.ntnu.no:6280/ type=serv linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=4626 notes=9 sig=0xa638fa21
+GET http://paris.idi.ntnu.no:6280/bookstore/ name=bookstore type=dir linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1228 notes=6 sig=0x2ec58bee
+GET http://paris.idi.ntnu.no:6280/bookstore// name= type=dir linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1068 notes=2 sig=0x8c616693
+GET http://paris.idi.ntnu.no:6280/bookstore/;jsessionid=3aaabdf69ad70d900703cadea75b/ name=jsessionid type=dir linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1068 notes=5 sig=0xdf0ab703
+GET http://paris.idi.ntnu.no:6280/bookstore/css/ name=css type=dir linked=yes browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=1 sig=0x10820b3c
+GET http://paris.idi.ntnu.no:6280/bookstore/css/stylesheet.css/ name=stylesheet.css type=dir linked=yes browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=1 sig=0x8c6432e5
+GET http://paris.idi.ntnu.no:6280/bookstore/css/stylesheet.css;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=888 notes=1 sig=0xffeed5cd
+GET http://paris.idi.ntnu.no:6280/bookstore/debug/ name=debug type=dir linked=yes browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=2 sig=0x1178bba2
+GET http://paris.idi.ntnu.no:6280/bookstore/debug/list_books.jsp name=list_books.jsp type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=189252 notes=2 sig=0x5b232f42
+GET http://paris.idi.ntnu.no:6280/bookstore/debug/mail_log.jsp name=mail_log.jsp type=unknown linked=yes browsers=0 browser_used=FAST dup=0 code=0 len=0 notes=1 sig=0x6a841831
+GET http://paris.idi.ntnu.no:6280/bookstore/img/ name=img type=dir linked=yes browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=1 sig=0x39c959a8
+GET http://paris.idi.ntnu.no:6280/bookstore/img/amudarya.png/ name=amudarya.png type=dir linked=yes browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=1 sig=0x8c6732e5
+GET http://paris.idi.ntnu.no:6280/bookstore/img/amudarya.png;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=8628 notes=0 sig=0xffefffff
+GET http://paris.idi.ntnu.no:6280/bookstore/viewCart.do/ name=viewCart.do type=dir linked=yes browsers=0 browser_used=FAST dup=1 returns_404 code=404 len=1082 notes=1 sig=0x8c6432e5
+GET http://paris.idi.ntnu.no:6280/bookstore/viewCart.do;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=627 notes=1 sig=0xffeed5ca
+GET http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.do name=activateCustomer.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1272 notes=3 sig=0x1ac63a60
+POST http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.do DATA:email=skipfish@example.com&activationToken=1 name=activationToken type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=208 notes=4 sig=0x52d14882
+GET http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.do?email=skipfish@example.com name=email type=param linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1218 notes=3 sig=0x10c62de1
+GET http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.jsp name=activateCustomer.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1272 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/activationError.do name=activationError.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=804 notes=3 sig=0x8c6e7901
+GET http://paris.idi.ntnu.no:6280/bookstore/activationError.do;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=no browsers=0 browser_used=FAST dup=0 code=200 len=722 notes=2 sig=0xffeed5ca
+GET http://paris.idi.ntnu.no:6280/bookstore/activationError.jsp name=activationError.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=722 notes=3 sig=0x8c696687
+GET http://paris.idi.ntnu.no:6280/bookstore/activationError.jsp;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=no browsers=0 browser_used=FAST dup=1 code=200 len=722 notes=2 sig=0xffeed5ca
+GET http://paris.idi.ntnu.no:6280/bookstore/activationSuccessful.do name=activationSuccessful.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=711 notes=2 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/activationSuccessful.jsp name=activationSuccessful.jsp type=file linked=no browsers=0 browser_used=FAST dup=1 code=200 len=711 notes=3 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/addAddress.do name=addAddress.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=1 sig=0xec8ef555
+GET http://paris.idi.ntnu.no:6280/bookstore/addAddress.do;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=no browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=1 sig=0xffefffff
+POST http://paris.idi.ntnu.no:6280/bookstore/addAddress.do DATA:address=1 name=address type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/addAddress.do?from=viewCustomer name=from type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/addAddress.jsp name=addAddress.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=846 notes=4 sig=0x8c6e93f9
+GET http://paris.idi.ntnu.no:6280/bookstore/addAddress.jsp;jsessionid=3aaabdf69ad70d900703cadea75b name=jsessionid type=pathinfo linked=no browsers=0 browser_used=FAST dup=1 code=200 len=846 notes=2 sig=0xffeed5ca
+GET http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.do name=addCreditCard.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=225 notes=1 sig=0xdd05941d
+POST http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.do DATA:creditCardNumber=4111111111111111&expiryMonth=1212&expiryYear=2010 name=creditCardNumber type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=225 notes=0 sig=0xffbfffff
+POST http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.do DATA:creditCardNumber=4111111111111111&expiryMonth=1212&expiryYear=2010 name=expiryMonth type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=225 notes=0 sig=0xffbfffff
+POST http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.do DATA:creditCardNumber=4111111111111111&expiryMonth=1212&expiryYear=2010 name=expiryYear type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=225 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.do?from=viewCustomer name=from type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=225 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/addCreditCard.jsp name=addCreditCard.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=2044 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/changeEmail.do name=changeEmail.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=223 notes=1 sig=0x20ffe863
+POST http://paris.idi.ntnu.no:6280/bookstore/changeEmail.do DATA:email=skipfish@example.com name=email type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=223 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/changeEmail.jsp name=changeEmail.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1110 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/changeName.do name=changeName.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=1 sig=0x3184496b
+POST http://paris.idi.ntnu.no:6280/bookstore/changeName.do DATA:name=Smith name=name type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=222 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/changeName.jsp name=changeName.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=818 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/changePassword.do name=changePassword.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=226 notes=1 sig=0x82a73
+POST http://paris.idi.ntnu.no:6280/bookstore/changePassword.do DATA:password=skipfish name=password type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=226 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/changePassword.jsp name=changePassword.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1118 notes=4 sig=0xfff42406
+GET http://paris.idi.ntnu.no:6280/bookstore/customerSupport.do name=customerSupport.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=227 notes=1 sig=0x822aa3b0
+POST http://paris.idi.ntnu.no:6280/bookstore/customerSupport.do DATA:department=1&subject=skipfish&content=1 name=content type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=227 notes=0 sig=0xffbfffff
+POST http://paris.idi.ntnu.no:6280/bookstore/customerSupport.do DATA:department=1&subject=skipfish&content=1 name=department type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=227 notes=0 sig=0xffbfffff
+POST http://paris.idi.ntnu.no:6280/bookstore/customerSupport.do DATA:department=1&subject=skipfish&content=1 name=subject type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=227 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/customerSupport.jsp name=customerSupport.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1437 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/index.jsp name=index.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1068 notes=3 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do name=loginCustomer.do type=file linked=yes browsers=3 browser_used=FAST dup=0 code=200 len=1579 notes=3 sig=0x85fb02b8
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=skipfish@example.com&password=skipfish name=email type=param linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=640 notes=2 sig=0xdf5ac79
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful&password=skipfish name=activationSuccessful type=value linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.css&password=skipfish name=activationSuccessful.css type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.css.do&password=skipfish name=activationSuccessful.css.do type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.css.html&password=skipfish name=activationSuccessful.css.html type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.css.jsp&password=skipfish name=activationSuccessful.css.jsp type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.css.png&password=skipfish name=activationSuccessful.css.png type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.do&password=skipfish name=activationSuccessful.do type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.do.jsp&password=skipfish name=activationSuccessful.do.jsp type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.html&password=skipfish name=activationSuccessful.html type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.html.jsp&password=skipfish name=activationSuccessful.html.jsp type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.jsp&password=skipfish name=activationSuccessful.jsp type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.png&password=skipfish name=activationSuccessful.png type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.png.css&password=skipfish name=activationSuccessful.png.css type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.png.do&password=skipfish name=activationSuccessful.png.do type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.png.html&password=skipfish name=activationSuccessful.png.html type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=activationSuccessful.png.jsp&password=skipfish name=activationSuccessful.png.jsp type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1701 notes=3 sig=0xff7ddc1c
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do?from=customerSupport name=from type=param linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=640 notes=1 sig=0x7865de09
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do?from=addAddress name=addAddress type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1677 notes=3 sig=0xff7ddc1c
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do?from=addCreditCard name=addCreditCard type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1680 notes=3 sig=0xff7ddc1c
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do?from=changePassword name=changePassword type=value linked=no browsers=0 browser_used=FAST dup=1 code=200 len=1681 notes=3 sig=0xff7ddc1c
+POST http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do DATA:email=skipfish@example.com&password=skipfish name=password type=param linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=640 notes=2 sig=0xffbd36e4
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.jsp name=loginCustomer.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1579 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/registerCustomer.do name=registerCustomer.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=1780 notes=3 sig=0xdf04b602
+POST http://paris.idi.ntnu.no:6280/bookstore/registerCustomer.do DATA:email=skipfish@example.com&password=skipfish name=email type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=210 notes=3 sig=0x53281077
+POST http://paris.idi.ntnu.no:6280/bookstore/registerCustomer.do DATA:email=skipfish@example.com&password=skipfish name=password type=param linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=242 notes=0 sig=0xffbfffff
+GET http://paris.idi.ntnu.no:6280/bookstore/registerCustomer.jsp name=registerCustomer.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1780 notes=4 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/registrationError.do name=registrationError.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=200 len=615 notes=2 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/registrationError.jsp name=registrationError.jsp type=file linked=no browsers=0 browser_used=FAST dup=1 code=200 len=615 notes=3 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/viewBook.do name=viewBook.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=0 len=0 notes=1 sig=0xdf03732a
+GET http://paris.idi.ntnu.no:6280/bookstore/viewBook.do?isbn=9788274775268 name=isbn type=param linked=yes browsers=0 browser_used=FAST dup=0 code=0 len=0 notes=1 sig=0x722229bd
+GET http://paris.idi.ntnu.no:6280/bookstore/viewCart.jsp name=viewCart.jsp type=file linked=no browsers=0 browser_used=FAST dup=1 code=200 len=627 notes=3 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/viewCustomer.do name=viewCustomer.do type=file linked=yes browsers=0 browser_used=FAST dup=0 code=302 len=224 notes=3 sig=0xfff44db5
+GET http://paris.idi.ntnu.no:6280/bookstore/viewCustomer.jsp name=viewCustomer.jsp type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=1173 notes=3 sig=0xfff581af
+GET http://paris.idi.ntnu.no:6280/bookstore/ name=bookstore type=dir linked=yes browsers=0 browser_used=MSIE dup=0 code=200 len=1068 notes=4 sig=0xbdec99e5
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do name=loginCustomer.do type=file linked=yes browsers=0 browser_used=MSIE dup=1 code=200 len=1579 notes=3 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/bookstore/ name=bookstore type=dir linked=yes browsers=0 browser_used=FFOX dup=0 code=200 len=1068 notes=5 sig=0x9d16332b
+GET http://paris.idi.ntnu.no:6280/bookstore/loginCustomer.do name=loginCustomer.do type=file linked=yes browsers=0 browser_used=FFOX dup=1 code=200 len=1579 notes=3 sig=0xfff474d1
+GET http://paris.idi.ntnu.no:6280/docs/ name=docs type=dir linked=maybe browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=1 sig=0xc635a670
+GET http://paris.idi.ntnu.no:6280/docs/about.html name=about.html type=unknown linked=maybe browsers=0 browser_used=FAST dup=0 returns_404 code=404 len=1082 notes=0 sig=0xffdfffff
+GET http://paris.idi.ntnu.no:6280/index.html name=index.html type=file linked=no browsers=0 browser_used=FAST dup=0 code=200 len=4626 notes=3 sig=0xfff536eb
+GET http://paris.idi.ntnu.no:6280/copyright.html name=copyright.html type=unknown linked=yes browsers=0 browser_used=FAST dup=1 returns_404 code=404 len=1082 notes=0 sig=0xffdfffff

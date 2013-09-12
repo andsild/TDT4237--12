@@ -1,0 +1,13 @@
+HTTP/1.1 200 Partial Content
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.0  Java/Oracle Corporation/1.7)
+Server: GlassFish Server Open Source Edition  4.0 
+Accept-Ranges: bytes
+ETag: W/"8628-1378304558000"
+Last-Modified: Wed, 04 Sep 2013 14:22:38 GMT
+Content-Range: bytes 0-8627/8628
+Content-Type: image/png
+Date: Thu, 12 Sep 2013 19:40:17 GMT
+Content-Length: 8628
+
+‰PNG
+

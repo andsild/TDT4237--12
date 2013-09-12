@@ -1,0 +1,9 @@
+admin
+connection
+config
+conf
+file
+httpd
+settings
+wp-config
+file
