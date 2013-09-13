@@ -1,9 +1,9 @@
 HTTP/1.1 200 OK
 X-Powered-By: JSP/2.2
 Server: GlassFish Server Open Source Edition  4.0 
-Set-Cookie: JSESSIONID=3aaabdf69ad70d900703cadea75b; Path=/bookstore; HttpOnly
+Set-Cookie: JSESSIONID=6f0a8034eeb23fc424da3cb7202e; Path=/bookstore; HttpOnly
 Content-Type: text/html;charset=ISO-8859-1
-Date: Thu, 12 Sep 2013 19:34:13 GMT
+Date: Fri, 13 Sep 2013 10:49:32 GMT
 Content-Length: 1228
 
 
@@ -12,13 +12,13 @@ Content-Length: 1228
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/bookstore/css/stylesheet.css;jsessionid=3aaabdf69ad70d900703cadea75b" />
+        <link rel="stylesheet" type="text/css" href="/bookstore/css/stylesheet.css;jsessionid=6f0a8034eeb23fc424da3cb7202e" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Amu-Darya Bookstore</title>
     </head>
     <header>
-        <a href="/bookstore/;jsessionid=3aaabdf69ad70d900703cadea75b" > <img src="/bookstore/img/amudarya.png;jsessionid=3aaabdf69ad70d900703cadea75b" /> </a>
-        <span class="view-cart-link"><a href="/bookstore/viewCart.do;jsessionid=3aaabdf69ad70d900703cadea75b">View cart</a></span>
+        <a href="/bookstore/;jsessionid=6f0a8034eeb23fc424da3cb7202e" > <img src="/bookstore/img/amudarya.png;jsessionid=6f0a8034eeb23fc424da3cb7202e" /> </a>
+        <span class="view-cart-link"><a href="/bookstore/viewCart.do;jsessionid=6f0a8034eeb23fc424da3cb7202e">View cart</a></span>
     </header>
     <body>
 <div class="container">

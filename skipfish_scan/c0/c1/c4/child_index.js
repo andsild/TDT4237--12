@@ -1,0 +1,4 @@
+var child = [
+  { 'dupe': false, 'type': 64, 'name': 'activationToken=1', 'dir': 'c0', 'linked': 5, 'url': 'http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.do DATA:email=skipfish@example.com&activationToken=1', 'fetched': true, 'code': 500, 'len': 1468, 'decl_mime': 'text/html', 'sniff_mime': 'application/xhtml+xml', 'cset': '[none]', 'missing': true, 'csens': false, 'child_cnt': 0, 'issue_cnt': [ 2, 1, 0, 1, 0 ], 'sig': 0x2af0bf3e },
+  { 'dupe': false, 'type': 64, 'name': 'email=8pt.png', 'dir': 'c1', 'linked': 5, 'url': 'http://paris.idi.ntnu.no:6280/bookstore/activateCustomer.do?email=8pt.png', 'fetched': true, 'code': 200, 'len': 1205, 'decl_mime': 'text/html', 'sniff_mime': '[none]', 'cset': 'ISO-8859-1', 'missing': false, 'csens': false, 'child_cnt': 0, 'issue_cnt': [ 1, 1, 0, 2, 0 ], 'sig': 0xba54b456 }
+];

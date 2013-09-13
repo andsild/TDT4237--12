@@ -1,0 +1,72 @@
+HTTP/1.1 200 Partial Content
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.0  Java/Oracle Corporation/1.7)
+Server: GlassFish Server Open Source Edition  4.0 
+Accept-Ranges: bytes
+ETag: W/"888-1378304558000"
+Last-Modified: Wed, 04 Sep 2013 14:22:38 GMT
+Content-Range: bytes 0-887/888
+Content-Type: text/css
+Date: Fri, 13 Sep 2013 10:51:17 GMT
+Content-Length: 888
+
+body{
+    text-align: center;
+    background-color: #FFFFFF;		
+}
+
+.general-form{
+    width: 60%;
+    margin-left:20%;
+    text-align: center;
+}
+.general-table{
+    width: 100%;
+
+}
+
+td{
+    width: 25%;
+    float-left: 10%;
+}
+
+header{
+    background-color: #FFFFFF;
+    color: black;
+    width: 80%;
+    margin-left:10%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 10%;
+    text-align: left;
+    padding-left: 15px;
+}
+.float-left{
+    float:left;
+}
+
+textarea{
+    width: 80%;
+    max-width: 350px;
+    min-width: 100px;
+
+}
+.container{
+    width: 80%;
+    min-height: 500px;
+    margin-left:10%;
+    border: 2px solid #CCC;
+    border-radius: 3px;
+    background-color: #E9E9E9;
+}
+.index-item{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.view-cart-link {
+    padding-top: 60px;
+    padding-right: 30px;
+    font-size: 24pt;
+    font-family: sans-serif;
+    float:right;
+}÷ê

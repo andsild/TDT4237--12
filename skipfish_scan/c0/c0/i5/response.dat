@@ -1,6 +1,0 @@
-HTTP/1.1 200 OK
-X-Powered-By: JSP/2.2
-Server: GlassFish Server Open Source Edition  4.0 
-Set-Cookie: JSESSIONID=3aaabdf69ad70d900703cadea75b; Path=/bookstore; HttpOnly
-
-[...truncated...]

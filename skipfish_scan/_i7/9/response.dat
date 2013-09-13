@@ -1,0 +1,26 @@
+HTTP/1.1 200 OK
+X-Powered-By: JSP/2.2
+Server: GlassFish Server Open Source Edition  4.0 
+Content-Type: text/html;charset=ISO-8859-1
+Date: Fri, 13 Sep 2013 10:49:53 GMT
+Transfer-Encoding: chunked
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/bookstore/css/stylesheet.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Amu-Darya Bookstore</title>
+    </head>
+    <header>
+        <a href="/bookstore/" > <img src="/bookstore/img/amudarya.png" /> </a>
+        <span class="view-cart-link"><a href="/bookstore/viewCart.do">View cart</a></span>
+    </header>
+    <body>
+<div class="container">
+    <h1>Customer Support</h1>
+    <div class="general-form">
+        <form method="post" action="customerSupport.do"

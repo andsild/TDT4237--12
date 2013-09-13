@@ -1,0 +1,43 @@
+HTTP/1.1 200 OK
+X-Powered-By: JSP/2.2
+Server: GlassFish Server Open Source Edition  4.0 
+Content-Type: text/html;charset=ISO-8859-1
+Date: Fri, 13 Sep 2013 10:50:06 GMT
+Content-Length: 1110
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/bookstore/css/stylesheet.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Amu-Darya Bookstore</title>
+    </head>
+    <header>
+        <a href="/bookstore/" > <img src="/bookstore/img/amudarya.png" /> </a>
+        <span class="view-cart-link"><a href="/bookstore/viewCart.do">View cart</a></span>
+    </header>
+    <body>
+<div class="container">
+<h1>Change Email</h1>
+    <div>Current email </div>
+    
+    <div class="general-form">
+    <form action="changeEmail.do" method="post">
+    	<table class="general-table">
+        <tr>
+            <td><label for="email">New email</label></td> 
+            <td><input id="email" name="email" type="text" value="" /></td>
+        </tr>
+        <tr>
+            <td><label for="email">Repeat email</label></td> 
+            <td><input id="email" name="email" type="text" value="" /></td>
+        </tr>
+        </table>
+        <div><input type="submit" value="Submit" /></div>
+    </form>
+    </div>
+</div>    </body>
+</html>

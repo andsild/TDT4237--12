@@ -1,8 +1,26 @@
-HTTP/1.1 500 Internal Server Error
-Content-Language: 
-Content-Type: text/html
-Date: Thu, 12 Sep 2013 19:35:18 GMT
-Connection: close
-Content-Length: 1468
+HTTP/1.1 200 OK
+X-Powered-By: JSP/2.2
+Server: GlassFish Server Open Source Edition  4.0 
+Content-Type: text/html;charset=ISO-8859-1
+Date: Fri, 13 Sep 2013 10:49:48 GMT
+Content-Length: 1437
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>GlassFish Server Open Source Edition  4.0  - Error report</title><style type="text/css"><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 500 - Internal Server Error</h1><hr/><p><b>type</b> Exception report</p><p><b>message</b>Internal Server Error</p><p><b>description</b>The server encountered an internal error that prevented it from fulfilling this request.</p><p><b>exception</b> <pre>javax.servlet.ServletException: Executing action failed.</pre></p><p><b>root cause</b> <pre>java.lang.NullPointerException</pre></p><p><b>note</b> <u>The full stack traces of the exception and its root causes are available in the GlassFish Server Open Source Edition  4.0  logs.</u></p><hr/><h3>GlassFish Server Open Source Edition  4.0 </h3></body></html>
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/bookstore/css/stylesheet.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Amu-Darya Bookstore</title>
+    </head>
+    <header>
+        <a href="/bookstore/" > <img src="/bookstore/img/amudarya.png" /> </a>
+        <span class="view-cart-link"><a href="/bookstore/viewCart.do">View cart</a></span>
+    </header>
+    <body>
+<div class="container">
+    <h1>Customer Support</h1>
+    <div class="general-form">
+        <form method="post" action="customerSupport.do"

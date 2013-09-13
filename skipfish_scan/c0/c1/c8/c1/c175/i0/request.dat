@@ -1,0 +1,12 @@
+POST /bookstore/addCreditCard.do HTTP/1.1
+Host: paris.idi.ntnu.no:6280
+Accept-Encoding: gzip
+Connection: keep-alive
+User-Agent: Mozilla/5.0 SF/2.10b
+Range: bytes=0-399999
+Referer: http://paris.idi.ntnu.no/
+Cookie: JSESSIONID=6f3473ef394036d4c1a19b8db98b
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 66
+
+creditCardNumber=4111111111111111&expiryMonth=1283&expiryYear=2010

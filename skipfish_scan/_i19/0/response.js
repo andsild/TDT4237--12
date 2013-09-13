@@ -1,0 +1,1 @@
+var res = {'data':'HTTP/1.1 200 OK\x0aX-Powered-By: JSP/2.2\x0aServer: GlassFish Server Open Source Edition  4.0 \x0aSet-Cookie: JSESSIONID=6f0a8034eeb23fc424da3cb7202e; Path=/bookstore; HttpOnly\x0a\x0a[...truncated...]\x0a'}

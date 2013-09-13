@@ -2,8 +2,8 @@ HTTP/1.1 200 OK
 X-Powered-By: JSP/2.2
 Server: GlassFish Server Open Source Edition  4.0 
 Content-Type: text/html;charset=ISO-8859-1
-Date: Thu, 12 Sep 2013 19:37:07 GMT
-Content-Length: 1437
+Date: Fri, 13 Sep 2013 10:50:05 GMT
+Content-Length: 846
 
 
 
@@ -21,6 +21,5 @@ Content-Length: 1437
     </header>
     <body>
 <div class="container">
-    <h1>Customer Support</h1>
-    <div class="general-form">
-        <form method="post" action="customerSupport.do"
+<h1>Add Address</h1>
+    <form action="addAddress.do" method="post"
