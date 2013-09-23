@@ -1,0 +1,4 @@
+activeuserprofiles=PESKDEB;PESKXUB;Team;peskdebtop
+eclipse.preferences.version=1
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=andesil
+useridperkey=PESKDEB.Local\=andesil;peskdebtop.Local\=andesil;PESKXUB.Local\=andesil;
