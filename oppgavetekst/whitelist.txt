@@ -1,0 +1,12 @@
+List of allowed libraries:
+
+ 
+
+
+ jasypt: http://www.jasypt.org/
+
+
+ jBCrypt: http://www.mindrot.org/projects/jBCrypt/ 
+
+
+ Twitter Bootstrap: http://getbootstrap.com/ 
