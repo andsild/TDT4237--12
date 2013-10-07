@@ -18,7 +18,8 @@ public class FrontController extends HttpServlet {
         try {
             Action action = ActionFactory.getAction(request);
             ActionResponse actionResponse = action.execute(request, response);
-            
+            System.out.println("Get url " + actionResponse.getURL());
+            System.out.println("Get parameter: " + actionResponse.getParameterString());
             if (actionResponse.getType() == ActionResponseType.REDIRECT) {
                 response.sendRedirect(actionResponse.getURL() + actionResponse.getParameterString());
             } else { // actionResponse.getType() == ActionResponse.Type.FORWARD
