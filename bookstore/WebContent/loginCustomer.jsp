@@ -1,43 +1,36 @@
 <div class="container">
-    <h1>Login</h1>
-    <c:choose>
-        <c:when test="${empty customer}">
-            <div class="general-form">
-                <form action="loginCustomer.do" method="post">
-                    <c:if test="${not empty values.from}">
-                        <input type="hidden" name="from" value="${values.from}">
-                    </c:if>
-                    <table class="general-table">
-                        <tr>
-                            <td>
-                                <label for="email">Email</label>
-                            </td>
-                            <td>
-                                <input id="email" name="email" type="text" value="${values.email}" />
-                            </td>
-                            <c:if test="${not empty messages.email}">
-                                <td><span class="error">${messages.email}</span></td>
-                                </c:if>
-                        </tr>
-                        <tr>
-                            <td><label for="password">Password</label></td>
-                            <td><input id="password" name="password" type="text" autocomplete="off" /></td>
-                                <c:if test="${not empty messages.password}">
-                                <td><span class="error">${messages.password}</span></td>
-                                </c:if>
-                        </tr>
-                    </table>
-                    <div>
-                        <input type="submit" value="Submit">
-                    </div>
+	<c:choose>
+		<c:when test="${empty customer}">
+		<div class="col-md-3">
+			<h1>Login</h1>
+			<form role="form" action="loginCustomer.do" method="post">
+				<c:if test="${not empty values.from}">
+					<input type="hidden" name="from" value="${values.from}">
+				</c:if>
+				<div class="form-group">
+					<label for="email">Email</label> 
+					<input class="form-control" placeholder="Email"
+						id="email" name="email" type="text" value="${values.email}" />
+				</div>
+				
+				<div class="form-group">
+					<label for="password">Password</label>
+					 <input class="form-control" id="password" placeholder="password" name="password" type="text" autocomplete="off" />
+					
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+				<c:if test="${not empty messages.error}">
+				<br />
+				<br />
+					<p class="alert alert-danger">${messages.error}</p>
+				</c:if>
+				
+			</form>
 
-                </form>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div>
-                Login successful!
-            </div>
-        </c:otherwise>
-    </c:choose>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div>Login successful!</div>
+		</c:otherwise>
+	</c:choose>
 </div>

@@ -27,11 +27,11 @@
         resultSet = statement.executeQuery(query);
         
         while (resultSet.next()) {
-            out.println("<h2>");
+            out.println("<p>");
             out.println("<a href='../viewBook.do?isbn=" + resultSet.getString("book.isbn13") + "'>");
             out.println(resultSet.getString("title.name"));
             out.println("</a>");
-            out.println("</h2>");
+            out.println("</p>");
         }
     } catch (SQLException ex) {
         System.out.println("SQLException: " + ex.getMessage());
