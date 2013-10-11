@@ -81,8 +81,16 @@
 					Weaver is an endearing protagonist, a former pugilist and investigator for hire whom we first met in 
 					David Liss's A Conspiracy of Paper (1999)
 					</p>
-					<span class="glyphicon glyphicon-search"></span>
-					
+					<div class="btn-group">
+					<button type="button" class="btn btn-default">
+					<span class="badge">42</span>
+					<span class="glyphicon glyphicon-thumbs-up"></span> 
+					</button>
+					<button type="button" class="btn btn-default">
+					<span class="badge"></span>
+					<span class="glyphicon glyphicon-thumbs-down"></span>
+					</button>
+					</div>
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-heading">Bookreview</h4>

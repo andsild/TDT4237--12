@@ -1,5 +1,6 @@
 package amu.database;
 
+import amu.BCrypt;
 import amu.Config;
 import amu.model.Customer;
 
@@ -8,13 +9,15 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.util.logging.*;
+
 import javax.sql.*;
 import javax.xml.bind.DatatypeConverter;
 
 public class CustomerDAO {
 
     public static String hashPassword(String plainTextPassword) {
-        String hashedPassword = null;
+        /*
+    	String hashedPassword = null;
         try {
             // Calculate SHA1(password+salt)
             hashedPassword = DatatypeConverter.printHexBinary(MessageDigest.getInstance("SHA1").digest((plainTextPassword + Config.SALT).getBytes()));
@@ -23,6 +26,8 @@ public class CustomerDAO {
         }
         
         return hashedPassword;
+        */
+    	return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
     public static String generateActivationCode() {
