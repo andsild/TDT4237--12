@@ -31,6 +31,7 @@
 		</c:when>
 		<c:otherwise>
 			<div>Login successful!</div>
+			
 		</c:otherwise>
 	</c:choose>
 </div>
