@@ -1,3 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javas    cript"></script>
+<script src="js/ratebook.js"></script>
+<link href="css/rateit.css" rel="stylesheet" type="text/css">
+
 <div class="container">
 	<c:choose>
 		<c:when test="${empty book}">
@@ -9,8 +13,7 @@
 		<c:otherwise>
 			<h2>${book.title.name}</h2>
 			<div class="row">
-
-				<div class="col-md-4 well">
+			 	<div class="col-md-4 well">
 					<div>
 						<ul class="list-unstyled">
 							<li><b>Authors:</b> 
@@ -24,6 +27,33 @@
 							<li><b>Price:</b> ${book.price}</li>
 						</ul>
 						<p>${book.description}</p>
+						<div>Hello, ${customer.name}</div>
+						
+						<c:choose>
+							<c:when test="${empty customer }">
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${empty customer.review}">
+								
+										<div class="rateit" id="rater1" onClick="$javascript:document.forms['id_rateForm'].submit()"> </div>
+										<form method="POST" action="rateBook.do" id="id_rateForm">
+											<input type="hidden" name="rating" value="$('#rater1').rateit('value')" />
+										</form>
+									</c:when>
+									<c:otherwise>
+										<p>pennis</p>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+						<!-- TODO: 
+							load default value, if any
+							submitting values to customer
+							setting read-only for "correct values"
+							-->
+
+							
 
 						<form class="form-inline" role="form" action="addBookToCart.do"
 							method="post">
