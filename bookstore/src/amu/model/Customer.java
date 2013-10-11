@@ -2,6 +2,8 @@ package amu.model;
 
 import java.io.Serializable;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 // TODO: Refactor... Add validation, make a real Model class not just POD
 public class Customer implements Serializable {
     private int id;
@@ -21,7 +23,7 @@ public class Customer implements Serializable {
     public String getEmail() {
         return email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }

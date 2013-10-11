@@ -34,15 +34,15 @@
 							</c:when>
 							<c:otherwise>
 								<c:choose>
-									<c:when test="${empty customer.review}">
-								
+									<c:when test="${empty customer}">
+					
+									</c:when>
+									<c:otherwise>					
 										<div class="rateit" id="rater1" onClick="$javascript:document.forms['id_rateForm'].submit()"> </div>
 										<form method="POST" action="rateBook.do" id="id_rateForm">
+											<input type="hidden" name="isbn" value="${book.isbn13}" />
 											<input type="hidden" name="rating" value="$('#rater1').rateit('value')" />
 										</form>
-									</c:when>
-									<c:otherwise>
-										<p>pennis</p>
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>
@@ -51,6 +51,7 @@
 							load default value, if any
 							submitting values to customer
 							setting read-only for "correct values"
+							make sure there's authorization for rating, currently any user can..
 							-->
 
 							
