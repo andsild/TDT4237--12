@@ -4,6 +4,5 @@ target/
 RemoteSystemsTempFiles
 eclimd.log
 .classpath
-.project
 local-password
 src/glassfish/domains/domain1
