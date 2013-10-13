@@ -82,7 +82,7 @@ public class FilterUnit
 
 	public static final String 		MAIL_REGEX 			= "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
-	public static final ASCIIRange 	UPPERCASE_LETTERS	= new ASCIIRange('A', 'A');
+	public static final ASCIIRange 	UPPERCASE_LETTERS	= new ASCIIRange('A', 'Z');
 	public static final ASCIIRange	LOWERCASE_LETTERS	= new ASCIIRange('a','z');
 	
 	public static final ASCIIRange	NUMBERS				= new ASCIIRange('0','9');

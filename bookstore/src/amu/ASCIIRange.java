@@ -35,10 +35,6 @@ public class ASCIIRange {
 	
 	public boolean inRange(char character)
 	{
-		System.out.println((int) start);
-		System.out.println((int) character);
-		System.out.println((int) stop);
-		System.out.println(start <= character && stop >= character);
 		return start <= character && stop >= character;
 	}
 	
