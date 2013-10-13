@@ -1,0 +1,11 @@
+CREATE TABLE `rating` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_customerID` int(10) unsigned DEFAULT NULL,
+  `fk_bookID` int(10) unsigned DEFAULT NULL,
+  `ratevalue` int(4) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `rating` (`fk_customerID`),
+  KEY `fk_bookID` (`fk_bookID`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`fk_customerID`) REFERENCES `customer` (`id`),
+  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`fk_bookID`) REFERENCES `book` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 |
