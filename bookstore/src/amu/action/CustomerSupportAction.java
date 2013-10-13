@@ -1,5 +1,8 @@
 package amu.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import amu.Config;
 import amu.Mailer;
 import amu.model.Customer;
@@ -7,6 +10,9 @@ import amu.model.Customer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 
 class CustomerSupportAction implements Action {
 
@@ -31,6 +37,20 @@ class CustomerSupportAction implements Action {
         	email = Config.EMAIL_FROM_ADDR;
         }
         if (request.getMethod().equals("POST")) {
+        	Map<String, String> messages = new HashMap<String, String>();
+            request.setAttribute("messages", messages);
+            String remoteAddr = request.getRemoteAddr();
+        	ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
+            reCaptcha.setPrivateKey("6LcwqOgSAAAAAL45ayNkEqKhWvAD7PDzFUtoBDim");
+
+            String challenge = request.getParameter("recaptcha_challenge_field");
+            String uresponse = request.getParameter("recaptcha_response_field");
+            ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
+            
+            if (reCaptchaResponse.isValid()) {
+				
+			
+        	
             Mailer.send(email, 
                     request.getParameter("subject"), 
                     request.getParameter("content"), 
@@ -38,6 +58,18 @@ class CustomerSupportAction implements Action {
                     request.getParameter("fromName"));
             // TODO: Send receipt to customer
             return new ActionResponse(ActionResponseType.REDIRECT, "customerSupportSuccessful");
+            }
+            else {
+            	String s = reCaptchaResponse.getErrorMessage();
+            	if (s.equals("incorrect-captcha-sol")) {
+					messages.put("error", "Incorrect captcha, please try again");
+				}
+            	else if (s.equals("captcha-timeout")) {
+            		messages.put("error", "Captcha timeout");
+				}else{
+					messages.put("error", reCaptchaResponse.getErrorMessage());
+				}
+			}
         } 
 
         return new ActionResponse(ActionResponseType.FORWARD, "customerSupport");
