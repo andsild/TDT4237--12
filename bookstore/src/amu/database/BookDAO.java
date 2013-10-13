@@ -52,4 +52,36 @@ public class BookDAO {
         
         return book;
     }
+    public Book findByID(String ID) {
+        Book book = null;
+        
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        
+        try {
+            connection = Database.getConnection();
+            statement = connection.createStatement();
+            
+            String query = "SELECT * FROM book"
+                    + "WHERE book.id = " + ID + ";'";
+            resultSet = statement.executeQuery(query);
+            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
+            
+            if (resultSet.next()) {
+                AuthorDAO authorDAO = new AuthorDAO(); // TODO:
+                
+                book = new Book();
+                book.setId(resultSet.getInt("book.id"));
+                // TODO: Reviews, Categories
+            }
+        } catch (SQLException exception) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+        } finally {
+            Database.close(connection, statement, resultSet);
+        }
+        
+        return book;
+    }
+
 }

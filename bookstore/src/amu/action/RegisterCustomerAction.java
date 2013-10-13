@@ -41,10 +41,10 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 	                customer.setEmail(request.getParameter("email"));
 	                customer.setName(request.getParameter("name"));
 	                customer.setPassword(CustomerDAO.hashPassword(request.getParameter("password")));
-	                System.out.println(customer.getPassword().length());
-	                System.out.println(customer.getEmail());
 	                customer.setActivationToken(CustomerDAO.generateActivationCode());
 	                customer = customerDAO.register(customer);
+	                
+	                // TODO: tell customer when password is too long
 	                
 	                ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
 	                actionResponse.addParameter("email", customer.getEmail());
