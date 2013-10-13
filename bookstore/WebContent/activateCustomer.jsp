@@ -12,7 +12,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <input type="hidden" name="email" value="${email}" />
+                <input type="hidden" name="email" value="<c:out value="${email}"/>"/>
             </c:otherwise>
         </c:choose>
         <div>Activation token:  <input type="text" name="activationToken" /></div>

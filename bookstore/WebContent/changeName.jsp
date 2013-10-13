@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Change name</h1>
-    <div>Current name: ${customer.name}</div>
+    <div>Current name:<c:out value=" ${customer.name}"></c:out></div>
     <form action="changeName.do" method="post">
         <div>
             <label for="name">New name</label> 
