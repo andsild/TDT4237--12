@@ -12,7 +12,7 @@
                     <input type="hidden" name="isbn" value="${item.value.book.isbn13}" />
                     <div> Quantity:
                         <input type="text" name="quantity" value="${item.value.quantity}" />
-                    </div>
+                    </div>'''
                 </c:forEach>
                 <br />
                 <input type="submit" value="Update cart" />
@@ -22,7 +22,7 @@
                     <div>Subtotal: ${cart.subtotal}</div>
                 </c:when>
                 <c:otherwise>
-                    <div>Subtotal (${cart.numberOfItems} items): ${cart.subtotal}</div>
+                    <div><c:out value="Subtotal (${cart.numberOfItems} items): ${cart.subtotal}"></c:out></div>
                 </c:otherwise>
             </c:choose>
             <br />

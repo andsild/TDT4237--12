@@ -7,14 +7,14 @@
             <td><label for="creditCardNumber">Credit Card Number: </label></td>
             <td><input id="creditCardNumber" name="creditCardNumber" type="text" value="${values.creditCardNumber}" /></td>
             <c:if test="${not empty messages.creditCardNumber}">
-                <span class="error">${messages.creditCardNumber}</span>
+                <span class="error"> <c:out value="${messages.creditCardNumber}"/></span>
             </c:if>
         </tr>
         <tr>
             <td><label for="cardholderName">Cardholder's name: </label></td>
             <td><input id="cardholderName" name="cardholderName" type="text" value="${values.cardholderName}" /></td>
             <c:if test="${not empty messages.cardholderName}">
-                <span class="error">${messages.cardholderName}</span>
+                <span class="error"><c:out value="${messages.creditName}"/></span>
             </c:if>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
             </select>
             </td>
             <c:if test="${not empty messages.expiryDate}">
-                <span class="error">${messages.expiryDate}</span>
+                <span class="error"><c:out value="${messages.expiryDate}"/></span>
             </c:if>
         </tr>
         </table>
@@ -49,6 +49,6 @@
     </form>
     </div>
     <c:if test="${not empty messages.error}">
-        <span class="error">${messages.error}</span>
+        <span class="error"> <c:out value=" ${messages.error}"/></span>
     </c:if>
 </div>
