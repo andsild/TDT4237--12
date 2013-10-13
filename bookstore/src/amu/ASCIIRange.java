@@ -13,6 +13,8 @@ public class ASCIIRange {
 	{
 		this.setStart(start);
 		this.setStop(stop);
+		
+		sort();
 	}
 	
 	public char getStart() {
@@ -21,8 +23,6 @@ public class ASCIIRange {
 
 	private void setStart(char start) {
 		this.start = start;
-		
-		if(start>stop) swap();
 	}
 
 	public char getStop() {
@@ -31,13 +31,20 @@ public class ASCIIRange {
 
 	private void setStop(char stop) {
 		this.stop = stop;
-		
-		if(start>stop) swap();
 	}
 	
 	public boolean inRange(char character)
 	{
+		System.out.println((int) start);
+		System.out.println((int) character);
+		System.out.println((int) stop);
+		System.out.println(start <= character && stop >= character);
 		return start <= character && stop >= character;
+	}
+	
+	public void sort()
+	{
+		if(start>stop)swap();
 	}
 	
 	private void swap()
