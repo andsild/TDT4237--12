@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 //feel free to add static members like asciiranges and regexes
 
 /*
- * TODO
- * Create FilterUnitException, throw from isValid(String) or child methods
+ * 
+ *   
  */
 
 public class FilterUnit 
@@ -110,6 +110,7 @@ public class FilterUnit
 		return filter;
 	}
 	
+	//DOES NOT CHECK STRING LENGTH
 	public static FilterUnit getPasswordValidator()
 	{
 		FilterUnit filter = new FilterUnit();
