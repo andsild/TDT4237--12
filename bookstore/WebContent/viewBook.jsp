@@ -28,31 +28,50 @@
 							<li><b>Price:</b> ${book.price}</li>
 						</ul>
 						<p>${book.description}</p>
-						<div>Hello, ${customer.name}</div>
 						
 						<c:choose>
+							<c:when test="${empty averageRating}">
+								<p><b>No reviews exists for this book yet</b></p>
+							</c:when>
+							<c:otherwise>
+								<p><i>Average rating for this book</i></p>
+								<div class="rateit" id="rater2" data-rateit-readonly="true" data-rateit-value="${averageRating}"></div>
+							</c:otherwise>		
+						</c:choose>	
+											
+						<c:choose>
 							<c:when test="${empty customer }">
+							<p><i>Log in to review this book</i></p>
 							</c:when>
 							<c:otherwise>
 								<c:choose>
-									<c:when test="${empty customer}">
-					
-									</c:when>
-									<c:otherwise>					
-										<div class="rateit" id="rater1" onClick="$javascript:document.forms['id_rateForm'].submit()"> </div>
+									<c:when test="${empty rating}">
+										<script type="text/javascript">
+											function submitFormy(){
+												document.forms['id_rateForm'].rating.value=$('#rater1').rateit('value');
+												document.forms['id_rateForm'].submit();
+												window.location.reload();
+											}
+										</script>
+										<div class="rateit" name="userrating" id="rater1" step="1.0" onClick="$javascript:submitFormy()"> </div>
 										<form method="POST" action="rateBook.do" id="id_rateForm">
 											<input type="hidden" name="isbn" value="${book.isbn13}" />
-											<input type="hidden" name="rating" value="$('#rater1').rateit('value')" />
+											<input type="hidden" name="rating" value="" />
 										</form>
+									</c:when>
+									<c:otherwise>
+										<p><i>Log in to review this book</i></p>					
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
 						<!-- TODO: 
+							When empty customerRating
 							load default value, if any
 							submitting values to customer
 							setting read-only for "correct values"
 							make sure there's authorization for rating, currently any user can..
+							check if review already exists for this customer
 							-->
 
 							
