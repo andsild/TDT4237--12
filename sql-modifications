@@ -9,3 +9,24 @@ CREATE TABLE `rating` (
   CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`fk_customerID`) REFERENCES `customer` (`id`),
   CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`fk_bookID`) REFERENCES `book` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1 |
+
+
+CREATE TABLE IF NOT EXISTS `list` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_x_book`
+--
+
+CREATE TABLE IF NOT EXISTS `list_x_book` (
+  `ID_list` int(11) NOT NULL,
+  `ID_book` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
