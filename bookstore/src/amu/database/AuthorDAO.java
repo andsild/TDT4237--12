@@ -19,7 +19,7 @@ public class AuthorDAO {
         try {
             connection = Database.getConnection();
             statement = connection.createStatement();
-            
+            //TODO Fix me
             String query = "SELECT "
                     + "author.id, "
                     + "author.name "

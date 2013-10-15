@@ -29,9 +29,10 @@ class DeleteCreditCardAction implements Action {
             List<String> messages = new ArrayList<String>();
             request.setAttribute("messages", messages);
 
-            if (creditCardDAO.delete(Integer.parseInt(request.getParameter("id")))) {
+            if (creditCardDAO.delete(Integer.parseInt(request.getParameter("id")), customer.getId())) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
             }
+            
 
             messages.add("An error occured.");
         }

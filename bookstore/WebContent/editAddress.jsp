@@ -1,4 +1,6 @@
 <div class="container">
+<c:choose>
+		<c:when test="${not empty sessionScope.customer}">
     <h1>Edit Address</h1>
     <form action="editAddress.do" method="post">
         <c:if test="${not empty messages}">
@@ -15,4 +17,10 @@
         </div>
         <div><input type="submit" value="Submit" /></div>
     </form>
+    </c:when>
+    <c:otherwise>
+    	<c:redirect url="loginCustomer.do"></c:redirect>
+    </c:otherwise>
+    </c:choose>
+    
 </div>

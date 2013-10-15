@@ -36,7 +36,7 @@ public class OrderDAO {
                 createdDate.setTime(resultSet.getDate("created"));
                 orders.add(new Order(resultSet.getInt("id"),
                         customer, 
-                        addressDAO.read(resultSet.getInt("address_id")), 
+                        addressDAO.read(resultSet.getInt("address_id"), customer.getId()), 
                         createdDate, 
                         resultSet.getString("value"), 
                         resultSet.getInt("status")));

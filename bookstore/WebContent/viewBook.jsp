@@ -11,6 +11,7 @@
 			</div>
 		</c:when>
 		<c:otherwise>
+		
 			<h2>${book.title.name}</h2>
 			<div class="row">
 			 	<div class="col-md-4 well">
