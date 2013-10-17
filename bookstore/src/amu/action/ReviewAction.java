@@ -12,8 +12,8 @@ import amu.model.Rating;
 
 public class ReviewAction implements Action {
 
-	@Override
-	public ActionResponse execute(HttpServletRequest request,
+	@Override	public ActionResponse execute(HttpServletRequest request,
+
 			HttpServletResponse response) throws Exception {
 		// TODO: if logged out when comoing here, a 500 occurs
 		HttpSession session = request.getSession(true);
@@ -49,9 +49,8 @@ public class ReviewAction implements Action {
 					+ cCustomer.toString();
 			throw new Exception("COULD NOT REGISTER" + sOutput);
 		}
-
 		return ar;
 	}
 }
 
-// EOF
+/* EOF */
