@@ -35,6 +35,7 @@
 							</c:when>
 							<c:otherwise>
 								<p><i>Average rating for this book</i></p>
+								<p>${averageRating}</p>
 								<div class="rateit" id="rater2" data-rateit-readonly="true" data-rateit-value="${averageRating}"></div>
 							</c:otherwise>		
 						</c:choose>	
@@ -50,7 +51,7 @@
 											function submitFormy(){
 												document.forms['id_rateForm'].rating.value=$('#rater1').rateit('value');
 												document.forms['id_rateForm'].submit();
-												window.location.reload();
+												
 											}
 										</script>
 										<div class="rateit" name="userrating" id="rater1" step="1.0" onClick="$javascript:submitFormy()"> </div>
@@ -83,6 +84,18 @@
 								<input type="text" class="form-control" size="2" name="quantity" value="1" />
 							</div>
 							<button type="submit" class="btn btn-primary">Add to cart</button>
+						</form>
+						<form class="form-inline" role="form" action="addBookToList.do"
+							method="post">
+							<div class="form-group">
+								<input type="hidden" name="isbn" value="${book.isbn13}" /> 
+								<select class="form-control" name="id">
+ 									<c:forEach items="${customerLists}" var="item">
+ 										<option value="${item.id}">${item.title}</option>
+ 									</c:forEach>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Add to list</button>
 						</form>
 					</div>
 				</div>
