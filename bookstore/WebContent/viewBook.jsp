@@ -85,6 +85,18 @@
 							</div>
 							<button type="submit" class="btn btn-primary">Add to cart</button>
 						</form>
+						<form class="form-inline" role="form" action="addBookToList.do"
+							method="post">
+							<div class="form-group">
+								<input type="hidden" name="isbn" value="${book.isbn13}" /> 
+								<select class="form-control" name="id">
+ 									<c:forEach items="${customerLists}" var="item">
+ 										<option value="${item.id}">${item.title}</option>
+ 									</c:forEach>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Add to list</button>
+						</form>
 					</div>
 				</div>
 				<div class="col-md-4">

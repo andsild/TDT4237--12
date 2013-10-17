@@ -1,6 +1,7 @@
 package amu.action;
 
 import amu.database.BookDAO;
+import amu.database.BookListDAO;
 import amu.database.RatingDAO;
 import amu.model.Book;
 import amu.model.Customer;
@@ -43,3 +44,5 @@ class ViewBookAction implements Action {
         return new ActionResponse(ActionResponseType.FORWARD, "viewBook");
     }
 }
+
+/* EOF */
