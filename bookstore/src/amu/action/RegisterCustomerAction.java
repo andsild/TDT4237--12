@@ -39,6 +39,7 @@ class RegisterCustomerAction extends HttpServlet implements Action {
                     String uresponse = request.getParameter("recaptcha_response_field");
                     ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
 
+<<<<<<< HEAD
                     if (reCaptchaResponse.isValid()) {
     	            	
     	                customer = new Customer();
@@ -78,6 +79,33 @@ class RegisterCustomerAction extends HttpServlet implements Action {
     				}    
                 } else {
                     return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
+=======
+                if (reCaptchaResponse.isValid()) {
+	            	
+	                customer = new Customer();
+	                customer.setEmail(request.getParameter("email"));
+	                customer.setName(request.getParameter("name"));
+	                customer.setPassword(CustomerDAO.hashPassword(request.getParameter("password")));
+	                customer.setActivationToken(CustomerDAO.generateActivationCode());
+	                customer = customerDAO.register(customer);
+	                
+	                // TODO: tell customer when password is too long
+	                
+	                ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
+	                actionResponse.addParameter("email", customer.getEmail());
+	                
+	                StringBuilder sb = new StringBuilder();
+	                sb.append("Welcome to Amu-Darya, the really insecure bookstore!\n\n");
+	                sb.append("To activate your account, click <a href='http://");
+	                sb.append(request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/");
+	                sb.append(actionResponse.getURL() + actionResponse.getParameterString());
+	                sb.append("&activationToken=" + customer.getActivationToken());
+	                sb.append("'>here</a>, or use this activation code: " + customer.getActivationToken());
+	               
+	                Mailer.send(customer.getEmail(), "Activation required", sb.toString());
+	 
+	                return actionResponse;
+>>>>>>> 007d369e4ec81ee54011361e1c1833888f0ff0bd
                 }
             }
 

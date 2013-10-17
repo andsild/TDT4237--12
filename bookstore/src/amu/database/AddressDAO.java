@@ -41,16 +41,17 @@ public class AddressDAO {
         return addresses;
     }
 
-    public Address read(int id) {
+    public Address read(int id, int customer_id) {
         Address address = null;
 
         try {
             connection = Database.getConnection();
 
-            String query = "SELECT address FROM address WHERE id=?";
+            String query = "SELECT address FROM address WHERE id=? AND customer_id=?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-
+            statement.setInt(2, customer_id);
+           
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
@@ -109,14 +110,15 @@ public class AddressDAO {
         return false;
     }
 
-    public boolean delete(int id) {
+    public boolean delete(int id, int customer_id) {
 
         try {
             connection = Database.getConnection();
 
-            String query = "DELETE FROM address WHERE id=?";
+            String query = "DELETE FROM address WHERE id=? AND customer_id=?";
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
+            statement.setInt(2, customer_id);
 
             if (statement.executeUpdate() > 0) {
                 return true;

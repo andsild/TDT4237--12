@@ -4,35 +4,73 @@ public class Rating
 {
 	private Integer iId;
 	private Customer cCustomer;
-	private Integer iRateValue;
+	private String sRateValue;
 	private int iBookID;
 	
-	public Rating(int iId, Customer cCustomer, int iRateValue, int iBookID)
+	public Rating(int iId, Customer cCustomer, String sRateValue, int iBookID)
 	{
-		this.iId = iId;
-		this.cCustomer = cCustomer;
-		this.iRateValue = iRateValue;
-		this.iBookID = iBookID;
+		setId(iId);
+		setRating(sRateValue);
+		setBookID(iBookID);
+		setCustomer(cCustomer);
 	}
 	
-	public Rating(Customer cCustomer, int iRateValue, int iBookID)
+	public Rating(Customer cCustomer, String sRateValue, int iBookID)
 	{
-		this.iId = null; /* default, rely on AUTO_INCREMENT */
-		this.cCustomer = cCustomer;
-		this.iRateValue = iRateValue;
-		this.iBookID = iBookID;
+		this.iId = null;
+		setRating(sRateValue);
+		setBookID(iBookID);
+		setCustomer(cCustomer);
 	}
 	
-	public int getRating() {	return this.iRateValue; }
+	public String getRating() {	return this.sRateValue; }
 	public Customer getCustomer() { return this.cCustomer; }
 	public int getId() { return this.iId; }
+	public int getBookID() { return this.iBookID; }
 	
-	public void setRating(int iRateValue)
+	public void setId(Integer id) 
+	{ 
+		if (id == null) { throw new NullPointerException("Id is null"); }
+		
+		this.iId = id;
+	}
+	
+	public void setBookID(Integer iBookID)
+	{
+		if (iBookID == null) { throw new NullPointerException("bookId is null"); }
+		
+		this.iBookID = iBookID;
+	}
+	public void setRating(String sRateValue)
 	{
 			//TODO: make sure in range
-			this.iRateValue = iRateValue;
+			//this.sRateValue = sRateValue;
+			if(sRateValue == null) { throw new NullPointerException("ratevalue is null"); }
+			this.sRateValue = sRateValue; 
 	}
-
+	
+	public void setCustomer(Customer c) 
+	{
+		if(c == null) { throw new NullPointerException("customer is null"); }
+		this.cCustomer = c;
+	}
+	
+	public String toString()
+	{
+		String sOutput = "";
+		try
+		{
+			sOutput = getRating() + "\n" + Integer.toString(getId())
+					+ getCustomer().toString() + "\n" + Integer.toString(getBookID());
+		}
+		catch(Exception e)
+		{
+			System.out.println("rating had error");
+			System.out.println(e.getMessage());
+		}
+				
+		return sOutput;
+	}
 }
 
 /* EOF */

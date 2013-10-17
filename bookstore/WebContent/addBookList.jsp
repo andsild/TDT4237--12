@@ -5,24 +5,17 @@
 	};
 </script>
 <div class="container">
-	<h1>Customer Support</h1>
+	<h1>Create Book List</h1>
 	<div class="col-md-5">
-		<form role="form" action="customerSupport.do" method="post">
+		<form role="form" action="addBookList.do" method="post">
 			<div class="form-group">
-				<label for="department">Department</label> 
-				<select class="form-control"
-					 name="email" required>
-					 	<option selected value="sales">Sales</option>
-                            <option value="techSupport">Technical support</option>
-					 </select>
+				<label for="title">Subject</label> <input class="form-control" id="subject"
+					name="title" type="text" placeholder="title" required />
 			</div>
 			<div class="form-group">
-				<label for="subject">Subject</label> <input class="form-control" id="subject"
-					name="subject" type="text" placeholder="subject" required />
-			</div>
-			<div class="form-group">
+			<label for="description">Description</label>
 				<textarea class="form-control"
-					name="content" rows="10" required ></textarea>
+					name="description" rows="10" required ></textarea>
 			</div>
 			<div id="recaptcha_widget" style="display: none">
 				<div id="recaptcha_image"></div>
@@ -59,9 +52,10 @@
 				<button type="submit" class="btn btn-default">Submit</button>
 			</div>
 			<div class="form-group">
-				<c:if test="${not empty messages.error}">
-					<p class="alert alert-danger">${messages.error}</p>
-				</c:if>
+				<c:forEach items="${messages}" var="item">
+					<p class="alert alert-danger">${item}</p>
+				</c:forEach>
+				
 			</div>
 		</form>
 	</div>

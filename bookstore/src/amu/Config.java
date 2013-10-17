@@ -10,6 +10,8 @@ public class Config {
     
     public final static String EMAIL_FROM_ADDR = "tdt4237.amu.darya@gmail.com";
     public final static String EMAIL_FROM_NAME = "Amu-Darya";
+    public final static String EMAIL_TECH = "tdt4237.amu.darya@gmail.com";
+    public final static String EMAIL_SALES = "tdt4237.amu.darya@gmail.com"; 
     
     public final static String SALT="NaCl"; // Changing this will invalidate all customer passwords in DB
     
