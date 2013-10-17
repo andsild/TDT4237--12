@@ -10,6 +10,7 @@ public class Order {
     private Calendar createdDate;
     private String value;
     private int status;
+    private Cart cart;
     
     // TODO: Add OrderItems
 
@@ -68,5 +69,11 @@ public class Order {
             case -1:
                 return "Canceled";
         }
+    }
+    public Cart getCart(){
+    	return this.cart;
+    }
+    public void setCart(Cart cart){
+    	this.cart = cart;
     }
 }

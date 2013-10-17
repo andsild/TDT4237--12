@@ -41,12 +41,13 @@
         <h2>Your orders</h2>
         <c:forEach var="order" items="${orders}" varStatus="counter">
             <div>
-                <div> <c:out value="Order #${counter.count}"></c:out></div>
+               	<h3><a href="viewOrder.do?id=${order.id}"> <c:out value="Order #${counter.count}"></c:out></a></h3>
                 <pre> <c:out value="${order.address.address}"></c:out></pre>
                 <div>Date: <fmt:formatDate value="${order.createdDate.time}" type="date" dateStyle="short" /></div>
                 <div> <c:out value="Value: ${order.value}"></c:out></div>
                 <div> <c:out value="Status: ${order.statusText}"></c:out></div>
             </div>
+            <br />
         </c:forEach>
     </div>
 </div>
