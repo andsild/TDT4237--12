@@ -34,8 +34,9 @@
 								<p><b>No reviews exists for this book yet</b></p>
 							</c:when>
 							<c:otherwise>
-								<p><i>Average rating for this book</i></p>
-								<div class="rateit" id="rater2" data-rateit-readonly="true" data-rateit-value="${averageRating}"></div>
+								<p style="white-space: nowrap;"><i>Average rating for this book</i>
+								<div style="white-space: nowrap;" class="rateit" id="rater2" data-rateit-readonly="true" data-rateit-value="${averageRating}"></div>
+								 </p>
 							</c:otherwise>		
 						</c:choose>	
 											
@@ -50,17 +51,17 @@
 											function submitFormy(){
 												document.forms['id_rateForm'].rating.value=$('#rater1').rateit('value');
 												document.forms['id_rateForm'].submit();
-												window.location.reload();
 											}
 										</script>
-										<div class="rateit" name="userrating" id="rater1" step="1.0" onClick="$javascript:submitFormy()"> </div>
+										<p><i>Rate this book: </i><div class="rateit" name="userrating" id="rater1" step="1.0" onClick="$javascript:submitFormy()"></div></p>
 										<form method="POST" action="rateBook.do" id="id_rateForm">
 											<input type="hidden" name="isbn" value="${book.isbn13}" />
 											<input type="hidden" name="rating" value="" />
 										</form>
 									</c:when>
 									<c:otherwise>
-										<p><i>Log in to review this book</i></p>					
+										<p><i> Your review of this book:</i> </p>
+										<div style="white-space: nowrap;" class="rateit" id="rater3" data-rateit-readonly="true" data-rateit-value="${rating}"></div>					
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>

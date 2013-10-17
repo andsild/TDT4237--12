@@ -81,10 +81,9 @@ public class RatingDAO
         return retInt;
 	 }
 	 
-	 public Rating findByIDS(Integer iCustomerID, Integer iBookID)
+	 public Integer getRating(Integer iCustomerID, Integer iBookID)
 	 {
-		Rating rRating = null;
-
+		Integer iRating = null;
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -104,19 +103,14 @@ public class RatingDAO
 
 
             if (resultSet.next()) {
-            	int iRateId = resultSet.getInt("ID");
-            	int iCustId = resultSet.getInt("fk_customerID");
-            	String sRating = resultSet.getString("ratevalue");
-            	
-            	//FIXME: fill me in PROPERLY
-            	rRating = new Rating(iRateId, new CustomerDAO().findByEmail("HEY"), sRating, iBookID);
+            	iRating = resultSet.getInt("ratevalue");
             }
         } catch (SQLException exception) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
         } finally {
             Database.close(connection, statement, resultSet);
         }
-        return rRating;
+        return iRating;
 	 }
 	 
 	 public Rating findByID(int iId)

@@ -23,13 +23,15 @@ public class ReviewAction implements Action
 	HttpServletResponse response)
 	throws Exception 
 	{
+		System.out.println(request);
 		//TODO: if logged out when comoing here, a 500 occurs
 		HttpSession session = request.getSession(true);
         Customer cCustomer = (Customer) session.getAttribute("customer");
         
         String sCustomerRating = request.getParameter("rating"),
         		sIsbn		   = request.getParameter("isbn");
-		ActionResponse ar = new ActionResponse(ActionResponseType.FORWARD, "viewBook");
+		ActionResponse ar = new ActionResponse(ActionResponseType.REDIRECT, "viewBook");
+		ar.addParameter("isbn", sIsbn);
         
         /* is customer verified properly? Is there anyway to bypass? */
 		if( sCustomerRating != null
@@ -59,8 +61,9 @@ public class ReviewAction implements Action
 			throw new Exception("COULD NOT REGISTER" + sOutput);
 		}
 		
+		
 		return ar;
 	}
 }
 
-// EOF
+/* EOF */

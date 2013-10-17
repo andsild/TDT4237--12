@@ -96,7 +96,6 @@ public class FilterUnit
 	public static final ASCIIRange 	DOT					= new ASCIIRange('.','.');
 	public static final ASCIIRange 	AT					= new ASCIIRange('@','@');
 	
-	
 	public static FilterUnit getMailValidator()
 	{
 		FilterUnit filter = new FilterUnit();
