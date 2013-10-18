@@ -89,15 +89,33 @@ public class FilterUnit
 			forbiddenRegex.add(Pattern.compile(regex));
 	}
 	
+	public void addSeveralForbiddenRegex(ArrayList<String> regex)
+	{
+		for(String s : regex)
+			this.addForbiddenRegex(s);
+	}
+	
 	public void addRequiredRegex(String regex)
 	{
 		if(!regex.equals(""))
 			requiredRegex.add(Pattern.compile(regex));
 	}
 	
+	public void addSeveralRequiredRegex(ArrayList<String> regex)
+	{
+		for(String s : regex)
+			this.addRequiredRegex(s);
+	}
+	
 	public void addLegalRange(ASCIIRange range)
 	{
 		legalRanges.add(range);
+	}
+	
+	public void addSeveralLegalRanges(ArrayList<ASCIIRange> ranges)
+	{
+		for(ASCIIRange r : ranges)
+			this.addLegalRange(r);
 	}
 
 	public static final String 		MAIL_REGEX 				= "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -115,18 +133,40 @@ public class FilterUnit
 	public static final ASCIIRange	LOWERCASE_AA			= new ASCIIRange('å', 'å');
 	public static final ASCIIRange 	DOT						= new ASCIIRange('.','.');
 	public static final ASCIIRange 	AT						= new ASCIIRange('@','@');
+	public static final ASCIIRange	SPACE					= new ASCIIRange(' ',' ');
 	
 	public static final int 		PASSWORD_MINIMUM_LENGTH	= 8;  
 	public static final int 		PASSWORD_MAXIMUM_LENGTH	= 59;  
 	
+	
+	public static ArrayList<ASCIIRange> getEnglishAlphabet()
+	{
+		ArrayList<ASCIIRange> ranges = new ArrayList<ASCIIRange>();
+		ranges.add(UPPERCASE_LETTERS);
+		ranges.add(LOWERCASE_LETTERS);
+		
+		return ranges;
+	}
+	
+	public static ArrayList<ASCIIRange> getNorwegianAlphabet()
+	{
+		ArrayList<ASCIIRange> ranges = getEnglishAlphabet();
+		ranges.add(UPPERCASE_AE);
+		ranges.add(LOWERCASE_AE);
+		ranges.add(UPPERCASE_OE);
+		ranges.add(LOWERCASE_OE);
+		ranges.add(UPPERCASE_AA);
+		ranges.add(LOWERCASE_AA);
+		
+		return ranges;
+	}
 	
 	public static FilterUnit getMailValidator()
 	{
 		FilterUnit filter = new FilterUnit();
 		
 	//	filter.addRequiredRegex(MAIL_REGEX);
-		filter.addLegalRange(LOWERCASE_LETTERS);
-		filter.addLegalRange(UPPERCASE_LETTERS);
+		filter.addSeveralLegalRanges(getEnglishAlphabet());
 		filter.addLegalRange(NUMBERS);
 		filter.addLegalRange(DOT);
 		filter.addLegalRange(AT);
@@ -134,14 +174,14 @@ public class FilterUnit
 		return filter;
 	}
 	
-	//DOES NOT CHECK STRING LENGTH
+
 	public static FilterUnit getPasswordValidator()
 	{
 		FilterUnit filter = new FilterUnit();
 		
-		filter.addLegalRange(LOWERCASE_LETTERS);
-		filter.addLegalRange(UPPERCASE_LETTERS);
+		filter.addSeveralLegalRanges(getEnglishAlphabet());
 		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(DOT);
 		
 		filter.setMinimumLength(PASSWORD_MINIMUM_LENGTH);
 		filter.setMaximumLength(PASSWORD_MAXIMUM_LENGTH);
@@ -154,33 +194,31 @@ public class FilterUnit
 	{
 		FilterUnit filter = new FilterUnit(); 
 		
-		filter.addLegalRange(LOWERCASE_LETTERS);
-		filter.addLegalRange(UPPERCASE_LETTERS);
+		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 		filter.addLegalRange(NUMBERS);
-		filter.addLegalRange(LOWERCASE_AA);
-		filter.addLegalRange(LOWERCASE_AE);
-		filter.addLegalRange(LOWERCASE_OE);
-		filter.addLegalRange(UPPERCASE_AA);
-		filter.addLegalRange(UPPERCASE_AE);
-		filter.addLegalRange(UPPERCASE_OE);
 		
 		return filter; 
 	}
+	
 	public static FilterUnit getTextValidator()
 	{
 		FilterUnit filter = new FilterUnit(); 
 		
-		filter.addLegalRange(LOWERCASE_LETTERS);
-		filter.addLegalRange(UPPERCASE_LETTERS);
-		filter.addLegalRange(LOWERCASE_AA);
-		filter.addLegalRange(LOWERCASE_AE);
-		filter.addLegalRange(LOWERCASE_OE);
-		filter.addLegalRange(UPPERCASE_AA);
-		filter.addLegalRange(UPPERCASE_AE);
-		filter.addLegalRange(UPPERCASE_OE);
+		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 		
-		return filter; 
+		return filter; 	
+	}
+	
+	public static FilterUnit getAddressValidator()
+	{
+		FilterUnit filter = new FilterUnit();
 		
+		filter.addSeveralLegalRanges(getNorwegianAlphabet());
+		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(SPACE);
+		filter.addLegalRange(DOT);
+		
+		return filter;
 	}
 	
 }

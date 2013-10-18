@@ -1,12 +1,16 @@
 package amu.action;
 
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.AddressDAO;
 import amu.model.Address;
 import amu.model.Customer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,6 +40,17 @@ class AddAddressAction implements Action {
             List<String> messages = new ArrayList<String>();
             request.setAttribute("messages", messages);
 
+            try
+            {
+            	Config.VALIDATE_ADDRESS.isValid(request.getParameter("address"));
+            }
+            catch(FilterUnitException e)
+            {
+            	messages.add("Invalid address");
+            	return new ActionResponse(ActionResponseType.FORWARD, "addAddress");
+            }
+            
+            
             AddressDAO addressDAO = new AddressDAO();
             Address address = new Address(customer, request.getParameter("address"));
 
