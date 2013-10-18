@@ -3,17 +3,17 @@ package amu.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import amu.Mailer;
-import amu.database.CustomerDAO;
-import amu.model.Customer;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
+import amu.Config;
+import amu.FilterUnitException;
+import amu.Mailer;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
 
 class RegisterCustomerAction extends HttpServlet implements Action {
     
@@ -35,7 +35,19 @@ class RegisterCustomerAction extends HttpServlet implements Action {
                 String uresponse = request.getParameter("recaptcha_response_field");
                 ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
 
-                if (reCaptchaResponse.isValid()) {
+                if (!reCaptchaResponse.isValid()) {
+                	
+	            	try
+	            	{
+	            		Config.VALIDATE_EMAIL.isValid(request.getParameter("email"));
+	            		Config.VALIDATE_PASSWORD.isValid(request.getParameter("password"));
+	            		Config.VALIDATE_TEXT.isValid(request.getParameter("name"));	            		
+	            	}
+	            	catch(FilterUnitException e)
+	            	{
+	            		messages.put("error", "Sleng pikken i veggen og dans. BITCH");
+	            		return new ActionResponse(ActionResponseType.FORWARD, "registerCustomer");
+	            	}
 	            	
 	                customer = new Customer();
 	                customer.setEmail(request.getParameter("email"));
@@ -75,8 +87,7 @@ class RegisterCustomerAction extends HttpServlet implements Action {
             } else {
                 return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
             }
-        }
-        
+                
         // Else we show the register form
         return new ActionResponse(ActionResponseType.FORWARD, "registerCustomer");
     }
