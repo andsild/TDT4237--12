@@ -22,19 +22,7 @@
 					</c:if>
 					<div class="col-md-5">
 						<form role="form" action="registerCustomer.do" method="post">
-							<div class="form-group">
-								<label for="email">Email</label> <input class="form-control"
-									id="email" name="email" type="text" placeholder="Email" required />
-							</div>
-							<div class="form-group">
-								<label for="name">Name</label> <input class="form-control"
-									id="name" name="name" type="text" placeholder="Name" required />
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label> <input
-									class="form-control" id="password" name="password" type="password"
-									autocomplete="off" placeholder="Password" required />
-							</div>
+							
 							<div id="recaptcha_widget" style="display: none">
 								<div id="recaptcha_image"></div>
 							<div class="form-group">
@@ -69,9 +57,7 @@
 								<button type="submit" class="btn btn-default">Submit</button>
 							</div>
 							<div class="form-group">
-								<c:if test="${not empty messages.error}">
-									<p class="alert alert-danger">${messages.error}</p>
-								</c:if>
+								
 							</div>
 						</form>
 					</div>

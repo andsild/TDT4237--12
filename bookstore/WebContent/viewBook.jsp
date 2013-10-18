@@ -1,3 +1,12 @@
+<script type="text/javascript">
+	var RecaptchaOptions = {
+		theme : 'custom',
+		custom_theme_widget : 'recaptcha_widget'
+	};
+</script>
+
+<link rel="stylesheet" type="text/css" href="/bookstore/css/commentStyle.css" />
+
 <%@page import="amu.database.BookDAO"%>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
@@ -129,31 +138,69 @@
 						</p>
 					</c:when>
 					<c:otherwise>
-						<form action="addReview.do" method="POST">
-							<input type="hidden" name="isbn" value="${book.isbn13}" />
-							<label>Review</label> <input name="review"></input> 
-							<input type="submit" value="Legg til kommentar"></input>
+					<div class="col-md-3">
+						<label>Write review:</label>
+						<form action="addReview.do" id="id_Review" method="POST">
+							<input type="hidden" name="isbn" value="${book.isbn13}" /> <input
+								name="review">
+							<div id="recaptcha_widget" style="display: none">
+								<div id="recaptcha_image"></div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" id="recaptcha_response_field"
+											name="recaptcha_response_field" class="form-control"
+											placeholder="Captcha" required> <span
+											class="input-group-btn">
+											<button class="btn btn-default" type="button"
+												onclick="javascript:Recaptcha.reload()">
+												<span class="glyphicon glyphicon-refresh"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+
+								<script type="text/javascript"
+									src="http://www.google.com/recaptcha/api/challenge?k=6LcwqOgSAAAAANhXXKjhfVcoJLQPdrOgLqE15ue-">
+									
+								</script>
+								<noscript>
+									<iframe
+										src="http://www.google.com/recaptcha/api/noscript?k=6LcwqOgSAAAAANhXXKjhfVcoJLQPdrOgLqE15ue-"
+										height="300" width="500" frameborder="0"></iframe>
+									<br>
+									<textarea name="recaptcha_challenge_field" rows="3" cols="40">
+								   </textarea>
+									<input type="hidden" name="recaptcha_response_field"
+										value="manual_challenge">
+								</noscript>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+							<div class="form-group"></div>
 						</form>
+				
 					</c:otherwise>
 				</c:choose>
-				
+
 				<form method="POST" id="idHelpful" action="markHelpful.do">
-					<input type="hidden" name="helpful" />
-					<input type="hidden" name="commentID" />
-					<input type="hidden" name="isbn" value="${book.isbn13}" />
+					<input type="hidden" name="helpful" /> <input type="hidden"
+						name="commentID" /> <input type="hidden" name="isbn"
+						value="${book.isbn13}" />
 				</form>
-				
-				
+
+
 				<script type="text/javascript">
 					// 1 for helpful, 0 for not
-					function markHelpFul(reviewID, helpFul)
-					{
+					function markHelpFul(reviewID, helpFul) {
 						document.forms['idHelpful'].commentID.value = reviewID;
 						document.forms['idHelpful'].helpful.value = helpFul;
 						document.forms['idHelpful'].submit();
 					}
 				</script>
 				
+				<div class="col-md-20">
+
 				<%@page import="java.sql.*"%>
 				<%@page import="amu.database.Database"%>
 				<%@page import="amu.model.Book"%>
@@ -161,42 +208,47 @@
 					Connection connection = null;
 							Statement statement = null;
 							ResultSet resultSet = null;
-							
-							Book bBook = new BookDAO().findByISBN(request.getParameter("isbn"));
+
+							Book bBook = new BookDAO().findByISBN(request
+									.getParameter("isbn"));
 
 							try {
 								connection = Database.getConnection();
 								statement = connection.createStatement();
-																
+
 								String query = "SELECT id, text, thumbUP, thumbDOWN  FROM review, helpful"
-										+ " WHERE helpful.fk_reviewID = review.id AND fk_bookID = " 
-										+ Integer.toString(bBook.getId())
-										+ ";";
+										+ " WHERE helpful.fk_reviewID = review.id AND fk_bookID = "
+										+ Integer.toString(bBook.getId()) + ";";
 								resultSet = statement.executeQuery(query);
-								
+
 								while (resultSet.next()) {
 									int iReviewID = resultSet.getInt("id");
-									int iThumbsUp = resultSet.getInt("thumbUP"),
-										iThumsDown = resultSet.getInt("thumbDOWN");
-									out.println("<p>");
-									out.println(resultSet.getString("text"));
-									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbUP.jpg\""
-										+ "onClick='$javascript:markHelpFul(" 
-										  + Integer.toString(iReviewID) 
-										+ ", 1)'/>");
+									int iThumbsUp = resultSet.getInt("thumbUP"), iThumsDown = resultSet
+											.getInt("thumbDOWN");
+									
+									out.println("<div id=\"live-preview-display\">");		
+									out.println(resultSet.getString("text"));		
+									out.println("<br /><b>" + Integer.toString(iThumbsUp) + "<img height=\"20\" width=\"20\" src=\"./img/thumbUP.jpg\""
+										+ "onClick='$javascript:markHelpFul("
+										+ Integer.toString(iReviewID) + ", 1)'/>");
 									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbDOWN.jpg\""
-										+ "onClick='$javascript:markHelpFul(" 
-										  + Integer.toString(iReviewID) 
-										+ ", 0)'/>");
-										
-									out.println("<i>" + Integer.toString(iThumbsUp)  + " thought of this as helpful, "
-													  + Integer.toString(iThumsDown) + " did not.");
+										+ "onClick='$javascript:markHelpFul("
+										+ Integer.toString(iReviewID) + ", 0)'/>"
+										+  " " + Integer.toString(iThumsDown)
+										+ "</b>");
+									
+									out.println("</div>");
 								}
 							} catch (SQLException ex) {
-								System.out.println("SQLException in page: " + ex.getMessage());
+								System.out.println("SQLException in page: "
+										+ ex.getMessage());
 							} finally {
 								Database.close(connection, statement, resultSet);
 							}
-				%></c:otherwise>
+				%>
+				
+				</div>
+			
+		</c:otherwise>
 	</c:choose>
 </div>

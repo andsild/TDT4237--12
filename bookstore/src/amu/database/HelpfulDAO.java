@@ -69,8 +69,8 @@ public class HelpfulDAO
 
 	            resultSet = statement.executeQuery(query);
 	            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
-	            
-	            return (resultSet.next() == true);
+
+	            return (resultSet.next() != true);
 	        }
 	        catch (SQLException exception) {
 	            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
