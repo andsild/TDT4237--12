@@ -1,8 +1,11 @@
 package amu.action;
 
+import java.util.ArrayList;
+
 import amu.database.BookDAO;
 import amu.database.BookListDAO;
 import amu.database.RatingDAO;
+import amu.database.ReviewDAO;
 import amu.model.Book;
 import amu.model.Customer;
 import amu.model.Rating;
@@ -26,11 +29,13 @@ class ViewBookAction implements Action {
         Integer iAverageRate = null,
         		iCustRate = null;
         
+        //TODO: get all reviews for THIS
+        
         if (book != null) {
             request.setAttribute("book", book);
         	iAverageRate = new RatingDAO().getAverageRating(book.getId());
         }
-       
+        
         if (cCustomer != null)
         {
         	/* Get previous rating */

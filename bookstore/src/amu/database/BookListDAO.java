@@ -23,8 +23,6 @@ public class BookListDAO {
 	public BookList findByID(int id){
 		BookList list = new BookList();
 		Book book;
-		  
-        
         
         try {
             connection = Database.getConnection();
