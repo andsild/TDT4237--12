@@ -1,7 +1,7 @@
 package amu;
 
 public class Config {
-    public final static String JDBC_RESOURCE = "jdbc/bookstore";
+    public final static String JDBC_RESOURCE = "jdbc/bluehost";
     
     public final static String EMAIL_SMTP_HOST = "smtp.gmail.com";
     public final static String EMAIL_SMTP_PORT = "587";

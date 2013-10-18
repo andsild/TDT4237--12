@@ -23,8 +23,6 @@ public class BookListDAO {
 	public BookList findByID(int id){
 		BookList list = new BookList();
 		Book book;
-		  
-        
         
         try {
             connection = Database.getConnection();
@@ -81,6 +79,32 @@ public class BookListDAO {
         return list;
 	}
 	
+	public ArrayList<BookList> getBooklists(int customerId) {
+		
+		ArrayList<BookList> array = new ArrayList<BookList>();
+		
+		try {
+			connection = Database.getConnection();
+			
+			String query = "Select * FROM list WHERE customer_id = ?";
+			
+			statement = connection.prepareStatement(query);
+			
+			statement.setInt(1, customerId);
+			
+			resultSet = statement.executeQuery();
+			
+			while (resultSet.next()) {
+				array.add(new BookList(resultSet.getInt("id"), resultSet.getString("title"), resultSet.getString("description")));
+				
+			}
+			return array;
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		}
+		return array;
+	}
+	
 	public ArrayList<BookList> getBooklists() {
 		
 		Connection connection = null;
@@ -106,6 +130,7 @@ public class BookListDAO {
 		}
 		return array;
 	}
+
 
     public boolean edit(BookList bookList) {
 
@@ -162,6 +187,49 @@ public class BookListDAO {
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             statement.setInt(2, customer_id);
+
+            if (statement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException exception) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+        } finally {
+            Database.close(connection, statement, resultSet);
+        }
+
+        return false;
+    }
+    
+    public boolean addBook(Book book, int id) {
+
+        try {
+            connection = Database.getConnection();
+
+            String query = "INSERT INTO list_x_book (ID_list, ID_book) VALUES (?, ?)";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.setInt(2, book.getId());
+            if (statement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException exception) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+        } finally {
+            Database.close(connection, statement, resultSet);
+        }
+
+        return false;
+    }
+
+    public boolean deleteBook(int id, Book book) {
+
+        try {
+            connection = Database.getConnection();
+
+            String query = "DELETE FROM list_x_book WHERE ID_List=? AND ID_book=?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.setInt(2, book.getId());
 
             if (statement.executeUpdate() > 0) {
                 return true;
