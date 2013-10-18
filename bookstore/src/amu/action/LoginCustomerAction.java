@@ -1,6 +1,7 @@
 package amu.action;
 
 import amu.BCrypt;
+import amu.FilterUnit;
 import amu.database.CustomerDAO;
 import amu.model.Customer;
 
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 class LoginCustomerAction implements Action {
 
+	private FilterUnit passwordValidator = FilterUnit.getPasswordValidator();
+	private FilterUnit mailValidator = FilterUnit.getMailValidator();
     @Override
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -26,23 +29,39 @@ class LoginCustomerAction implements Action {
 
             Map<String, String> messages = new HashMap<String, String>();
             request.setAttribute("messages", messages);
+            
 
             CustomerDAO customerDAO = new CustomerDAO();
+            
             Customer customer = customerDAO.findByEmail(request.getParameter("email"));
-
-            if (customer != null) {
+            
+            boolean isValidMail = false;
+            boolean isValidPW 	= false; 
+            
+            try {
+            	isValidMail = mailValidator.isValid(request.getParameter("email"));
+            	isValidPW = passwordValidator.isValid(request.getParameter("password"));
+			} catch (Exception e) {
+				messages.put("error", "Password or Email was incorrect.");
+				return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
+			}
+            
+            
+            if (customer != null && isValidMail && isValidPW) {
                 values.put("email", request.getParameter("email"));
 
                 if (customer.getActivationToken() == null) {
-                    if (BCrypt.checkpw(request.getParameter("password"), customer.getPassword())) {
-                        HttpSession session = request.getSession(true);
-                        session.setAttribute("customer", customer);
-                        if (ActionFactory.hasKey(request.getParameter("from"))) {
-                            return new ActionResponse(ActionResponseType.REDIRECT, request.getParameter("from"));
-                        }
-                    } else { // Wrong password
+                	if (BCrypt.checkpw(request.getParameter("password"), customer.getPassword())) {
+                			HttpSession session = request.getSession(true);
+                			session.setAttribute("customer", customer);
+                			if (ActionFactory.hasKey(request.getParameter("from"))) {
+                				return new ActionResponse(ActionResponseType.REDIRECT, request.getParameter("from"));
+                			}
+                		}
+                    else { // Wrong password
                         messages.put("error", "Password or Email was incorrect.");
-                    }
+                    	}
+                	
                 } else { // customer.getActivationToken() != null
                     return new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
                 }
