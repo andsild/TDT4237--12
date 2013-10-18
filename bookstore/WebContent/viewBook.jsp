@@ -1,4 +1,7 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javas    cript"></script>
+<%@page import="amu.database.BookDAO"%>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+	type="text/javas    cript"></script>
 <script src="js/ratebook.js"></script>
 <link href="css/rateit.css" rel="stylesheet" type="text/css">
 
@@ -11,16 +14,16 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-		
+
 			<h2>${book.title.name}</h2>
 			<div class="row">
-			 	<div class="col-md-4 well">
+				<div class="col-md-4 well">
 					<div>
 						<ul class="list-unstyled">
-							<li><b>Authors:</b> 
-							<c:forEach items="${book.author}" var="author" varStatus="it">
+							<li><b>Authors:</b> <c:forEach items="${book.author}"
+									var="author" varStatus="it">
 	                            ${author.name}<c:if test="${!it.last}">, </c:if>
-							</c:forEach></li>
+								</c:forEach></li>
 							<li><b>Publisher:</b> ${book.publisher.name}</li>
 							<li><b>Published:</b> ${book.published}</li>
 							<li><b>Edition:</b> ${book.edition} (${book.binding})</li>
@@ -28,101 +31,172 @@
 							<li><b>Price:</b> ${book.price}</li>
 						</ul>
 						<p>${book.description}</p>
-						
+
 						<c:choose>
 							<c:when test="${empty averageRating}">
-								<p><b>No reviews exists for this book yet</b></p>
+								<p>
+									<b>No reviews exists for this book yet</b>
+								</p>
 							</c:when>
 							<c:otherwise>
-								<p><i>Average rating for this book</i></p>
-								<div class="rateit" id="rater2" data-rateit-readonly="true" data-rateit-value="${averageRating}"></div>
-							</c:otherwise>		
-						</c:choose>	
-											
+								<p style="white-space: nowrap;">
+									<i>Average rating for this book</i>
+								<div style="white-space: nowrap;" class="rateit" id="rater2"
+									data-rateit-readonly="true"
+									data-rateit-value="${averageRating}"></div>
+								</p>
+							</c:otherwise>
+						</c:choose>
+
 						<c:choose>
 							<c:when test="${empty customer }">
-							<p><i>Log in to review this book</i></p>
+								<p>
+									<i>Log in to rate this book</i>
+								</p>
 							</c:when>
 							<c:otherwise>
 								<c:choose>
 									<c:when test="${empty rating}">
 										<script type="text/javascript">
-											function submitFormy(){
-												document.forms['id_rateForm'].rating.value=$('#rater1').rateit('value');
-												document.forms['id_rateForm'].submit();
-												window.location.reload();
+											function submitFormy() {
+												document.forms['id_rateForm'].rating.value = $(
+														'#rater1').rateit(
+														'value');
+												document.forms['id_rateForm']
+														.submit();
 											}
 										</script>
-										<div class="rateit" name="userrating" id="rater1" step="1.0" onClick="$javascript:submitFormy()"> </div>
+										<p>
+											<i>Rate this book: </i>
+										<div class="rateit" name="userrating" id="rater1" step="1.0"
+											onClick="$javascript:submitFormy()"></div>
+										</p>
 										<form method="POST" action="rateBook.do" id="id_rateForm">
-											<input type="hidden" name="isbn" value="${book.isbn13}" />
-											<input type="hidden" name="rating" value="" />
+											<input type="hidden" name="isbn" value="${book.isbn13}" /> <input
+												type="hidden" name="rating" value="" />
 										</form>
 									</c:when>
 									<c:otherwise>
-										<p><i>Log in to review this book</i></p>					
+										<p>
+											<i> Your rating of this book:</i>
+										</p>
+										<div style="white-space: nowrap;" class="rateit" id="rater3"
+											data-rateit-readonly="true" data-rateit-value="${rating}"></div>
 									</c:otherwise>
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
 						<!-- TODO: 
-							When empty customerRating
-							load default value, if any
-							submitting values to customer
-							setting read-only for "correct values"
 							make sure there's authorization for rating, currently any user can..
-							check if review already exists for this customer
 							-->
 
-							
+
 
 						<form class="form-inline" role="form" action="addBookToCart.do"
 							method="post">
 							<div class="form-group">
-								<input type="hidden" name="isbn" value="${book.isbn13}" /> 
-								<input type="text" class="form-control" size="2" name="quantity" value="1" />
+								<input type="hidden" name="isbn" value="${book.isbn13}" /> <input
+									type="text" class="form-control" size="2" name="quantity"
+									value="1" />
 							</div>
-							<button type="submit" class="btn btn-primary">Add to cart</button>
+							<button type="submit" class="btn btn-primary">Add to
+								cart</button>
+						</form>
+						<form class="form-inline" role="form" action="addBookToList.do"
+							method="post">
+							<div class="form-group">
+								<input type="hidden" name="isbn" value="${book.isbn13}" /> <select
+									class="form-control" name="id">
+									<c:forEach items="${customerLists}" var="item">
+										<option value="${item.id}">${item.title}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-primary">Add to
+								list</button>
 						</form>
 					</div>
 				</div>
 				<div class="col-md-4">
-					<img class="img-thumbnail" src="http://www4.alibris-static.com/isbn/${book.isbn13}.gif">
+					<img class="img-thumbnail"
+						src="http://www4.alibris-static.com/isbn/${book.isbn13}.gif">
 				</div>
+
+				<c:choose>
+					<c:when test="${empty customer }">
+						<p>
+							<i>Log in to review this book</i>
+						</p>
+					</c:when>
+					<c:otherwise>
+						<form action="addReview.do" method="POST">
+							<input type="hidden" name="isbn" value="${book.isbn13}" />
+							<label>Review</label> <input name="review"></input> 
+							<input type="submit" value="Legg til kommentar"></input>
+						</form>
+					</c:otherwise>
+				</c:choose>
 				
-			</div>
-			<div class="row">
-				<div class="col.md-9" >
-				<div class="list-group">
-				<div class="list-group-item">
-					<h4 class="list-group-heading">Bookreview</h4>
-					<p class="list-group-item-text">The Devil's Company, a treat for lovers of historical fiction, sees the return of 
-					Benjamin Weaver in his third exciting romp through the varied and sometimes surreal landscape of 18th-century London. 
-					Weaver is an endearing protagonist, a former pugilist and investigator for hire whom we first met in 
-					David Liss's A Conspiracy of Paper (1999)
-					</p>
-					<div class="btn-group">
-					<button type="button" class="btn btn-default">
-					<span class="badge">42</span>
-					<span class="glyphicon glyphicon-thumbs-up"></span> 
-					</button>
-					<button type="button" class="btn btn-default">
-					<span class="badge"></span>
-					<span class="glyphicon glyphicon-thumbs-down"></span>
-					</button>
-					</div>
-				</div>
-				<div class="list-group-item">
-					<h4 class="list-group-heading">Bookreview</h4>
-					<p class="list-group-item-text">The Devil's Company, a treat for lovers of historical fiction, sees the return of 
-					Benjamin Weaver in his third exciting romp through the varied and sometimes surreal landscape of 18th-century London. 
-					Weaver is an endearing protagonist, a former pugilist and investigator for hire whom we first met in 
-					David Liss's A Conspiracy of Paper (1999)
-					</p>
-				</div>
-				</div>
-			</div>
-			</div>
-		</c:otherwise>
+				<form method="POST" id="idHelpful" action="markHelpful.do">
+					<input type="hidden" name="helpful" />
+					<input type="hidden" name="commentID" />
+					<input type="hidden" name="isbn" value="${book.isbn13}" />
+				</form>
+				
+				
+				<script type="text/javascript">
+					// 1 for helpful, 0 for not
+					function markHelpFul(reviewID, helpFul)
+					{
+						document.forms['idHelpful'].commentID.value = reviewID;
+						document.forms['idHelpful'].helpful.value = helpFul;
+						document.forms['idHelpful'].submit();
+					}
+				</script>
+				
+				<%@page import="java.sql.*"%>
+				<%@page import="amu.database.Database"%>
+				<%@page import="amu.model.Book"%>
+				<%
+					Connection connection = null;
+							Statement statement = null;
+							ResultSet resultSet = null;
+							
+							Book bBook = new BookDAO().findByISBN(request.getParameter("isbn"));
+
+							try {
+								connection = Database.getConnection();
+								statement = connection.createStatement();
+																
+								String query = "SELECT id, text, thumbUP, thumbDOWN  FROM review, helpful"
+										+ " WHERE helpful.fk_reviewID = review.id AND fk_bookID = " 
+										+ Integer.toString(bBook.getId())
+										+ ";";
+								resultSet = statement.executeQuery(query);
+								
+								while (resultSet.next()) {
+									int iReviewID = resultSet.getInt("id");
+									int iThumbsUp = resultSet.getInt("thumbUP"),
+										iThumsDown = resultSet.getInt("thumbDOWN");
+									out.println("<p>");
+									out.println(resultSet.getString("text"));
+									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbUP.jpg\""
+										+ "onClick='$javascript:markHelpFul(" 
+										  + Integer.toString(iReviewID) 
+										+ ", 1)'/>");
+									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbDOWN.jpg\""
+										+ "onClick='$javascript:markHelpFul(" 
+										  + Integer.toString(iReviewID) 
+										+ ", 0)'/>");
+										
+									out.println("<i>" + Integer.toString(iThumbsUp)  + " thought of this as helpful, "
+													  + Integer.toString(iThumsDown) + " did not.");
+								}
+							} catch (SQLException ex) {
+								System.out.println("SQLException in page: " + ex.getMessage());
+							} finally {
+								Database.close(connection, statement, resultSet);
+							}
+				%></c:otherwise>
 	</c:choose>
 </div>
