@@ -35,11 +35,6 @@ public class MarkHelpfulAction implements Action
 		&& cCustomer != null
 		&& sIsbn != null)
 		{
-			if (hdao.thumbExist(Integer.toString(cCustomer.getId()), sCommentID))
-					{
-						return ar;
-					}
-			//in here, we only need to UPDATE, not register.
 			hdao.register(Integer.toString(cCustomer.getId()), sCommentID, sHelpful);
 		}
 		else
