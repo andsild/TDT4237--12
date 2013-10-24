@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.sql.DataSource;
 import javax.xml.bind.DatatypeConverter;
 
 import amu.BCrypt;
@@ -104,7 +103,6 @@ public class CustomerDAO {
     
     public Customer register(Customer customer) {
 
-        DataSource dataSource = null;
         Connection connection = null;
         Statement statement = null;
 
