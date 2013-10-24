@@ -50,16 +50,16 @@ class ViewBookAction implements Action {
 					book.getId());
 			request.setAttribute("rating", iCustRate);
 
-			try {
-				request.setAttribute("customerLists",
-						new BookListDAO().getBooklists((cCustomer.getId())));
-
-			} catch (Exception e) {
-				System.out.println("exeption thrown");
-				e.printStackTrace();
-				return new ActionResponse(ActionResponseType.FORWARD,
-						"bookList");
-			}
+//			try {
+//				request.setAttribute("customerLists",
+//						new BookListDAO().getBooklists((cCustomer.getId())));
+//
+//			} catch (Exception e) {
+//				System.out.println("exeption thrown");
+//				e.printStackTrace();
+//				return new ActionResponse(ActionResponseType.FORWARD,
+//						"bookList");
+//			}
 		}
 
 		if (iAverageRate != null) {

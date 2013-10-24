@@ -83,6 +83,7 @@ public class ReviewBookAction implements Action {
 				}else{
 					messages.put("error", reCaptchaResponse.getErrorMessage());
 				}
+	        	System.out.println("invalid capthca");
             }
 
 		}

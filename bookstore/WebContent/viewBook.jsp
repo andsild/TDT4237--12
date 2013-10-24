@@ -212,17 +212,20 @@
 							try {
 								connection = Database.getConnection();
 								statement = connection.createStatement();
-																
-								String query = "SELECT id, text, thumbUP, thumbDOWN  FROM review, helpful"
-										+ " WHERE helpful.fk_reviewID = review.id AND fk_bookID = " 
-										+ Integer.toString(bBook.getId())
-										+ ";";
-								resultSet = statement.executeQuery(query);
+										
+								String sQuery = "SELECT R.id, R.text, SUM(COALESCE(H.thumbsUp, 0)) AS thumbsUp, SUM(COALESCE(H.thumbsDown, 0)) AS thumbsDown "
+											  + "FROM review AS R  "
+											  + "LEFT JOIN (SELECT fk_reviewID AS fkr, SUM(COALESCE(thumbUp,0)) AS thumbsUp, SUM(COALESCE(thumbDown,0)) AS thumbsDown "
+											  + "FROM helpful GROUP BY fkr ) AS H ON H.fkr=R.id WHERE "
+											  + "fk_bookID = "
+											  + Integer.toString(bBook.getId())
+											  + " GROUP BY H.fkr" ;
+								resultSet = statement.executeQuery(sQuery);
 								
 								while (resultSet.next()) {
 									int iReviewID = resultSet.getInt("id");
-									int iThumbsUp = resultSet.getInt("thumbUP"),
-										iThumsDown = resultSet.getInt("thumbDOWN");
+									int iThumbsUp = resultSet.getInt("thumbsUp"),
+										iThumsDown = resultSet.getInt("thumbsDown");
 									out.println("<p>");
 									out.println(resultSet.getString("text"));
 									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbUP.jpg\""
