@@ -12,7 +12,8 @@ import amu.model.Book;
 import amu.model.Customer;
 import amu.model.Rating;
 
-public class RateAction implements Action {
+public class RateAction implements Action
+{
 
 	@Override
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -37,7 +38,8 @@ public class RateAction implements Action {
 		}
 
 		/* is customer verified properly? Is there anyway to bypass? */
-		if (sCustomerReview != null && sIsbn != null && cCustomer != null) {
+		if (sCustomerReview != null && sIsbn != null && cCustomer != null)
+		{
 			Book bBook = new BookDAO().findByISBN(sIsbn);
 
 			Rating rNewRating = new Rating(cCustomer, sCustomerReview, bBook.getId());
