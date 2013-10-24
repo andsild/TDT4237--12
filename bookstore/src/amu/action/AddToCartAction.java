@@ -1,6 +1,7 @@
 package amu.action;
 
 
+import amu.Config;
 import amu.database.BookDAO;
 import amu.model.Book;
 import amu.model.Cart;
@@ -29,8 +30,11 @@ class AddToCartAction implements Action {
 		try {
 
 			
-			if (request.getParameter("isbn") != null
-					&& Integer.parseInt(request.getParameter("quantity")) > 0) {
+			if (request.getParameter("isbn") != null && Integer.parseInt(request.getParameter("quantity")) > 0) 
+			{
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("quantity"));
+				
 				BookDAO bookDAO = new BookDAO();
 				Book book = bookDAO.findByISBN(request.getParameter("isbn"));
 

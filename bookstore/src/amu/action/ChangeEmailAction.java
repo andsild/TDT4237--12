@@ -1,14 +1,18 @@
 package amu.action;
 
-import amu.database.CustomerDAO;
-import amu.model.Customer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
 
 class ChangeEmailAction implements Action {
 
@@ -31,6 +35,18 @@ class ChangeEmailAction implements Action {
             request.setAttribute("messages", messages);
 
             String[] email = request.getParameterValues("email");
+            
+            try
+            {
+            	for(String s : email)
+            		Config.VALIDATE_EMAIL.isValid(s);
+            }
+            catch(FilterUnitException e)
+            {
+            	messages.add("Invalid email(s).");
+                return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
+            }
+            
             values.put("email", email);
 
             // Validate that new email is typed in the same both times

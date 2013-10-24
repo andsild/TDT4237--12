@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import amu.Config;
 import amu.database.BookDAO;
 import amu.database.BookListDAO;
 import amu.model.BookList;
@@ -29,6 +30,9 @@ class AddBookToList implements Action {
 			BookListDAO bookListDAO = new BookListDAO();
 			BookDAO bookDAO = new BookDAO();
 			try {
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+				
 				bookListDAO.addBook(
 						bookDAO.findByISBN(request.getParameter("isbn")),
 						Integer.parseInt(request.getParameter("id")));

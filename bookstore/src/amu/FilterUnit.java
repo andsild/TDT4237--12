@@ -134,6 +134,7 @@ public class FilterUnit
 	public static final ASCIIRange 	DOT						= new ASCIIRange('.','.');
 	public static final ASCIIRange 	AT						= new ASCIIRange('@','@');
 	public static final ASCIIRange	SPACE					= new ASCIIRange(' ',' ');
+	public static final ASCIIRange	COMMA					= new ASCIIRange(',',',');
 	
 	public static final int 		PASSWORD_MINIMUM_LENGTH	= 8;  
 	public static final int 		PASSWORD_MAXIMUM_LENGTH	= 59;  
@@ -217,6 +218,17 @@ public class FilterUnit
 		filter.addLegalRange(NUMBERS);
 		filter.addLegalRange(SPACE);
 		filter.addLegalRange(DOT);
+		
+		return filter;
+	}
+
+	public static FilterUnit getNumberValidator() {
+		FilterUnit filter = new FilterUnit();
+		
+		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(SPACE);
+		filter.addLegalRange(DOT);
+		filter.addLegalRange(COMMA);
 		
 		return filter;
 	}
