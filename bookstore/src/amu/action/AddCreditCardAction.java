@@ -1,7 +1,5 @@
 package amu.action;
 
-import amu.Config;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,9 +18,6 @@ import amu.FilterUnitException;
 import amu.database.CreditCardDAO;
 import amu.model.CreditCard;
 import amu.model.Customer;
-
-import org.jasypt.encryption.StringEncryptor;
-import org.jasypt.util.text.StrongTextEncryptor;
 
 class AddCreditCardAction implements Action {
     

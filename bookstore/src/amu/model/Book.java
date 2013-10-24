@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Book implements Serializable {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private Title title;
     private Publisher publisher;
     private List<Author> author;

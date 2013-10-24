@@ -1,12 +1,13 @@
 package amu.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import amu.database.OrderDAO;
 import amu.model.Cart;
 import amu.model.Customer;
 import amu.model.Order;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 class PlaceOrderAction implements Action {
 

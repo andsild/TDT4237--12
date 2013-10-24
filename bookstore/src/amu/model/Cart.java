@@ -6,7 +6,11 @@ import java.util.Map;
 
 public class Cart implements Serializable {
 
-    private Map<String, CartItem> items = new HashMap<String, CartItem>();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Map<String, CartItem> items = new HashMap<String, CartItem>();
     private Address shippingAddress = null;
     private CreditCard creditCard = null;
 

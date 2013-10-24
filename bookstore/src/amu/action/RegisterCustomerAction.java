@@ -17,6 +17,11 @@ import amu.model.Customer;
 
 class RegisterCustomerAction extends HttpServlet implements Action {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

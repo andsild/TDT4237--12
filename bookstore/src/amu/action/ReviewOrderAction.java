@@ -1,10 +1,11 @@
 package amu.action;
 
-import amu.model.Cart;
-import amu.model.Customer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.model.Cart;
+import amu.model.Customer;
 
 class ReviewOrderAction implements Action {
 

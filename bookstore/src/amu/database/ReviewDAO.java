@@ -1,27 +1,20 @@
 package amu.database;
 
-import javax.sql.DataSource;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import amu.model.Book;
-import amu.model.Customer;
 import amu.model.HelpfulReview;
-import amu.model.Review;
 import amu.model.Review;
 
 public class ReviewDAO
 {
 	 public Review register(Review rReview) 
 	 {
-		 //TODO: also register helpful
-        DataSource dataSource = null;
         Connection connection = null;
         Statement statement = null;
         
@@ -52,7 +45,6 @@ public class ReviewDAO
         //FIXME: get back the value of the ID
         return null;
 	 }
-	 	//@BEGIN INSERT	 
 	public ArrayList<HelpfulReview> getReviews(String sBookID) 
 	{
 		Connection connection = null;
@@ -90,7 +82,6 @@ public class ReviewDAO
 		
 		return alHelpful;
 	 }
-	//@END INSERT
 }
 
 /* EOF */

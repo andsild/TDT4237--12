@@ -3,16 +3,15 @@ package amu.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import amu.Config;
-import amu.Mailer;
-import amu.model.Customer;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
+import amu.Config;
+import amu.Mailer;
+import amu.model.Customer;
 
 class CustomerSupportAction implements Action {
 

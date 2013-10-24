@@ -2,11 +2,13 @@ package amu.model;
 
 import java.io.Serializable;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 // TODO: Refactor... Add validation, make a real Model class not just POD
 public class Customer implements Serializable {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String email;
     private String password;
     private String name;

@@ -1,22 +1,18 @@
 package amu.database;
 
-import javax.sql.DataSource;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import amu.model.Customer;
 import amu.model.Rating;
 
 public class RatingDAO
 {
 	 public Rating register(Rating rRating) 
 	 {
-        DataSource dataSource = null;
         Connection connection = null;
         Statement statement = null;
 
@@ -125,8 +121,7 @@ public class RatingDAO
             connection = Database.getConnection();
             statement = connection.createStatement();
 
-            //TODO: fill me in 
-            String query = "SELECT * FROM rating WHERE ID="
+            String query = "SELECT ID, fk_bookID, ratevalue FROM rating WHERE ID="
                     + iId
                     + ";";
             resultSet = statement.executeQuery(query);
@@ -135,11 +130,9 @@ public class RatingDAO
 
             if (resultSet.next()) {
             	int iRateId = resultSet.getInt("ID");
-            	int iCustId = resultSet.getInt("fk_customerID");
             	int iBookID = resultSet.getInt("fk_bookID");
             	String sRating = resultSet.getString("ratevalue");
             	
-            	//FIXME: fill me in PROPERLY
             	rRating = new Rating(iRateId, new CustomerDAO().findByEmail("HEY"), sRating, iBookID);
             }
         } catch (SQLException exception) {

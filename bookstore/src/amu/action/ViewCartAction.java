@@ -1,9 +1,10 @@
 package amu.action;
 
-import amu.model.Cart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.model.Cart;
 
 class ViewCartAction implements Action {
 

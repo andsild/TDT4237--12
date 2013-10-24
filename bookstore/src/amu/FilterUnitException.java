@@ -2,6 +2,10 @@ package amu;
 
 public class FilterUnitException extends Exception 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String invalidText;
 	
 	public String getInvalidText()
@@ -12,6 +16,10 @@ public class FilterUnitException extends Exception
 
 class IllegalRegexException extends FilterUnitException
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String regex;
 	
 	public IllegalRegexException(String invalidText, String regex)
@@ -28,6 +36,10 @@ class IllegalRegexException extends FilterUnitException
 
 class IllegalCharacterException extends FilterUnitException
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private char illegalChar;
 	
 	public IllegalCharacterException(String invalidText, char illegalChar)
@@ -43,6 +55,10 @@ class IllegalCharacterException extends FilterUnitException
 
 class FailedRegexException extends FilterUnitException
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String regex;
 	
 	public FailedRegexException(String invalidText, String regex)
@@ -59,11 +75,15 @@ class FailedRegexException extends FilterUnitException
 
 class IllegalStringLengthException extends FilterUnitException
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int length;
 	
 	public IllegalStringLengthException(String invalidText)
 	{
-		this.length = length;
+		this.length = invalidText.length();
 	}
 	
 	public int getLength()

@@ -1,18 +1,25 @@
 package amu;
 
-import amu.action.Action;
-import amu.action.ActionFactory;
-import amu.action.ActionResponse;
-import amu.action.ActionResponseType;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import amu.action.Action;
+import amu.action.ActionFactory;
+import amu.action.ActionResponse;
+import amu.action.ActionResponseType;
+
 public class FrontController extends HttpServlet {
 
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {

@@ -1,17 +1,19 @@
 package amu.database;
 
-import amu.BCrypt;
-import amu.Config;
-import amu.model.Customer;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.sql.*;
-import java.util.logging.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javax.sql.*;
+import javax.sql.DataSource;
 import javax.xml.bind.DatatypeConverter;
+
+import amu.BCrypt;
+import amu.model.Customer;
 
 public class CustomerDAO {
 

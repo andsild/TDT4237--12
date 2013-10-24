@@ -1,6 +1,5 @@
 package amu.action;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import amu.Config;
 import amu.database.BookDAO;
 import amu.database.BookListDAO;
-import amu.model.BookList;
 import amu.model.Customer;
 
 class AddBookToList implements Action {

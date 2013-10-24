@@ -1,7 +1,5 @@
 package amu.database;
 
-import amu.model.CreditCard;
-import amu.model.Customer;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,6 +10,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import amu.model.CreditCard;
+import amu.model.Customer;
 
 public class CreditCardDAO {
 

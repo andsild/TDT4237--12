@@ -1,11 +1,5 @@
 package amu.action;
 
-import amu.Config;
-import amu.FilterUnitException;
-import amu.database.BookListDAO;
-import amu.model.BookList;
-import amu.model.Customer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.BookListDAO;
+import amu.model.BookList;
+import amu.model.Customer;
 
 class AddBookListAction implements Action {
 

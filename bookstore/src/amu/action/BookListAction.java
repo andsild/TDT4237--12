@@ -1,12 +1,12 @@
 package amu.action;
 
-import amu.Config;
-import amu.database.BookListDAO;
-import amu.model.Customer;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.database.BookListDAO;
+import amu.model.Customer;
 
 class BookListAction implements Action {
     

@@ -1,8 +1,6 @@
 package amu.model;
 
-import java.io.Serializable;
-
-public class Author implements Serializable {
+public class Author  {
 
     private int id;
     private String name;

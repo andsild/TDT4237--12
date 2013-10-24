@@ -1,24 +1,19 @@
 package amu.action;
 
-import amu.BCrypt;
-import amu.Config;
-import amu.FilterUnit;
-import amu.database.CustomerDAO;
-import amu.model.Customer;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import amu.BCrypt;
+import amu.Config;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
+
 class LoginCustomerAction implements Action {
 
-	private FilterUnit passwordValidator = FilterUnit.getPasswordValidator();
-	private FilterUnit mailValidator = FilterUnit.getMailValidator();
     @Override
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 

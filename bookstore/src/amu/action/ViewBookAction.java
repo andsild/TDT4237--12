@@ -7,12 +7,10 @@ import javax.servlet.http.HttpSession;
 import amu.Config;
 import amu.FilterUnitException;
 import amu.database.BookDAO;
-import amu.database.BookListDAO;
 import amu.database.RatingDAO;
 import amu.database.ReviewDAO;
 import amu.model.Book;
 import amu.model.Customer;
-import amu.model.HelpfulReview;
 
 class ViewBookAction implements Action {
 

@@ -1,5 +1,11 @@
 package amu.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import amu.database.AddressDAO;
 import amu.database.CreditCardDAO;
 import amu.database.OrderDAO;
@@ -7,10 +13,6 @@ import amu.model.Address;
 import amu.model.CreditCard;
 import amu.model.Customer;
 import amu.model.Order;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 class ViewCustomerAction implements Action {
 

@@ -6,6 +6,10 @@ import java.util.Map;
 
 public class BookList implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<String, Book> list = new HashMap<String, Book>();
 	private String title;
 	private String description;

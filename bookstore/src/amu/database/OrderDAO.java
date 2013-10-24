@@ -1,11 +1,5 @@
 package amu.database;
 
-import amu.model.Book;
-import amu.model.Cart;
-import amu.model.CartItem;
-import amu.model.Customer;
-import amu.model.Order;
-
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,10 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import amu.model.Book;
+import amu.model.Cart;
+import amu.model.CartItem;
+import amu.model.Customer;
+import amu.model.Order;
 
 public class OrderDAO {
 
