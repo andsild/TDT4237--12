@@ -13,47 +13,45 @@ import amu.model.CartItem;
 
 class UpdateCartAction implements Action {
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HttpSession session = request.getSession();
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 
-        Cart cart = (Cart) session.getAttribute("cart");
+		Cart cart = (Cart) session.getAttribute("cart");
 
-        if (cart == null) {
-            cart = new Cart();
-            session.setAttribute("cart", cart);
-        }
+		if (cart == null) {
+			cart = new Cart();
+			session.setAttribute("cart", cart);
+		}
 
-        String[] isbn = request.getParameterValues("isbn");
-        String[] quantity = request.getParameterValues("quantity");
-        
-        try
-        {
-        	for(String s : isbn)
-        		Config.VALIDATE_NUMBERS.isValid(s);
-        	for(String s : quantity)
-        		Config.VALIDATE_NUMBERS.isValid(s);
-        }
-        catch(FilterUnitException e)
-        {
-        	return new ActionResponse(ActionResponseType.REDIRECT, "viewCart");
-        }
+		String[] isbn = request.getParameterValues("isbn");
+		String[] quantity = request.getParameterValues("quantity");
 
-        if (isbn != null && quantity != null && isbn.length == quantity.length) {
-            
-            for (int i = 0; i < isbn.length; i++) {
-                CartItem item = cart.getItemByISBN(isbn[i]);
-                if (item == null) {
-                    BookDAO bookDAO = new BookDAO();
-                    Book book = bookDAO.findByISBN(isbn[i]);
-                    cart.addItem(new CartItem(book, Integer.parseInt(request.getParameter("quantity"))));
-                } else {
-                    item.setQuantity(Integer.parseInt(quantity[i]));
-                    cart.updateItem(item);
-                }
-            }
-        }
+		try {
+			for (String s : isbn)
+				Config.VALIDATE_NUMBERS.isValid(s);
+			for (String s : quantity)
+				Config.VALIDATE_NUMBERS.isValid(s);
+		} catch (FilterUnitException e) {
+			return new ActionResponse(ActionResponseType.REDIRECT, "viewCart");
+		}
 
-        return new ActionResponse(ActionResponseType.REDIRECT, "viewCart");
-    }
+		if (isbn != null && quantity != null && isbn.length == quantity.length) {
+
+			for (int i = 0; i < isbn.length; i++) {
+				CartItem item = cart.getItemByISBN(isbn[i]);
+				if (item == null) {
+					//TODO Is this reachable code? And shall it add a new item when the item is not in the cart?
+					BookDAO bookDAO = new BookDAO();
+					Book book = bookDAO.findByISBN(isbn[i]);
+					cart.addItem(new CartItem(book, Integer.parseInt(request.getParameter("quantity"))));
+				} else {
+					item.setQuantity(Integer.parseInt(quantity[i]));
+					cart.updateItem(item);
+				}
+			}
+		}
+
+		return new ActionResponse(ActionResponseType.REDIRECT, "viewCart");
+	}
 }

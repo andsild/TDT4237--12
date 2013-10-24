@@ -14,26 +14,25 @@ import amu.model.Rating;
 
 public class RateAction implements Action {
 
-	@Override	public ActionResponse execute(HttpServletRequest request,
-			HttpServletResponse response) throws Exception 
-		{
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO: if logged out when comoing here, a 500 occurs
 		HttpSession session = request.getSession(true);
 		Customer cCustomer = (Customer) session.getAttribute("customer");
+		String sCustomerReview = request.getParameter("rating");
+		String sIsbn = request.getParameter("isbn");
 
-		String sCustomerReview = request.getParameter("rating"), 
-				sIsbn = request.getParameter("isbn");
-		ActionResponse ar = new ActionResponse(ActionResponseType.REDIRECT,
-				"viewBook");
+		if (cCustomer == null) {
+			return new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+		}
+
+		ActionResponse ar = new ActionResponse(ActionResponseType.REDIRECT, "viewBook");
 		ar.addParameter("isbn", sIsbn);
-		
-		try
-		{
+
+		try {
 			Config.VALIDATE_NUMBERS.isValid(sIsbn);
 			Config.VALIDATE_NUMBERS.isValid(sCustomerReview);
-		}
-		catch(FilterUnitException e)
-		{
+		} catch (FilterUnitException e) {
 			return ar;
 		}
 
@@ -45,11 +44,11 @@ public class RateAction implements Action {
 			new RatingDAO().register(rNewRating);
 			request.setAttribute("book", bBook);
 			// FIXME: doesn't reload the page like I want it to...
-		} else {
-			String sOutput = sCustomerReview + " , " + sIsbn + ", "
-					+ cCustomer.toString();
-			throw new Exception("COULD NOT REGISTER" + sOutput);
 		}
+//		else {
+//			String sOutput = sCustomerReview + " , " + sIsbn + ", " + cCustomer.toString();
+//			throw new Exception("COULD NOT REGISTER" + sOutput);
+//		}
 		return ar;
 	}
 }

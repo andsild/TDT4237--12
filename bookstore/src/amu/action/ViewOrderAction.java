@@ -12,43 +12,38 @@ import amu.model.Order;
 
 class ViewOrderAction implements Action {
 
-    public ViewOrderAction() {
-    }
+	public ViewOrderAction() {
+	}
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
-        OrderDAO orderDAO = new OrderDAO();
-        Order order = null;
-        
-        if (customer == null)
-        {
-        	return new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-        }
-        
-        
-        if (request.getParameter("id") != null) 
-        {
-        	try
-        	{
-        		Config.VALIDATE_NUMBERS.isValid("id");
-        	}
-        	catch(FilterUnitException e)
-        	{
-        		return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
-        	}
-        	
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		Customer customer = (Customer) session.getAttribute("customer");
+		OrderDAO orderDAO = new OrderDAO();
+		Order order = null;
+		String id = request.getParameter("id");
+
+		if (customer == null) {
+			return new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+		}
+
+		if (id != null) {
 			try {
-				order = orderDAO.getOrder(customer, Integer.parseInt(request.getParameter("id")));
+				Config.VALIDATE_NUMBERS.isValid(id);
+			} catch (FilterUnitException e) {
+				return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+			}
+
+			try {
+				order = orderDAO.getOrder(customer, Integer.parseInt(id));
 				session.setAttribute("cart", order.getCart());
 				session.setAttribute("order", order);
 			} catch (Exception e) {
 				return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
 			}
 		}
-        
-        return new ActionResponse(ActionResponseType.FORWARD, "viewOrder");
-    }
-    
+
+		return new ActionResponse(ActionResponseType.FORWARD, "viewOrder");
+	}
+
 }
