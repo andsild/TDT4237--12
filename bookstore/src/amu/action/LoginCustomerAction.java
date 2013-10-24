@@ -8,6 +8,7 @@ import amu.model.Customer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,11 +31,13 @@ class LoginCustomerAction implements Action {
 
         	HttpSession preSession = request.getSession();
         	preSession.invalidate();
+        	request.getSession(true);
         	
             Map<String, String> messages = new HashMap<String, String>();
             request.setAttribute("messages", messages);
 
             CustomerDAO customerDAO = new CustomerDAO();
+            Integer.parseInt("Hello");
             
             
             boolean isValidMail = false;
