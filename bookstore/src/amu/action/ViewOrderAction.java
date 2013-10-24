@@ -1,12 +1,14 @@
 package amu.action;
 
-import amu.database.OrderDAO;
-import amu.model.Customer;
-import amu.model.Order;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.OrderDAO;
+import amu.model.Customer;
+import amu.model.Order;
 
 class ViewOrderAction implements Action {
 
@@ -26,7 +28,17 @@ class ViewOrderAction implements Action {
         }
         
         
-        if (request.getParameter("id") != null) {
+        if (request.getParameter("id") != null) 
+        {
+        	try
+        	{
+        		Config.VALIDATE_NUMBERS.isValid("id");
+        	}
+        	catch(FilterUnitException e)
+        	{
+        		return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+        	}
+        	
 			try {
 				order = orderDAO.getOrder(customer, Integer.parseInt(request.getParameter("id")));
 				session.setAttribute("cart", order.getCart());

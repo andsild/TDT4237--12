@@ -1,12 +1,15 @@
 package amu.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.BookDAO;
 import amu.model.Book;
 import amu.model.Cart;
 import amu.model.CartItem;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 class UpdateCartAction implements Action {
 
@@ -23,6 +26,18 @@ class UpdateCartAction implements Action {
 
         String[] isbn = request.getParameterValues("isbn");
         String[] quantity = request.getParameterValues("quantity");
+        
+        try
+        {
+        	for(String s : isbn)
+        		Config.VALIDATE_NUMBERS.isValid(s);
+        	for(String s : quantity)
+        		Config.VALIDATE_NUMBERS.isValid(s);
+        }
+        catch(FilterUnitException e)
+        {
+        	return new ActionResponse(ActionResponseType.REDIRECT, "viewCart");
+        }
 
         if (isbn != null && quantity != null && isbn.length == quantity.length) {
             

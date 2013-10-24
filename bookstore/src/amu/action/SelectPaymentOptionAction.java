@@ -1,15 +1,17 @@
 package amu.action;
 
-import amu.database.AddressDAO;
-import amu.database.CreditCardDAO;
-import amu.model.Address;
-import amu.model.Cart;
-import amu.model.CreditCard;
-import amu.model.Customer;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.CreditCardDAO;
+import amu.model.Cart;
+import amu.model.CreditCard;
+import amu.model.Customer;
 
 class SelectPaymentOptionAction implements Action {
 
@@ -37,7 +39,16 @@ class SelectPaymentOptionAction implements Action {
         CreditCardDAO creditCardDAO = new CreditCardDAO();
         
         // Handle credit card selection submission
-        if (request.getMethod().equals("POST")) {
+        if (request.getMethod().equals("POST")) 
+        {
+        	try
+        	{
+        		Config.VALIDATE_NUMBERS.isValid(request.getParameter("creditCardID"));
+        	}
+        	catch(FilterUnitException e)
+        	{
+        		return new ActionResponse(ActionResponseType.REDIRECT, "reviewOrder");
+        	}
             cart.setCreditCard(creditCardDAO.read(Integer.parseInt(request.getParameter("creditCardID"))));
             return new ActionResponse(ActionResponseType.REDIRECT, "reviewOrder");
         }

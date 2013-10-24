@@ -1,13 +1,17 @@
 package amu.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.AddressDAO;
 import amu.model.Address;
 import amu.model.Cart;
 import amu.model.Customer;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 class SelectShippingAddressAction implements Action {
 
@@ -32,6 +36,15 @@ class SelectShippingAddressAction implements Action {
         
         // Handle shipping address selection submission
         if (request.getParameter("id") != null) {
+        	try
+        	{
+        		Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+        	}
+        	catch(FilterUnitException e)
+        	{
+        		return new ActionResponse(ActionResponseType.REDIRECT, "selectPaymentOption");
+        	}
+        	
             cart.setShippingAddress(addressDAO.read(Integer.parseInt(request.getParameter("id")), customer.getId()));
             return new ActionResponse(ActionResponseType.REDIRECT, "selectPaymentOption");
         }

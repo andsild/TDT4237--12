@@ -4,13 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.BookDAO;
 import amu.database.RatingDAO;
-import amu.database.ReviewDAO;
 import amu.model.Book;
 import amu.model.Customer;
 import amu.model.Rating;
-import amu.model.Review;
 
 public class RateAction implements Action {
 
@@ -26,6 +26,16 @@ public class RateAction implements Action {
 		ActionResponse ar = new ActionResponse(ActionResponseType.REDIRECT,
 				"viewBook");
 		ar.addParameter("isbn", sIsbn);
+		
+		try
+		{
+			Config.VALIDATE_NUMBERS.isValid(sIsbn);
+			Config.VALIDATE_NUMBERS.isValid(sCustomerReview);
+		}
+		catch(FilterUnitException e)
+		{
+			return ar;
+		}
 
 		/* is customer verified properly? Is there anyway to bypass? */
 		if (sCustomerReview != null && sIsbn != null && cCustomer != null) {
