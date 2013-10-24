@@ -21,20 +21,35 @@
 					</c:if>
 					<div class="col-md-5">
 						<form role="form" action="registerCustomer.do" method="post">
-							
+							<div class="form-group">
+								<label for="email">Email</label> <input class="form-control"
+									id="email" name="email" type="text" placeholder="Email"
+									required />
+							</div>
+							<div class="form-group">
+								<label for="name">Name</label> <input class="form-control"
+									id="name" name="name" type="text" placeholder="Name" required />
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label> <input
+									class="form-control" id="password" name="password"
+									type="password" autocomplete="off" placeholder="Password"
+									required />
+							</div>
 							<div id="recaptcha_widget" style="display: none">
 								<div id="recaptcha_image"></div>
-							<div class="form-group">
-								<div class="input-group">
+								<div class="form-group">
+									<div class="input-group">
 										<input type="text" id="recaptcha_response_field"
-											name="recaptcha_response_field" class="form-control" placeholder="Captcha" required>
-										<span class="input-group-btn">
+											name="recaptcha_response_field" class="form-control"
+											placeholder="Captcha" required> <span
+											class="input-group-btn">
 											<button class="btn btn-default" type="button"
 												onclick="javascript:Recaptcha.reload()">
 												<span class="glyphicon glyphicon-refresh"></span>
 											</button>
 										</span>
-								</div>
+									</div>
 								</div>
 
 								<script type="text/javascript"

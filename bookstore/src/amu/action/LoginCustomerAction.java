@@ -31,7 +31,7 @@ class LoginCustomerAction implements Action {
             request.setAttribute("messages", messages);
 
             CustomerDAO customerDAO = new CustomerDAO();
-            Customer customer = customerDAO.findByEmail(request.getParameter("email"));
+            
             
             boolean isValidMail = false;
             boolean isValidPW 	= false; 
@@ -44,6 +44,7 @@ class LoginCustomerAction implements Action {
 				return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
 			}
             
+            Customer customer = customerDAO.findByEmail(request.getParameter("email"));
             
             if (customer != null && isValidMail && isValidPW) {
                 values.put("email", request.getParameter("email"));
