@@ -12,6 +12,7 @@ import java.util.logging.Level;
 
 import amu.model.Book;
 import amu.model.Customer;
+import amu.model.HelpfulReview;
 import amu.model.Review;
 import amu.model.Review;
 
@@ -51,35 +52,45 @@ public class ReviewDAO
         //FIXME: get back the value of the ID
         return null;
 	 }
-	 
-	 private String getMaxID()
-	 {
-	        Connection connection = null;
-	        Statement statement = null;
-	        ResultSet resultSet = null;
-	        
-	        try {
-	            connection = Database.getConnection();
-	            statement = connection.createStatement();
-	            
-	            String query = "SELECT MAX(id) AS maxid FROM review";
+	 	//@BEGIN INSERT	 
+	public ArrayList<HelpfulReview> getReviews(String sBookID) 
+	{
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		ArrayList<HelpfulReview> alHelpful = new ArrayList<HelpfulReview>();
 
-	            resultSet = statement.executeQuery(query);
-	            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
-	            
-	            if (resultSet.next()) {
-	            	int iRetId = resultSet.getInt("maxid") + 1;
-	            	return Integer.toString(iRetId);
-	            }
-	        }
-	        catch (SQLException exception) {
-	            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-	        } finally {
-	            Database.close(connection, statement, resultSet);
-	        }
-	        
-	        return null;
+		try {
+			connection = Database.getConnection();
+			statement = connection.createStatement();
+
+			String sQuery = "SELECT R.id, R.text, SUM(COALESCE(H.thumbsUp, 0)) AS thumbsUp, SUM(COALESCE(H.thumbsDown, 0)) AS thumbsDown "
+					+ "FROM review AS R  "
+					+ "LEFT JOIN (SELECT fk_reviewID AS fkr, SUM(COALESCE(thumbUp,0)) AS thumbsUp, SUM(COALESCE(thumbDown,0)) AS thumbsDown "
+					+ "FROM helpful GROUP BY fkr ) AS H ON H.fkr=R.id WHERE "
+					+ "fk_bookID = "
+					+ sBookID
+					+ " GROUP BY H.fkr";
+			resultSet = statement.executeQuery(sQuery);
+
+			while (resultSet.next()) {
+				int iReviewID = resultSet.getInt("id");
+				int iThumbsUp = resultSet.getInt("thumbsUp"), 
+					iThumbsDown = resultSet.getInt("thumbsDown");
+				String sText = resultSet.getString("text");
+				
+				alHelpful.add(new HelpfulReview(iReviewID, sText, iThumbsUp, iThumbsDown));
+			}
+		} catch (SQLException ex) {
+			System.out.println("SQLException in page: " + ex.getMessage());
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
+		
+		return alHelpful;
 	 }
+	//@END INSERT
 }
 
 /* EOF */

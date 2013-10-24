@@ -9,8 +9,10 @@ import amu.FilterUnitException;
 import amu.database.BookDAO;
 import amu.database.BookListDAO;
 import amu.database.RatingDAO;
+import amu.database.ReviewDAO;
 import amu.model.Book;
 import amu.model.Customer;
+import amu.model.HelpfulReview;
 
 class ViewBookAction implements Action {
 
@@ -18,15 +20,13 @@ class ViewBookAction implements Action {
 	public ActionResponse execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// TODO: should this page deal with the rating stuff, too?
-		
-		try
-		{
+
+		try {
 			Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
-			
-		}
-		catch(FilterUnitException e)
-		{
-			return new ActionResponse(ActionResponseType.FORWARD, "viewCustomer");
+
+		} catch (FilterUnitException e) {
+			return new ActionResponse(ActionResponseType.FORWARD,
+					"viewCustomer");
 		}
 
 		HttpSession session = request.getSession(true);
@@ -36,12 +36,17 @@ class ViewBookAction implements Action {
 		Book book = bookDAO.findByISBN(request.getParameter("isbn"));
 
 		Integer iAverageRate = null, iCustRate = null;
-
-		// TODO: get all reviews for THIS
-
+		
 		if (book != null) {
 			request.setAttribute("book", book);
 			iAverageRate = new RatingDAO().getAverageRating(book.getId());
+
+			try {
+				request.setAttribute("reviews", new ReviewDAO()
+						.getReviews(Integer.toString(book.getId())));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (cCustomer != null) {
@@ -50,23 +55,22 @@ class ViewBookAction implements Action {
 					book.getId());
 			request.setAttribute("rating", iCustRate);
 
-//			try {
-//				request.setAttribute("customerLists",
-//						new BookListDAO().getBooklists((cCustomer.getId())));
-//
-//			} catch (Exception e) {
-//				System.out.println("exeption thrown");
-//				e.printStackTrace();
-//				return new ActionResponse(ActionResponseType.FORWARD,
-//						"bookList");
-//			}
+			// try {
+			// request.setAttribute("customerLists",
+			// new BookListDAO().getBooklists((cCustomer.getId())));
+			//
+			// } catch (Exception e) {
+			// System.out.println("exeption thrown");
+			// e.printStackTrace();
+			// return new ActionResponse(ActionResponseType.FORWARD,
+			// "bookList");
+			// }
 		}
 
 		if (iAverageRate != null) {
 			request.setAttribute("averageRating",
 					Integer.toString(iAverageRate));
 		}
-
 		return new ActionResponse(ActionResponseType.FORWARD, "viewBook");
 	}
 }

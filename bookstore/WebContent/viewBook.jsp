@@ -10,7 +10,7 @@
 <%@page import="amu.database.BookDAO"%>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
-	type="text/javas    cript"></script>
+	type="text/javascript"></script>
 <script src="js/ratebook.js"></script>
 <link href="css/rateit.css" rel="stylesheet" type="text/css">
 
@@ -179,9 +179,8 @@
 							</div>
 							<div class="form-group"></div>
 						</form>
-					</c:otherwise>
-				</c:choose>
-				
+						
+										
 				<form method="POST" id="idHelpful" action="markHelpful.do">
 					<input type="hidden" name="helpful" />
 					<input type="hidden" name="commentID" />
@@ -196,55 +195,19 @@
 						document.forms['idHelpful'].commentID.value = reviewID;
 						document.forms['idHelpful'].helpful.value = helpFul;
 						document.forms['idHelpful'].submit();
-					}
-				</script>
-				
-				<%@page import="java.sql.*"%>
-				<%@page import="amu.database.Database"%>
-				<%@page import="amu.model.Book"%>
-				<%
-					Connection connection = null;
-							Statement statement = null;
-							ResultSet resultSet = null;
-							
-							Book bBook = new BookDAO().findByISBN(request.getParameter("isbn"));
-
-							try {
-								connection = Database.getConnection();
-								statement = connection.createStatement();
-										
-								String sQuery = "SELECT R.id, R.text, SUM(COALESCE(H.thumbsUp, 0)) AS thumbsUp, SUM(COALESCE(H.thumbsDown, 0)) AS thumbsDown "
-											  + "FROM review AS R  "
-											  + "LEFT JOIN (SELECT fk_reviewID AS fkr, SUM(COALESCE(thumbUp,0)) AS thumbsUp, SUM(COALESCE(thumbDown,0)) AS thumbsDown "
-											  + "FROM helpful GROUP BY fkr ) AS H ON H.fkr=R.id WHERE "
-											  + "fk_bookID = "
-											  + Integer.toString(bBook.getId())
-											  + " GROUP BY H.fkr" ;
-								resultSet = statement.executeQuery(sQuery);
-								
-								while (resultSet.next()) {
-									int iReviewID = resultSet.getInt("id");
-									int iThumbsUp = resultSet.getInt("thumbsUp"),
-										iThumsDown = resultSet.getInt("thumbsDown");
-									out.println("<p>");
-									out.println(resultSet.getString("text"));
-									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbUP.jpg\""
-										+ "onClick='$javascript:markHelpFul(" 
-										  + Integer.toString(iReviewID) 
-										+ ", 1)'/>");
-									out.println("<img height=\"20\" width=\"20\" src=\"./img/thumbDOWN.jpg\""
-										+ "onClick='$javascript:markHelpFul(" 
-										  + Integer.toString(iReviewID) 
-										+ ", 0)'/>");
-										
-									out.println("<i>" + Integer.toString(iThumbsUp)  + " thought of this as helpful, "
-													  + Integer.toString(iThumsDown) + " did not.");
-								}
-							} catch (SQLException ex) {
-								System.out.println("SQLException in page: " + ex.getMessage());
-							} finally {
-								Database.close(connection, statement, resultSet);
-							}
-				%></c:otherwise>
+						}
+					</script>
+					</c:otherwise>
+				</c:choose>
+						<c:forEach items="${reviews}" var="item">
+								<p>${item.text}</p>
+								<b>${item.thumbsUp}</b>
+								<img height="20" width="20" src="./img/thumbUP.jpg"
+								 		onClick='$javascript:markHelpFul(${item.id}, 1)'/>
+								 <img height="20" width="20" src="./img/thumbUP.jpg"
+								 		onClick='$javascript:markHelpFul(${item.id}, 0)'/>
+								 <b>${item.thumbsDown}</b>
+						</c:forEach>
+		</c:otherwise>
 	</c:choose>
 </div>
