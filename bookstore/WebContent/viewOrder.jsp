@@ -37,6 +37,9 @@
 				</table>
 				
 			<p>Status: ${order.statusText}</p>
+			<c:if test="${status=='0'}">
+			<a href="cancelOrder.do">Cancel order</a>
+			</c:if>
 		</c:otherwise>
 	</c:choose>
 </div>
