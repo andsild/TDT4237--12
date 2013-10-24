@@ -14,64 +14,66 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-class LoginCustomerAction implements Action {
+class LoginCustomerAction implements Action
+{
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		Map<String, String> messages = new HashMap<String, String>();
+		Map<String, String> values = new HashMap<String, String>();
+		request.setAttribute("values", values);
+		String sFrom, sPassword, sEmail;
 
-	private FilterUnit passwordValidator = FilterUnit.getPasswordValidator();
-	private FilterUnit mailValidator = FilterUnit.getMailValidator();
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		sFrom = request.getParameter("from");
+		sPassword = request.getParameter("password");
+		sEmail = request.getParameter("email");
 
-        Map<String, String> values = new HashMap<String, String>();
-        request.setAttribute("values", values);
-        if (ActionFactory.hasKey(request.getParameter("from"))) {
-            values.put("from", request.getParameter("from"));
-        }
+		try
+		{
+			Config.VALIDATE_EMAIL.isValid(sEmail);
+			Config.VALIDATE_PASSWORD.isValid(sPassword);
+		} catch (Exception e)
+		{
+			messages.put("error", "Password or Email was incorrect.");
+			return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
+		}
 
-        if (request.getMethod().equals("POST")) {
+		if (ActionFactory.hasKey(request.getParameter("from")))
+			values.put("from", request.getParameter("from"));
 
-        	HttpSession preSession = request.getSession();
-        	preSession.invalidate();
-        	
-            Map<String, String> messages = new HashMap<String, String>();
-            request.setAttribute("messages", messages);
+		if (request.getMethod().equals("POST"))
+		{
+			HttpSession preSession = request.getSession();
+			preSession.invalidate();
 
-            CustomerDAO customerDAO = new CustomerDAO();
-            
-            values.put("email", request.getParameter("email"));
-            try {
-            	Config.VALIDATE_EMAIL.isValid(request.getParameter("email"));
-            	Config.VALIDATE_PASSWORD.isValid(request.getParameter("password"));
-			} catch (Exception e) {
+			request.setAttribute("messages", messages);
+
+			CustomerDAO customerDAO = new CustomerDAO();
+
+			values.put("email", sEmail);
+
+			Customer customer = customerDAO.findByEmail(sEmail);
+
+			if (customer != null)
+				if (customer.getActivationToken() == null)
+					if (BCrypt.checkpw(sPassword, customer.getPassword()))
+					{
+						HttpSession session = request.getSession(true);
+						session.setAttribute("customer", customer);
+						if (ActionFactory.hasKey(request.getParameter("from")))
+							return new ActionResponse(ActionResponseType.REDIRECT, sFrom);
+					}
+					else
+						messages.put("error", "Password or Email was incorrect.");
+				else
+					return new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
+			else
 				messages.put("error", "Password or Email was incorrect.");
-				return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
-			}
-            
-            Customer customer = customerDAO.findByEmail(request.getParameter("email"));
-            
-            if (customer != null) {
 
-                if (customer.getActivationToken() == null) {
-                	if (BCrypt.checkpw(request.getParameter("password"), customer.getPassword())) {
-                			HttpSession session = request.getSession(true);
-                			session.setAttribute("customer", customer);
-                			if (ActionFactory.hasKey(request.getParameter("from"))) {
-                				return new ActionResponse(ActionResponseType.REDIRECT, request.getParameter("from"));
-                			}
-                		}
-                    else { // Wrong password
-                        messages.put("error", "Password or Email was incorrect.");
-                    }
-                } else { // customer.getActivationToken() != null
-                    return new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
-                }
-            } else { // findByEmail returned null -> no customer with that email exists
-                messages.put("error", "Password or Email was incorrect.");
-            }
+			// Forward to login form with error messages
+			return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
+		}
 
-            // Forward to login form with error messages
-            return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
-        }
-
-        return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
-    }
+		return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
+	}
 }

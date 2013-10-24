@@ -30,6 +30,12 @@ class AddCreditCardAction implements Action {
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("customer");
+        String sExpiryYear, sExpiryMonth, sCreditCardNumber, sCardholderName;
+        
+        sExpiryYear = request.getParameter("expiryYear");
+        sExpiryMonth = request.getParameter("expiryMonth");
+        sCreditCardNumber = request.getParameter("creditCardNumber");
+        sCardholderName = request.getParameter("cardholderName");
 
         if (customer == null) {
             ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
@@ -43,10 +49,10 @@ class AddCreditCardAction implements Action {
             
             try
             {
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryYear"));
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryMonth"));
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("creditCardNumber"));
-            	Config.VALIDATE_TEXT.isValid(request.getParameter("cardholderName"));
+            	Config.VALIDATE_NUMBERS.isValid(sExpiryYear);
+            	Config.VALIDATE_NUMBERS.isValid(sExpiryMonth);
+            	Config.VALIDATE_NUMBERS.isValid(sCreditCardNumber);
+            	Config.VALIDATE_TEXT.isValid(sCardholderName);
             }
             catch(FilterUnitException e)
             {
@@ -55,24 +61,24 @@ class AddCreditCardAction implements Action {
             }
             
             Calendar expiryDate = Calendar.getInstance();
-            expiryDate.set(Integer.parseInt(request.getParameter("expiryYear")), Integer.parseInt(request.getParameter("expiryMonth")), 1);
+            expiryDate.set(Integer.parseInt(sExpiryYear), Integer.parseInt(sExpiryMonth), 1);
             
             CreditCardDAO creditCardDAO = new CreditCardDAO();
             StrongTextEncryptor encrypt = new StrongTextEncryptor();
             encrypt.setPassword(Config.ENCRYPT_PASSWORD);
-			String ccNumber = encrypt.encrypt(request.getParameter("creditCardNumber"));
+			String ccNumber = encrypt.encrypt(sCreditCardNumber);
             CreditCard creditCard = new CreditCard(
                     customer, 
                     ccNumber, 
                     expiryDate,
-                    request.getParameter("cardholderName"));
+                    sCardholderName);
             
             //XXX: When something goes wrong, the values from the form are sent back so they are not lost, is this a security risk?
             //Map<String, String> values = new HashMap<String, String>();
             //request.setAttribute("values", values);
             //values.put("creditCardNumber", ccNumber);
             //values.put("expiryDate", request.getParameter("expiry"));
-            //values.put("cardholderName", request.getParameter("cardholderName"));
+            //values.put("cardholderName", sCardholderName);
             
             if (creditCardDAO.add(creditCard)) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");

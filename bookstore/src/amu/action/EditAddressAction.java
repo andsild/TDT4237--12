@@ -13,49 +13,54 @@ import amu.database.AddressDAO;
 import amu.model.Address;
 import amu.model.Customer;
 
-class EditAddressAction implements Action {
+class EditAddressAction implements Action
+{
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response)
+	{
+		List<String> messages = new ArrayList<String>();
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
+		String sAddress, sId;
+		
+		sAddress = request.getParameter("address");
+		sId = request.getParameter("id");
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "viewCustomer");
-            return actionResponse;
-        }
+		try
+		{
+			Config.VALIDATE_ADDRESS.isValid(sAddress);
+			Config.VALIDATE_NUMBERS.isValid(sId);
+		} catch (FilterUnitException e)
+		{
+			messages.add("Invalid address");
+			return new ActionResponse(ActionResponseType.FORWARD, "editAddress");
+		}
 
-        AddressDAO addressDAO = new AddressDAO();
-        Address address = addressDAO.read(Integer.parseInt(request.getParameter("id")), customer.getId());
+		if (customer == null)
+		{
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "viewCustomer");
+			return actionResponse;
+		}
 
-        if (request.getMethod().equals("POST")) {
+		AddressDAO addressDAO = new AddressDAO();
+		Address address = addressDAO.read(Integer.parseInt(sId), customer.getId());
 
-        	List<String> messages = new ArrayList<String>();
-        	request.setAttribute("messages", messages);
-        	
-        	try
-        	{
-        		Config.VALIDATE_ADDRESS.isValid(request.getParameter("address"));
-        	}
-        	catch(FilterUnitException e)
-        	{
-        		messages.add("Invalid address");
-        		return new ActionResponse(ActionResponseType.FORWARD, "editAddress");
-        	}
-        	
-            address.setAddress(request.getParameter("address"));
-            
-            if (addressDAO.edit(address)) {
-                return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
-            }
+		if (request.getMethod().equals("POST"))
+		{
+			request.setAttribute("messages", messages);
+			address.setAddress(sAddress);
 
-            messages.add("An error occured.");
-        }
+			if (addressDAO.edit(address))
+				return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
 
-        // (request.getMethod().equals("GET")) 
-        request.setAttribute("address", address);
-        return new ActionResponse(ActionResponseType.FORWARD, "editAddress");
-    }
+			messages.add("An error occured.");
+		}
+
+		// (request.getMethod().equals("GET"))
+		request.setAttribute("address", address);
+		return new ActionResponse(ActionResponseType.FORWARD, "editAddress");
+	}
 
 }

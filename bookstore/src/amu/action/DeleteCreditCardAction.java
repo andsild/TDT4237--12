@@ -13,46 +13,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-class DeleteCreditCardAction implements Action {
+class DeleteCreditCardAction implements Action
+{
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response)
+	{
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
+		String sId = request.getParameter("id");
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "viewCustomer");
-            return actionResponse;
-        }
+		try
+		{
+			Config.VALIDATE_NUMBERS.isValid(sId);
+		} catch (FilterUnitException e)
+		{
+			return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
+		}
 
-        CreditCardDAO creditCardDAO = new CreditCardDAO();
-        CreditCard creditCard;
+		if (customer == null)
+		{
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "viewCustomer");
+			return actionResponse;
+		}
 
-        if (request.getMethod().equals("POST")) {
-            List<String> messages = new ArrayList<String>();
-            request.setAttribute("messages", messages);
-            
-            try{
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
-            }
-            catch(FilterUnitException e)
-            {
-            	return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
-            }
+		CreditCardDAO creditCardDAO = new CreditCardDAO();
+		CreditCard creditCard;
 
-            if (creditCardDAO.delete(Integer.parseInt(request.getParameter("id")), customer.getId())) {
-                return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
-            }
-            
+		if (request.getMethod().equals("POST"))
+		{
+			List<String> messages = new ArrayList<String>();
+			request.setAttribute("messages", messages);
 
-            messages.add("An error occured.");
-        }
+			if (creditCardDAO.delete(Integer.parseInt(sId), customer.getId()))
+				return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
 
-        // (request.getMethod().equals("GET")) 
-        creditCard = creditCardDAO.read(Integer.parseInt(request.getParameter("id")));
-        request.setAttribute("creditCard", creditCard);
-        return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
-    }
-    
+			messages.add("An error occured.");
+		}
+
+		// (request.getMethod().equals("GET"))
+		creditCard = creditCardDAO.read(Integer.parseInt(sId));
+		request.setAttribute("creditCard", creditCard);
+		return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
+	}
+
 }

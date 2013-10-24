@@ -19,6 +19,7 @@ class DeleteAddressAction implements Action {
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("customer");
+        String sId = request.getParameter("id");
 
         if (customer == null) {
             ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
@@ -34,14 +35,14 @@ class DeleteAddressAction implements Action {
             request.setAttribute("messages", messages);
 
             try{
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+            	Config.VALIDATE_NUMBERS.isValid(sId);
             }
             catch(FilterUnitException e)
             {
             	return new ActionResponse(ActionResponseType.FORWARD, "deleteAddress");
             }
             
-            if (addressDAO.delete(Integer.parseInt(request.getParameter("id")), customer.getId())) {
+            if (addressDAO.delete(Integer.parseInt(sId), customer.getId())) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
             }
 
@@ -49,7 +50,7 @@ class DeleteAddressAction implements Action {
         }
 
         // (request.getMethod().equals("GET")) 
-        address = addressDAO.read(Integer.parseInt(request.getParameter("id")), customer.getId()); 
+        address = addressDAO.read(Integer.parseInt(sId), customer.getId()); 
         request.setAttribute("address", address);
         return new ActionResponse(ActionResponseType.FORWARD, "deleteAddress");
     }

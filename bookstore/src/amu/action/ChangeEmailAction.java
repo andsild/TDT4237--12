@@ -20,6 +20,7 @@ class ChangeEmailAction implements Action {
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("customer");
+        String[] email = request.getParameterValues("email");
 
         if (customer == null) {
             ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
@@ -34,8 +35,6 @@ class ChangeEmailAction implements Action {
             List<String> messages = new ArrayList<String>();
             request.setAttribute("messages", messages);
 
-            String[] email = request.getParameterValues("email");
-            
             try
             {
             	for(String s : email)

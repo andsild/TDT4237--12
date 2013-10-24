@@ -166,7 +166,7 @@ public class FilterUnit
 	{
 		FilterUnit filter = new FilterUnit();
 		
-	//	filter.addRequiredRegex(MAIL_REGEX);
+		filter.addRequiredRegex(MAIL_REGEX);
 		filter.addSeveralLegalRanges(getEnglishAlphabet());
 		filter.addLegalRange(NUMBERS);
 		filter.addLegalRange(DOT);

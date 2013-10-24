@@ -11,39 +11,43 @@ import amu.database.BookListDAO;
 import amu.model.BookList;
 import amu.model.Customer;
 
-class AddBookToList implements Action {
+class AddBookToList implements Action
+{
 
 	@Override
-	public ActionResponse execute(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response)
+	{
 		HttpSession session = request.getSession(true);
 		Customer customer = (Customer) session.getAttribute("customer");
+		String sIsbn, sId;
+		
+		sIsbn = request.getParameter("isbn");
+		sId = request.getParameter("id");
 
-		if (customer == null) {
-			ActionResponse actionResponse = new ActionResponse(
-					ActionResponseType.REDIRECT, "loginCustomer");
+		if (customer == null)
+		{
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
 			actionResponse.addParameter("from", "viewCustomer");
 			return actionResponse;
 		}
-		if (request.getMethod() == "POST") {
-
+		
+		if (request.getMethod() == "POST")
+		{
 			BookListDAO bookListDAO = new BookListDAO();
 			BookDAO bookDAO = new BookDAO();
-			try {
-				Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
-				Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
-				
-				bookListDAO.addBook(
-						bookDAO.findByISBN(request.getParameter("isbn")),
-						Integer.parseInt(request.getParameter("id")));
-			} catch (Exception e) {
+			try
+			{
+				Config.VALIDATE_NUMBERS.isValid(sIsbn);
+				Config.VALIDATE_NUMBERS.isValid(sId);
+
+				bookListDAO.addBook(bookDAO.findByISBN(sIsbn), Integer.parseInt(sId));
+			} catch (Exception e)
+			{
 				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
 			}
-			
 
-			ActionResponse r = new ActionResponse(ActionResponseType.REDIRECT,
-					"viewBook");
-			r.addParameter("isbn", request.getParameter("isbn"));
+			ActionResponse r = new ActionResponse(ActionResponseType.REDIRECT, "viewBook");
+			r.addParameter("isbn", sIsbn);
 			return r;
 		}
 		return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
