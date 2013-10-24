@@ -52,8 +52,8 @@
 									<i>Average rating for this book</i>
 								<div style="white-space: nowrap;" class="rateit" id="rater2"
 									data-rateit-readonly="true"
-									data-rateit-value="${averageRating}"></div>
-								</p>
+									data-rateit-value="${averageRating}">
+								</div>
 							</c:otherwise>
 						</c:choose>
 
@@ -79,7 +79,6 @@
 											<i>Rate this book: </i>
 										<div class="rateit" name="userrating" id="rater1" step="1.0"
 											onClick="$javascript:submitFormy()"></div>
-										</p>
 										<form method="POST" action="rateBook.do" id="id_rateForm">
 											<input type="hidden" name="isbn" value="${book.isbn13}" /> <input
 												type="hidden" name="rating" value="" />
@@ -166,7 +165,7 @@
 								<noscript>
 									<iframe
 										src="http://www.google.com/recaptcha/api/noscript?k=6LcwqOgSAAAAANhXXKjhfVcoJLQPdrOgLqE15ue-"
-										height="300" width="500" frameborder="0"></iframe>
+										height="300" width="500"></iframe>
 									<br>
 									<textarea name="recaptcha_challenge_field" rows="3" cols="40">
 								   </textarea>
