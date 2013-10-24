@@ -5,17 +5,11 @@
     	<table class="general-table">
         <tr>
             <td><label for="creditCardNumber">Credit Card Number: </label></td>
-            <td><input id="creditCardNumber" name="creditCardNumber" type="text" value="${values.creditCardNumber}" /></td>
-            <c:if test="${not empty messages.creditCardNumber}">
-                <span class="error"> <c:out value="${messages.creditCardNumber}"/></span>
-            </c:if>
+            <td><input id="creditCardNumber" name="creditCardNumber" type="text" /></td>
         </tr>
         <tr>
             <td><label for="cardholderName">Cardholder's name: </label></td>
-            <td><input id="cardholderName" name="cardholderName" type="text" value="${values.cardholderName}" /></td>
-            <c:if test="${not empty messages.cardholderName}">
-                <span class="error"><c:out value="${messages.creditName}"/></span>
-            </c:if>
+            <td><input id="cardholderName" name="cardholderName" type="text" /></td>
         </tr>
         <tr>
             <td><label for="expiryDate">Expiry date: </label></td>
@@ -40,9 +34,6 @@
                 </c:forEach>
             </select>
             </td>
-            <c:if test="${not empty messages.expiryDate}">
-                <span class="error"><c:out value="${messages.expiryDate}"/></span>
-            </c:if>
         </tr>
         </table>
         <div><input type="submit" value="Submit" /></div>

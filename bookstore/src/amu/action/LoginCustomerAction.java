@@ -8,6 +8,7 @@ import amu.model.Customer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,9 @@ class LoginCustomerAction implements Action {
 
         if (request.getMethod().equals("POST")) {
 
+        	HttpSession preSession = request.getSession();
+        	preSession.invalidate();
+        	
             Map<String, String> messages = new HashMap<String, String>();
             request.setAttribute("messages", messages);
 
@@ -36,6 +40,7 @@ class LoginCustomerAction implements Action {
             boolean isValidMail = false;
             boolean isValidPW 	= false; 
             
+            values.put("email", request.getParameter("email"));
             try {
             	isValidMail = mailValidator.isValid(request.getParameter("email"));
             	isValidPW = passwordValidator.isValid(request.getParameter("password"));
@@ -47,7 +52,6 @@ class LoginCustomerAction implements Action {
             Customer customer = customerDAO.findByEmail(request.getParameter("email"));
             
             if (customer != null && isValidMail && isValidPW) {
-                values.put("email", request.getParameter("email"));
 
                 if (customer.getActivationToken() == null) {
                 	if (BCrypt.checkpw(request.getParameter("password"), customer.getPassword())) {

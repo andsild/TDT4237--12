@@ -2,6 +2,10 @@ package amu.model;
 
 import java.util.Calendar;
 
+import org.jasypt.util.text.StrongTextEncryptor;
+
+import amu.Config;
+
 public class CreditCard {
 
     private Integer id;
@@ -40,14 +44,18 @@ public class CreditCard {
 
     public String getMaskedCreditCardNumber() {
         StringBuilder maskedCreditCardNumber = new StringBuilder(creditCardNumber.length());
-        for (int i = 0; i < creditCardNumber.length(); i++)
+        StrongTextEncryptor encrypt = new StrongTextEncryptor();
+        encrypt.setPassword(Config.ENCRYPT_PASSWORD);
+        String cc = encrypt.decrypt(creditCardNumber);
+        for (int i = 0; i < cc.length(); i++)
         {
-            if (i >= creditCardNumber.length() - 4) {
-                maskedCreditCardNumber.append(creditCardNumber.charAt(i));
+            if (i >= cc.length()-4) {
+                maskedCreditCardNumber.append(cc.charAt(i));
             } else {
                 maskedCreditCardNumber.append('*');
             }
         }
+        
         return maskedCreditCardNumber.toString();
     }
 
