@@ -196,8 +196,11 @@
 						document.forms['idHelpful'].submit();
 						}
 					</script>
+					</div>
 					</c:otherwise>
 				</c:choose>
+				</div>
+				
 						<c:forEach items="${reviews}" var="item">
 								<p>${item.text}</p>
 								<b>${item.thumbsUp}</b>

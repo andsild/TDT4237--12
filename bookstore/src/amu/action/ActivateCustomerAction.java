@@ -46,8 +46,6 @@ class ActivateCustomerAction implements Action
 			}
 			else
 			{
-				HttpSession session = request.getSession(true);
-				session.setAttribute("debugActivation", customer);
 				return new ActionResponse(ActionResponseType.REDIRECT, "activationError");
 			}
 		}
