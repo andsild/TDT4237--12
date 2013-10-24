@@ -38,7 +38,6 @@ class LoginCustomerAction implements Action {
             request.setAttribute("messages", messages);
 
             CustomerDAO customerDAO = new CustomerDAO();
-            Integer.parseInt("Hello");
             
             values.put("email", request.getParameter("email"));
             try {
