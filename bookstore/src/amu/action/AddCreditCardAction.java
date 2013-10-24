@@ -1,17 +1,23 @@
 package amu.action;
 
+import amu.Config;
 import amu.database.CreditCardDAO;
 import amu.model.CreditCard;
 import amu.model.Customer;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.jasypt.encryption.StringEncryptor;
+import org.jasypt.util.text.StrongTextEncryptor;
 
 class AddCreditCardAction implements Action {
     
@@ -34,17 +40,21 @@ class AddCreditCardAction implements Action {
             expiryDate.set(Integer.parseInt(request.getParameter("expiryYear")), Integer.parseInt(request.getParameter("expiryMonth")), 1);
             
             CreditCardDAO creditCardDAO = new CreditCardDAO();
+            StrongTextEncryptor encrypt = new StrongTextEncryptor();
+            encrypt.setPassword(Config.ENCRYPT_PASSWORD);
+			String ccNumber = encrypt.encrypt(request.getParameter("creditCardNumber"));
             CreditCard creditCard = new CreditCard(
                     customer, 
-                    request.getParameter("creditCardNumber"), 
+                    ccNumber, 
                     expiryDate,
                     request.getParameter("cardholderName"));
-
-            Map<String, String> values = new HashMap<String, String>();
-            request.setAttribute("values", values);
-            values.put("creditCardNumber", request.getParameter("creditCardNumber"));
-            values.put("expiryDate", request.getParameter("expiry"));
-            values.put("cardholderName", request.getParameter("cardholderName"));
+            
+            //XXX: When something goes wrong, the values from the form are sent back so they are not lost, is this a security risk?
+            //Map<String, String> values = new HashMap<String, String>();
+            //request.setAttribute("values", values);
+            //values.put("creditCardNumber", ccNumber);
+            //values.put("expiryDate", request.getParameter("expiry"));
+            //values.put("cardholderName", request.getParameter("cardholderName"));
             
             if (creditCardDAO.add(creditCard)) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
