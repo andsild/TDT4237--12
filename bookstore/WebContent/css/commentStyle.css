@@ -1,0 +1,7 @@
+
+.lp-block		{ width:400px; float:left; }
+.lp-block input, .lp-block textarea { width:90%; }
+#live-preview-display 	{ background:#eee; padding:10px; margin-left:00px; margin-top:20px; }
+#lp-name { font-weight:bold; }
+#lp-avatar { float:right; margin:0 0 20px 20px; }
+#lp-comment { padding-top:10px; font-style:italic; line-height:19px; }

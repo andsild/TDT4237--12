@@ -1,3 +1,12 @@
+<script type="text/javascript">
+	var RecaptchaOptions = {
+		theme : 'custom',
+		custom_theme_widget : 'recaptcha_widget'
+	};
+</script>
+
+<link rel="stylesheet" type="text/css" href="/bookstore/css/commentStyle.css" />
+
 <%@page import="amu.database.BookDAO"%>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
@@ -129,10 +138,46 @@
 						</p>
 					</c:when>
 					<c:otherwise>
-						<form action="addReview.do" method="POST">
-							<input type="hidden" name="isbn" value="${book.isbn13}" />
-							<label>Review</label> <input name="review"></input> 
-							<input type="submit" value="Legg til kommentar"></input>
+					<div class="col-md-3">
+						<label>Write review:</label>
+						<form action="addReview.do" id="id_Review" method="POST">
+							<input type="hidden" name="isbn" value="${book.isbn13}" /> <input
+								name="review">
+							<div id="recaptcha_widget" style="display: none">
+								<div id="recaptcha_image"></div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" id="recaptcha_response_field"
+											name="recaptcha_response_field" class="form-control"
+											placeholder="Captcha" required> <span
+											class="input-group-btn">
+											<button class="btn btn-default" type="button"
+												onclick="javascript:Recaptcha.reload()">
+												<span class="glyphicon glyphicon-refresh"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+
+								<script type="text/javascript"
+									src="http://www.google.com/recaptcha/api/challenge?k=6LcwqOgSAAAAANhXXKjhfVcoJLQPdrOgLqE15ue-">
+									
+								</script>
+								<noscript>
+									<iframe
+										src="http://www.google.com/recaptcha/api/noscript?k=6LcwqOgSAAAAANhXXKjhfVcoJLQPdrOgLqE15ue-"
+										height="300" width="500" frameborder="0"></iframe>
+									<br>
+									<textarea name="recaptcha_challenge_field" rows="3" cols="40">
+								   </textarea>
+									<input type="hidden" name="recaptcha_response_field"
+										value="manual_challenge">
+								</noscript>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+							<div class="form-group"></div>
 						</form>
 					</c:otherwise>
 				</c:choose>

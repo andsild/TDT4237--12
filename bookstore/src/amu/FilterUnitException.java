@@ -56,3 +56,18 @@ class FailedRegexException extends FilterUnitException
 		return regex;
 	}
 }
+
+class IllegalStringLengthException extends FilterUnitException
+{
+	private int length;
+	
+	public IllegalStringLengthException(String invalidText)
+	{
+		this.length = length;
+	}
+	
+	public int getLength()
+	{
+		return length;
+	}
+}

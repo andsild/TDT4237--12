@@ -36,7 +36,6 @@ public class ActionFactory implements ServletContextListener {
         map.put("cancelError", new ForwardAction("cancelError"));
         map.put("cancelSuccess", new ForwardAction("cancelSuccess"));
         
-        
         // Cart actions
         map.put("addBookToCart", new AddToCartAction());
         map.put("updateCart", new UpdateCartAction());

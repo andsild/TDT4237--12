@@ -40,7 +40,8 @@ public class ASCIIRange {
 	
 	public void sort()
 	{
-		if(start>stop)swap();
+		if(start>stop)
+			swap();
 	}
 	
 	private void swap()
