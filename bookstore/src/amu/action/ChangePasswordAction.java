@@ -1,12 +1,16 @@
 package amu.action;
 
-import amu.database.CustomerDAO;
-import amu.model.Customer;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
 
 class ChangePasswordAction implements Action {
 
@@ -26,6 +30,17 @@ class ChangePasswordAction implements Action {
             request.setAttribute("messages", messages);
 
             String[] password = request.getParameterValues("password");
+            
+            try
+            {
+            	for(String s : password)
+            		Config.VALIDATE_PASSWORD.isValid(s);
+            }
+            catch(FilterUnitException e)
+            {
+            	messages.add("Invalid password(s)");
+            	return new ActionResponse(ActionResponseType.FORWARD, "changePassword");
+            }
 
             // Validate that new email is typed in the same both times
             if (password[0].equals(password[1]) == false) {

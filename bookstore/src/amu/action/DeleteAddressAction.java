@@ -1,13 +1,17 @@
 package amu.action;
 
-import amu.database.AddressDAO;
-import amu.model.Address;
-import amu.model.Customer;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.AddressDAO;
+import amu.model.Address;
+import amu.model.Customer;
 
 class DeleteAddressAction implements Action {
 
@@ -29,6 +33,14 @@ class DeleteAddressAction implements Action {
             List<String> messages = new ArrayList<String>();
             request.setAttribute("messages", messages);
 
+            try{
+            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+            }
+            catch(FilterUnitException e)
+            {
+            	return new ActionResponse(ActionResponseType.FORWARD, "deleteAddress");
+            }
+            
             if (addressDAO.delete(Integer.parseInt(request.getParameter("id")), customer.getId())) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
             }

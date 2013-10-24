@@ -1,12 +1,16 @@
 package amu.action;
 
-import amu.database.CustomerDAO;
-import amu.model.Customer;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
 
 class ChangeNameAction implements Action {
 
@@ -20,12 +24,23 @@ class ChangeNameAction implements Action {
             actionResponse.addParameter("from", "changeName");
             return actionResponse;
         }
+        
+        
 
         if (request.getMethod().equals("POST")) {
 
             Map<String, String> messages = new HashMap<String, String>();
             request.setAttribute("messages", messages);
-
+            
+            try {
+            	Config.VALIDATE_TEXT.isValid(request.getParameter("name"));
+            }
+            catch(FilterUnitException e)
+            {
+            	messages.put("name", "Stop dicking around, give me a proper name");
+            	return new ActionResponse(ActionResponseType.FORWARD, "changeName");
+            }
+            
             customer.setName(request.getParameter("name"));
 
             CustomerDAO customerDAO = new CustomerDAO();

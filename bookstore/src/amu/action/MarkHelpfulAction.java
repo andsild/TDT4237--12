@@ -4,12 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import amu.database.BookDAO;
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.HelpfulDAO;
-import amu.database.ReviewDAO;
-import amu.model.Book;
 import amu.model.Customer;
-import amu.model.Review;
 
 public class MarkHelpfulAction implements Action
 {
@@ -27,6 +25,16 @@ public class MarkHelpfulAction implements Action
 		
 		String sHelpful = request.getParameter("helpful");
 		String sCommentID = request.getParameter("commentID");
+		
+		try{
+			Config.VALIDATE_NUMBERS.isValid(sIsbn);
+			Config.VALIDATE_NUMBERS.isValid(sCommentID);
+			Config.VALIDATE_NUMBERS.isValid(sHelpful);
+		}
+		catch(FilterUnitException e)
+		{
+			return ar;
+		}
 		
 		HelpfulDAO hdao = new HelpfulDAO();
 		
