@@ -24,8 +24,6 @@ public class ReviewDAO
         Connection connection = null;
         Statement statement = null;
         
-        String sMaxID = getMaxID();
-
         try {
             connection = Database.getConnection();
             statement = connection.createStatement();
@@ -33,7 +31,7 @@ public class ReviewDAO
             //FIXME: need a db lock to avoid race condtions
             
             String query = "INSERT INTO review (ID, fk_customerID, fk_bookID, text) VALUES ("
-                    + sMaxID
+                    + "NULL"
                     + ", "
                     + Integer.toString(rReview.getCustomer().getId())
                     + ", "
@@ -41,28 +39,6 @@ public class ReviewDAO
                     + ", \""
                     + rReview.getReview()
                     + "\" );";
-            statement.executeUpdate(query);
-            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "register SQL Query: " + query);
-            
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement);
-        }
-        
-        try {
-            connection = Database.getConnection();
-            statement = connection.createStatement();
-            
-            //FIXME: need a db lock to avoid race condtions
-            
-            String query= "INSERT INTO helpful (fk_reviewID, fk_customerID, thumbUP, thumbDOWN) VALUES ("
-                    + "\"" + sMaxID + "\""
-                    + ", "
-                    + Integer.toString(rReview.getCustomer().getId())
-                    + ", "
-                    + "0, 0"
-                    + ");";
             statement.executeUpdate(query);
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "register SQL Query: " + query);
             

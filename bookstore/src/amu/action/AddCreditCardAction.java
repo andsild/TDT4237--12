@@ -1,9 +1,6 @@
 package amu.action;
 
 import amu.Config;
-import amu.database.CreditCardDAO;
-import amu.model.CreditCard;
-import amu.model.Customer;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +12,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.jasypt.util.text.StrongTextEncryptor;
+
+import amu.Config;
+import amu.FilterUnitException;
+import amu.database.CreditCardDAO;
+import amu.model.CreditCard;
+import amu.model.Customer;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.util.text.StrongTextEncryptor;
@@ -35,6 +40,19 @@ class AddCreditCardAction implements Action {
         if (request.getMethod().equals("POST")) {
             Map<String, String> messages = new HashMap<String, String>();
             request.setAttribute("messages", messages);
+            
+            try
+            {
+            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryYear"));
+            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryMonth"));
+            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("creditCardNumber"));
+            	Config.VALIDATE_TEXT.isValid(request.getParameter("cardholderName"));
+            }
+            catch(FilterUnitException e)
+            {
+            	messages.put("error", "Invalid input");
+            	return new ActionResponse(ActionResponseType.REDIRECT, "viewProfile");
+            }
             
             Calendar expiryDate = Calendar.getInstance();
             expiryDate.set(Integer.parseInt(request.getParameter("expiryYear")), Integer.parseInt(request.getParameter("expiryMonth")), 1);

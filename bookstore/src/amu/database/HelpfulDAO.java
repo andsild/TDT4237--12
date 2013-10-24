@@ -24,18 +24,37 @@ public class HelpfulDAO
         //.. I need to check for whether 
         
         //TODO: please better check..
-            
-        /* Increment thumbUP */
-        if(sHelpfulInteger.equals("1"))
+        //TODO: there could just be one for thumb, either up or down. Would be easier.
+        //		 
+        
+        if (thumbExist(sCustomerID, sReviewID))
         {
-        	sQuery = "UPDATE helpful SET thumbUP = thumbUP + 1 WHERE fk_reviewID = "
-        			+ Integer.parseInt(sReviewID) + ";";
+        	return;
         }
-        else {
-        	sQuery = "UPDATE helpful SET thumbDOWN = thumbDOWN + 1 WHERE fk_reviewID = "
-        			+ Integer.parseInt(sReviewID) + ";";
+        
+        else
+        {
+        	if(sHelpfulInteger.equals("1"))
+	            {           
+	            	sQuery= "INSERT INTO helpful (fk_reviewID, fk_customerID, thumbUP, thumbDOWN) VALUES ("
+	                    + "\"" + sReviewID + "\""
+	                    + ", "
+	                    + sCustomerID
+	                    + ", "
+	                    + "1, 0"
+	                    + ");";
+	            }
+        	else
+        	{
+        		sQuery= "INSERT INTO helpful (fk_reviewID, fk_customerID, thumbUP, thumbDOWN) VALUES ("
+	                    + "\"" + sReviewID + "\""
+	                    + ", "
+	                    + sCustomerID
+	                    + ", "
+	                    + "0, 1" 
+	                    + ");";
+	        }
         }
-
         try {
             connection = Database.getConnection();
             statement = connection.createStatement();
@@ -69,7 +88,6 @@ public class HelpfulDAO
 
 	            resultSet = statement.executeQuery(query);
 	            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
-	            
 	            return (resultSet.next() == true);
 	        }
 	        catch (SQLException exception) {

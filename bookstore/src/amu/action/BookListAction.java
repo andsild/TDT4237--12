@@ -1,7 +1,9 @@
 package amu.action;
 
+import amu.Config;
 import amu.database.BookListDAO;
 import amu.model.Customer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,7 @@ class BookListAction implements Action {
     	
        	if (request.getParameter("id") != null) {
         	try {
+        		Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
         		request.setAttribute("bookList", new BookListDAO().findByID(Integer.parseInt(request.getParameter("id"))));
 				
 			} catch (Exception e) {
@@ -22,7 +25,6 @@ class BookListAction implements Action {
 				e.printStackTrace();
 				return new ActionResponse(ActionResponseType.FORWARD, "bookList");
 			}
-			
 		}else if (request.getParameter("customer") != null) {
 			if (customer == null) {
 	            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");

@@ -1,5 +1,7 @@
 package amu.action;
 
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.BookListDAO;
 import amu.model.BookList;
 import amu.model.Customer;
@@ -28,6 +30,17 @@ class AddBookListAction implements Action {
 		Map<String, String> values = new HashMap<String, String>();
 		request.setAttribute("values", values);
 		if (ActionFactory.hasKey(request.getParameter("from"))) {
+			try 
+			{
+				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("from"));	
+				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("title"));
+				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("description"));
+			}
+			catch(FilterUnitException e)
+			{
+				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
+			}
+			
 			values.put("from", request.getParameter("from"));
 		}
 

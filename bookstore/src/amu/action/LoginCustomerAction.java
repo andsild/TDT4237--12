@@ -1,6 +1,7 @@
 package amu.action;
 
 import amu.BCrypt;
+import amu.Config;
 import amu.FilterUnit;
 import amu.database.CustomerDAO;
 import amu.model.Customer;
@@ -39,14 +40,10 @@ class LoginCustomerAction implements Action {
             CustomerDAO customerDAO = new CustomerDAO();
             Integer.parseInt("Hello");
             
-            
-            boolean isValidMail = false;
-            boolean isValidPW 	= false; 
-            
             values.put("email", request.getParameter("email"));
             try {
-            	isValidMail = mailValidator.isValid(request.getParameter("email"));
-            	isValidPW = passwordValidator.isValid(request.getParameter("password"));
+            	Config.VALIDATE_EMAIL.isValid(request.getParameter("email"));
+            	Config.VALIDATE_PASSWORD.isValid(request.getParameter("password"));
 			} catch (Exception e) {
 				messages.put("error", "Password or Email was incorrect.");
 				return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
@@ -54,7 +51,7 @@ class LoginCustomerAction implements Action {
             
             Customer customer = customerDAO.findByEmail(request.getParameter("email"));
             
-            if (customer != null && isValidMail && isValidPW) {
+            if (customer != null) {
 
                 if (customer.getActivationToken() == null) {
                 	if (BCrypt.checkpw(request.getParameter("password"), customer.getPassword())) {

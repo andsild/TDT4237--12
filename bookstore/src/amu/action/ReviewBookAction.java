@@ -3,17 +3,17 @@ package amu.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.BookDAO;
 import amu.database.ReviewDAO;
 import amu.model.Book;
-import amu.model.Cart;
 import amu.model.Customer;
 import amu.model.Review;
 
@@ -40,7 +40,7 @@ public class ReviewBookAction implements Action {
 		
 			String remoteAddr = request.getRemoteAddr();
             ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-            reCaptcha.setPrivateKey("6LcwqOgSAAAAAL45ayNkEqKhWvAD7PDzFUtoBDim");
+            reCaptcha.setPrivateKey(Config.CAPTCHA_PRIVATE_KEY);
 
             String challenge = request.getParameter("recaptcha_challenge_field");
             String uresponse = request.getParameter("recaptcha_response_field");
@@ -53,7 +53,19 @@ public class ReviewBookAction implements Action {
             }
             ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
             
-            if (reCaptchaResponse.isValid()) {
+            if (reCaptchaResponse.isValid()) 
+            {
+            	try
+            	{
+            		Config.VALIDATE_NUMBERS.isValid(sIsbn);
+            		Config.VALIDATE_TEXT_AND_NUMBERS.isValid(sReview);
+            	}
+            	catch(FilterUnitException e)
+            	{
+            		messages.put("error","Invalid isbn or review");
+            		return ar;
+            	}
+            	
     			Book bBook = new BookDAO().findByISBN(sIsbn);
     			Review rNewReview = new Review(cCustomer, sReview, bBook.getId());
     			new ReviewDAO().register(rNewReview);
@@ -71,6 +83,7 @@ public class ReviewBookAction implements Action {
 				}else{
 					messages.put("error", reCaptchaResponse.getErrorMessage());
 				}
+	        	System.out.println("invalid capthca");
             }
 
 		}

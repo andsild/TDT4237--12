@@ -1,10 +1,14 @@
 package amu.action;
 
+import amu.Config;
+import amu.FilterUnitException;
 import amu.database.CreditCardDAO;
 import amu.model.CreditCard;
 import amu.model.Customer;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +32,14 @@ class DeleteCreditCardAction implements Action {
         if (request.getMethod().equals("POST")) {
             List<String> messages = new ArrayList<String>();
             request.setAttribute("messages", messages);
+            
+            try{
+            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+            }
+            catch(FilterUnitException e)
+            {
+            	return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
+            }
 
             if (creditCardDAO.delete(Integer.parseInt(request.getParameter("id")), customer.getId())) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
