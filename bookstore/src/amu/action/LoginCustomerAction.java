@@ -1,18 +1,16 @@
 package amu.action;
 
-import amu.BCrypt;
-import amu.Config;
-import amu.FilterUnit;
-import amu.database.CustomerDAO;
-import amu.model.Customer;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import amu.BCrypt;
+import amu.Config;
+import amu.database.CustomerDAO;
+import amu.model.Customer;
 
 class LoginCustomerAction implements Action
 {
@@ -45,14 +43,14 @@ class LoginCustomerAction implements Action
 		{
 			HttpSession preSession = request.getSession();
 			preSession.invalidate();
-
+			
+            request.setAttribute("messages", messages);
 			request.setAttribute("messages", messages);
 
 			CustomerDAO customerDAO = new CustomerDAO();
-
-			values.put("email", sEmail);
-
 			Customer customer = customerDAO.findByEmail(sEmail);
+			
+			values.put("email", sEmail);
 
 			if (customer != null)
 				if (customer.getActivationToken() == null)

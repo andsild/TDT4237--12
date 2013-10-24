@@ -5,6 +5,8 @@ import amu.model.Publisher;
 import amu.model.Title;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.*;
 
 public class BookDAO {
@@ -97,6 +99,32 @@ public class BookDAO {
         }
         
         return book;
+    }
+    public Map<String, String> getListBooks(){
+    	Map<String, String> map = new HashMap<String, String>();
+    	Connection connection = null;
+    	PreparedStatement  statement = null;
+    	ResultSet resultSet = null;
+    	
+    	try {
+    		connection = Database.getConnection();
+    		
+    		String sql = "SELECT title.name, book.isbn13 " 
+    			+ "FROM title, book, publisher "
+                + "WHERE title.id = book.title_id AND book.publisher_id = publisher.id;";
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			
+			while (resultSet.next()) {
+				map.put(resultSet.getString("book.isbn13"), resultSet.getString("title.name"));
+			}
+			return map;
+		} catch (SQLException e) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, e);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
+    	return map;
     }
 
 }

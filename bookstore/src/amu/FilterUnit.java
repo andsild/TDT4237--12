@@ -197,6 +197,9 @@ public class FilterUnit
 		
 		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(SPACE);
+		filter.addLegalRange(DOT);
+		filter.addLegalRange(COMMA);
 		
 		return filter; 
 	}
