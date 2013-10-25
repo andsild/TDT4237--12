@@ -8,16 +8,16 @@ public class FilterUnitException extends Exception
 	private static final long serialVersionUID = 1L;
 	protected String invalidText;
 	
-	public String getInvalidText()
+	public String toString()
 	{
 		if(this instanceof IllegalRegexException)
-			return "The string: "+invalidText+" contains an illegal regex";
+			return "Some string contains an illegal regex";
 		if(this instanceof IllegalCharacterException)
-			return "The string: "+invalidText+" contains an illegal character";
+			return "Some string contains an illegal character";
 		if(this instanceof FailedRegexException)
-			return "The string: "+invalidText+" is not the correct format";
+			return "Some string is not the correct format";
 		if(this instanceof IllegalStringLengthException)
-			return "The string: "+invalidText+" is not the correct length";
+			return "Some string is not the correct length";
 		
 		return invalidText;
 	}
@@ -94,6 +94,7 @@ class IllegalStringLengthException extends FilterUnitException
 	{
 		super.invalidText = invalidText;
 		this.length = invalidText.length();
+		this.invalidText = invalidText;
 	}
 	
 	public int getLength()

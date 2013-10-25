@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.sun.xml.ws.runtime.dev.Session;
 
 import net.tanesha.recaptcha.ReCaptchaImpl;
 import net.tanesha.recaptcha.ReCaptchaResponse;
@@ -26,7 +29,7 @@ class RegisterCustomerAction extends HttpServlet implements Action
 	@Override
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-
+		//HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -43,7 +46,7 @@ class RegisterCustomerAction extends HttpServlet implements Action
 			} catch (FilterUnitException e)
 			{
 				messages.put("error",e.toString());
-				return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
+				return new ActionResponse(ActionResponseType.FORWARD, "registerCustomer");
 			}
 			CustomerDAO customerDAO = new CustomerDAO();
 			Customer customer = customerDAO.findByEmail(email);

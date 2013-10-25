@@ -65,8 +65,8 @@ public class HelpfulDAO
 	            		+ " WHERE fk_customerID = ? AND fk_reviewID = ?";
 	            statement = connection.prepareStatement(query);
 
-	            statement.setInt(1,  Integer.parseInt(sReviewID));
-	            statement.setInt(2,  Integer.parseInt(sCustomerID));
+	            statement.setInt(1,  Integer.parseInt(sCustomerID));
+	            statement.setInt(2,  Integer.parseInt(sReviewID));
 
 	            resultSet = statement.executeQuery();
 	            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);

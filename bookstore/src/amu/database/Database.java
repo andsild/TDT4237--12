@@ -35,6 +35,7 @@ public final class Database {
                         break;
                 case "opinion":
                         connection = ((DataSource) new InitialContext().lookup(Config.JDBC_RESOURCE_OPINION)).getConnection();
+                        break;
                 default:
                         connection = ((DataSource) new InitialContext().lookup(Config.JDBC_RESOURCE)).getConnection();
                 };

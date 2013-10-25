@@ -72,7 +72,10 @@
 							</div>
 							<div class="form-group">
 								<c:if test="${not empty messages.error}">
-									<p class="alert alert-danger">${messages.error}</p>
+								
+								<c:forEach items="${messages}" var="item">
+									<p class="alert alert-danger">${item.value}</p>
+								</c:forEach>
 								</c:if>
 							</div>
 						</form>

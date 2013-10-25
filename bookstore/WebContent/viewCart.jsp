@@ -54,7 +54,7 @@
 			</c:choose>
 			<br />
 			<div>
-				<a href="debug/list_books.jsp">Continue shopping</a>
+				<a href="listBooks.do">Continue shopping</a>
 			</div>
 			<div>
 				<a href="selectShippingAddress.do">Go to checkout</a>
