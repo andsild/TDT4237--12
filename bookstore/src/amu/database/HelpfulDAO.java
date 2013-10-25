@@ -7,14 +7,17 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.mysql.jdbc.PreparedStatement;
+
 
 public class HelpfulDAO
 {
 	 public void register(String sCustomerID, String sReviewID, String sHelpfulInteger) 
 	 {
         Connection connection = null;
-        Statement statement = null;
+        java.sql.PreparedStatement statement = null;
         String sQuery = "";
+        
         
         if (thumbExist(sCustomerID, sReviewID))
         {
@@ -26,29 +29,23 @@ public class HelpfulDAO
         	if(sHelpfulInteger.equals("1"))
 	            {           
 	            	sQuery= "INSERT INTO helpful (fk_reviewID, fk_customerID, thumbUP, thumbDOWN) VALUES ("
-	                    + "\"" + sReviewID + "\""
-	                    + ", "
-	                    + sCustomerID
-	                    + ", "
-	                    + "1, 0"
-	                    + ");";
+	                    + "? , ? , 1, 0);";
 	            }
-        	else
+        	else if (sHelpfulInteger.equals("0"))
         	{
         		sQuery= "INSERT INTO helpful (fk_reviewID, fk_customerID, thumbUP, thumbDOWN) VALUES ("
-	                    + "\"" + sReviewID + "\""
-	                    + ", "
-	                    + sCustomerID
-	                    + ", "
-	                    + "0, 1" 
-	                    + ");";
+	                    + " ? , ? , 0, 1);";
 	        }
+        	else { throw new RuntimeException("invalid data"); }
         }
         try {
             connection = Database.getConnection();
-            statement = connection.createStatement();
-
-            statement.executeUpdate(sQuery);
+            statement = connection.prepareStatement(sQuery);
+            
+            statement.setInt(1,  Integer.parseInt(sReviewID));
+            statement.setInt(2,  Integer.parseInt(sCustomerID));
+            
+            statement.executeUpdate();
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "register SQL Query: " + sQuery);
             
         } catch (SQLException exception) {
@@ -61,20 +58,20 @@ public class HelpfulDAO
 	 public boolean thumbExist(String sCustomerID, String sReviewID)
 	 {
 		 Connection connection = null;
-	        Statement statement = null;
-	        ResultSet resultSet = null;
+	     java.sql.PreparedStatement statement = null;
+	     ResultSet resultSet = null;
 	        
 	        try {
 	            connection = Database.getConnection();
-	            statement = connection.createStatement();
 	            
 	            String query = "SELECT fk_customerID, fk_reviewID FROM helpful"
-	            		+ " WHERE fk_customerID = "
-	            		+ sCustomerID 
-	            		+ " AND fk_reviewID = "
-	            		+ sReviewID + ";";
+	            		+ " WHERE fk_customerID = ? AND fk_reviewID = ?";
+	            statement = connection.prepareStatement(query);
 
-	            resultSet = statement.executeQuery(query);
+	            statement.setInt(1,  Integer.parseInt(sReviewID));
+	            statement.setInt(2,  Integer.parseInt(sCustomerID));
+
+	            resultSet = statement.executeQuery();
 	            Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
 	            return (resultSet.next() == true);
 	        }

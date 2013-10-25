@@ -1,6 +1,7 @@
 package amu.database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,27 +14,22 @@ import amu.model.Review;
 
 public class ReviewDAO
 {
-	 public Review register(Review rReview) 
+	 public void register(Review rReview) 
 	 {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         
         try {
             connection = Database.getConnection();
-            statement = connection.createStatement();
-            
-            //FIXME: need a db lock to avoid race condtions
             
             String query = "INSERT INTO review (ID, fk_customerID, fk_bookID, text) VALUES ("
-                    + "NULL"
-                    + ", "
-                    + Integer.toString(rReview.getCustomer().getId())
-                    + ", "
-                    + Integer.toString(rReview.getBookID())
-                    + ", \""
-                    + rReview.getReview()
-                    + "\" );";
-            statement.executeUpdate(query);
+                    + "NULL, ? , ? , ? )";
+            statement = connection.prepareStatement(query);
+            
+            statement.setInt(1,  rReview.getCustomer().getId());
+            statement.setInt(2,  rReview.getBookID());
+            statement.setString(3, rReview.getReview());
+            statement.executeUpdate();
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "register SQL Query: " + query);
             
         } catch (SQLException exception) {
@@ -41,30 +37,26 @@ public class ReviewDAO
         } finally {
             Database.close(connection, statement);
         }
-
-        //FIXME: get back the value of the ID
-        return null;
 	 }
 	public ArrayList<HelpfulReview> getReviews(String sBookID) 
 	{
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		
 		ArrayList<HelpfulReview> alHelpful = new ArrayList<HelpfulReview>();
 
 		try {
 			connection = Database.getConnection();
-			statement = connection.createStatement();
 
 			String sQuery = "SELECT R.id, R.text, SUM(COALESCE(H.thumbsUp, 0)) AS thumbsUp, SUM(COALESCE(H.thumbsDown, 0)) AS thumbsDown "
 					+ "FROM review AS R  "
 					+ "LEFT JOIN (SELECT fk_reviewID AS fkr, SUM(COALESCE(thumbUp,0)) AS thumbsUp, SUM(COALESCE(thumbDown,0)) AS thumbsDown "
 					+ "FROM helpful GROUP BY fkr ) AS H ON H.fkr=R.id WHERE "
-					+ "fk_bookID = "
-					+ sBookID
-					+ " GROUP BY H.fkr";
-			resultSet = statement.executeQuery(sQuery);
+					+ "fk_bookID = ? GROUP BY H.fkr";
+			statement = connection.prepareStatement(sQuery);
+			statement.setInt(1,  Integer.parseInt(sBookID));
+			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
 				int iReviewID = resultSet.getInt("id");

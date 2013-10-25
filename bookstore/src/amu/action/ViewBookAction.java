@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import amu.Config;
 import amu.FilterUnitException;
 import amu.database.BookDAO;
+import amu.database.BookListDAO;
 import amu.database.RatingDAO;
 import amu.database.ReviewDAO;
 import amu.model.Book;
@@ -38,8 +39,10 @@ class ViewBookAction implements Action {
 		if (book != null) {
 			request.setAttribute("book", book);
 			iAverageRate = new RatingDAO().getAverageRating(book.getId());
+			
 
 			try {
+				
 				request.setAttribute("reviews", new ReviewDAO()
 						.getReviews(Integer.toString(book.getId())));
 			} catch (Exception e) {
@@ -53,16 +56,16 @@ class ViewBookAction implements Action {
 					book.getId());
 			request.setAttribute("rating", iCustRate);
 
-			// try {
-			// request.setAttribute("customerLists",
-			// new BookListDAO().getBooklists((cCustomer.getId())));
-			//
-			// } catch (Exception e) {
-			// System.out.println("exeption thrown");
-			// e.printStackTrace();
-			// return new ActionResponse(ActionResponseType.FORWARD,
-			// "bookList");
-			// }
+			 try {
+			 request.setAttribute("customerLists",
+			 new BookListDAO().getBooklists((cCustomer.getId())));
+			
+			 } catch (Exception e) {
+			 System.out.println("exeption thrown");
+			 e.printStackTrace();
+			 return new ActionResponse(ActionResponseType.FORWARD,
+			 "bookList");
+			 }
 		}
 
 		if (iAverageRate != null) {
