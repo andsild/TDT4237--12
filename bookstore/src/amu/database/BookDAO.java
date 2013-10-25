@@ -26,9 +26,7 @@ public class BookDAO {
             connection = Database.getConnection();
             
             String query = "SELECT * FROM book, publisher, title "
-                    + "WHERE book.isbn13 = '"
-                    + isbn + "' "
-                    + "AND book.title_id = title.id "
+                    + "WHERE book.isbn13 = ? AND book.title_id = title.id "
                     + "AND book.publisher_id = publisher.id;";
             statement = connection.prepareStatement(query);
             
