@@ -33,7 +33,7 @@ class IllegalRegexException extends FilterUnitException
 	
 	public IllegalRegexException(String invalidText, String regex)
 	{
-		this.invalidText 	= invalidText;
+		super.invalidText 	= invalidText;
 		this.regex 			= regex;
 	}
 	
@@ -53,7 +53,7 @@ class IllegalCharacterException extends FilterUnitException
 	
 	public IllegalCharacterException(String invalidText, char illegalChar)
 	{
-		this.invalidText = invalidText;
+		super.invalidText = invalidText;
 		this.illegalChar = illegalChar;
 	}
 
@@ -72,7 +72,7 @@ class FailedRegexException extends FilterUnitException
 	
 	public FailedRegexException(String invalidText, String regex)
 	{
-		this.invalidText 	= invalidText;
+		super.invalidText 	= invalidText;
 		this.regex 			= regex;
 	}
 	
@@ -92,6 +92,7 @@ class IllegalStringLengthException extends FilterUnitException
 	
 	public IllegalStringLengthException(String invalidText)
 	{
+		super.invalidText = invalidText;
 		this.length = invalidText.length();
 	}
 	
