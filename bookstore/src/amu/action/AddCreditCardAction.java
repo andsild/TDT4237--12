@@ -20,72 +20,64 @@ import amu.model.CreditCard;
 import amu.model.Customer;
 
 class AddCreditCardAction implements Action {
-    
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
 
-        Map<String, String> messages = new HashMap<String, String>();
-        request.setAttribute("messages", messages);
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "addCreditCard");
-            return actionResponse;
-        }
-        
-        if (request.getMethod().equals("POST")) {
-            
-            try
-            {
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryYear"));
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryMonth"));
-            	Config.VALIDATE_NAME.isValid(request.getParameter("cardholderName"));
-            	Config.VALIDATE_CREDITCARD_NUMBER.isValid(request.getParameter("creditCardNumber"));
-            }
-            catch(FilterUnitException e)
-            {
-            	messages.put("error", e.toString());
-            	return new ActionResponse(ActionResponseType.REDIRECT, "viewProfile");
-            }
-            
-            Calendar expiryDate = Calendar.getInstance();
-            expiryDate.set(Integer.parseInt(request.getParameter("expiryYear")), Integer.parseInt(request.getParameter("expiryMonth")), 1);
-            
-            CreditCardDAO creditCardDAO = new CreditCardDAO();
-            StrongTextEncryptor encrypt = new StrongTextEncryptor();
-            encrypt.setPassword(Config.ENCRYPT_PASSWORD);
+		Map<String, String> messages = new HashMap<String, String>();
+		request.setAttribute("messages", messages);
+
+		if (customer == null) {
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "addCreditCard");
+			return actionResponse;
+		}
+
+		if (request.getMethod().equals("POST")) {
+
+			try {
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryYear"));
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryMonth"));
+				Config.VALIDATE_NAME.isValid(request.getParameter("cardholderName"));
+				Config.VALIDATE_CREDITCARD_NUMBER.isValid(request.getParameter("creditCardNumber"));
+			} catch (FilterUnitException e) {
+				messages.put("error", e.toString());
+				return new ActionResponse(ActionResponseType.REDIRECT, "viewProfile");
+			}
+
+			Calendar expiryDate = Calendar.getInstance();
+			expiryDate.set(Integer.parseInt(request.getParameter("expiryYear")), Integer.parseInt(request.getParameter("expiryMonth")), 1);
+
+			CreditCardDAO creditCardDAO = new CreditCardDAO();
+			StrongTextEncryptor encrypt = new StrongTextEncryptor();
+			encrypt.setPassword(Config.ENCRYPT_PASSWORD);
 			String ccNumber = encrypt.encrypt(request.getParameter("creditCardNumber"));
-            CreditCard creditCard = new CreditCard(
-                    customer, 
-                    ccNumber, 
-                    expiryDate,
-                    request.getParameter("cardholderName"));
-            
-            
-            if (creditCardDAO.add(creditCard)) {
-                return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
-            }
-            
-            messages.put("error", "An error occured.");
-        }
-        
-        // (request.getMethod().equals("GET"))
-        Calendar calendar = new GregorianCalendar();
-        
-        List<String> years = new ArrayList<String>();
-        request.setAttribute("years", years);
-        for (Integer offset = 0; offset < 10; offset++) {
-            years.add(Integer.valueOf(calendar.get(Calendar.YEAR) + offset).toString());
-        }
+			CreditCard creditCard = new CreditCard(customer, ccNumber, expiryDate, request.getParameter("cardholderName"));
 
-        Map<String, String> months = new HashMap<String, String>();
-        request.setAttribute("months", months);
-        for (Integer month = 0; month < 12; month++) {
-            months.put(month.toString(), Integer.valueOf(month - 1).toString());
-        }
-        
-        return new ActionResponse(ActionResponseType.FORWARD, "addCreditCard");
-    }
+			if (creditCardDAO.add(creditCard)) {
+				return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+			}
+
+			messages.put("error", "An error occured.");
+		}
+
+		// (request.getMethod().equals("GET"))
+		Calendar calendar = new GregorianCalendar();
+
+		List<String> years = new ArrayList<String>();
+		request.setAttribute("years", years);
+		for (Integer offset = 0; offset < 10; offset++) {
+			years.add(Integer.valueOf(calendar.get(Calendar.YEAR) + offset).toString());
+		}
+
+		Map<String, String> months = new HashMap<String, String>();
+		request.setAttribute("months", months);
+		for (Integer month = 0; month < 12; month++) {
+			months.put(month.toString(), Integer.valueOf(month - 1).toString());
+		}
+
+		return new ActionResponse(ActionResponseType.FORWARD, "addCreditCard");
+	}
 }

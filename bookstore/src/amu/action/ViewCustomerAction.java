@@ -16,30 +16,30 @@ import amu.model.Order;
 
 class ViewCustomerAction implements Action {
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "viewCustomer");
-            return actionResponse;
-        } else {
-            CreditCardDAO creditCardDAO = new CreditCardDAO();
-            List<CreditCard> creditCards = creditCardDAO.browse(customer);
-            request.setAttribute("creditCards", creditCards);
-            
-            AddressDAO addressDAO = new AddressDAO();
-            List<Address> addresses = addressDAO.browse(customer);
-            request.setAttribute("addresses", addresses);
-            
-            OrderDAO orderDAO = new OrderDAO();
-            List<Order> orders = orderDAO.browse(customer);
-            request.setAttribute("orders", orders);
+		if (customer == null) {
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "viewCustomer");
+			return actionResponse;
+		} else {
+			CreditCardDAO creditCardDAO = new CreditCardDAO();
+			List<CreditCard> creditCards = creditCardDAO.browse(customer);
+			request.setAttribute("creditCards", creditCards);
 
-            return new ActionResponse(ActionResponseType.FORWARD, "viewCustomer");
-        }
-    }
+			AddressDAO addressDAO = new AddressDAO();
+			List<Address> addresses = addressDAO.browse(customer);
+			request.setAttribute("addresses", addresses);
+
+			OrderDAO orderDAO = new OrderDAO();
+			List<Order> orders = orderDAO.browse(customer);
+			request.setAttribute("orders", orders);
+
+			return new ActionResponse(ActionResponseType.FORWARD, "viewCustomer");
+		}
+	}
 }

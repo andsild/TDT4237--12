@@ -1,58 +1,52 @@
 package amu;
 
-public class FilterUnitException extends Exception 
-{
+public class FilterUnitException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String invalidText;
-	
-	public String toString()
-	{
-		if(this instanceof IllegalRegexException)
+
+	@Override
+	public String toString() {
+		if (this instanceof IllegalRegexException)
 			return "Some string contains an illegal regex";
-		if(this instanceof IllegalCharacterException)
+		if (this instanceof IllegalCharacterException)
 			return "Some string contains an illegal character";
-		if(this instanceof FailedRegexException)
+		if (this instanceof FailedRegexException)
 			return "Some string is not the correct format";
-		if(this instanceof IllegalStringLengthException)
+		if (this instanceof IllegalStringLengthException)
 			return "Some string is not the correct length";
-		
+
 		return invalidText;
 	}
 }
 
-class IllegalRegexException extends FilterUnitException
-{
+class IllegalRegexException extends FilterUnitException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String regex;
-	
-	public IllegalRegexException(String invalidText, String regex)
-	{
-		super.invalidText 	= invalidText;
-		this.regex 			= regex;
+
+	public IllegalRegexException(String invalidText, String regex) {
+		super.invalidText = invalidText;
+		this.regex = regex;
 	}
-	
-	public String getRegex()
-	{
+
+	public String getRegex() {
 		return regex;
 	}
 }
 
-class IllegalCharacterException extends FilterUnitException
-{
+class IllegalCharacterException extends FilterUnitException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private char illegalChar;
-	
-	public IllegalCharacterException(String invalidText, char illegalChar)
-	{
+
+	public IllegalCharacterException(String invalidText, char illegalChar) {
 		super.invalidText = invalidText;
 		this.illegalChar = illegalChar;
 	}
@@ -62,43 +56,37 @@ class IllegalCharacterException extends FilterUnitException
 	}
 }
 
-class FailedRegexException extends FilterUnitException
-{
+class FailedRegexException extends FilterUnitException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String regex;
-	
-	public FailedRegexException(String invalidText, String regex)
-	{
-		super.invalidText 	= invalidText;
-		this.regex 			= regex;
+
+	public FailedRegexException(String invalidText, String regex) {
+		super.invalidText = invalidText;
+		this.regex = regex;
 	}
-	
-	public String getRegex()
-	{
+
+	public String getRegex() {
 		return regex;
 	}
 }
 
-class IllegalStringLengthException extends FilterUnitException
-{
+class IllegalStringLengthException extends FilterUnitException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int length;
-	
-	public IllegalStringLengthException(String invalidText)
-	{
+
+	public IllegalStringLengthException(String invalidText) {
 		super.invalidText = invalidText;
 		this.length = invalidText.length();
 		this.invalidText = invalidText;
 	}
-	
-	public int getLength()
-	{
+
+	public int getLength() {
 		return length;
 	}
 }

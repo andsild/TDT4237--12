@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LogoutCustomerAction implements Action{
+public class LogoutCustomerAction implements Action {
 
 	@Override
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -28,7 +28,7 @@ public class LogoutCustomerAction implements Action{
 		}
 		ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
 		return actionResponse;
-		
+
 	}
 
 }

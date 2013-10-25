@@ -1,32 +1,32 @@
 package amu.model;
 
-public class Author  {
+public class Author {
 
-    private int id;
-    private String name;
+	private int id;
+	private String name;
 
-    public Author() {
-        // Default constructor does nothing
-    }
-    
-    public Author(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Author() {
+		// Default constructor does nothing
+	}
 
-    public int getId() {
-        return id;
-    }
+	public Author(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

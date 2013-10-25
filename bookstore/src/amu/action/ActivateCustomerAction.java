@@ -8,12 +8,10 @@ import amu.FilterUnitException;
 import amu.database.CustomerDAO;
 import amu.model.Customer;
 
-class ActivateCustomerAction implements Action
-{
+class ActivateCustomerAction implements Action {
 
 	@Override
-	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String email, activationToken;
 
 		email = request.getParameter("email");
@@ -24,27 +22,21 @@ class ActivateCustomerAction implements Action
 
 		if (activationToken == null)
 			request.setAttribute("email", email);
-		else
-		{
-			try
-			{
+		else {
+			try {
 				Config.VALIDATE_EMAIL.isValid(email);
 				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(activationToken);
-			} catch (FilterUnitException e)
-			{
+			} catch (FilterUnitException e) {
 				return new ActionResponse(ActionResponseType.REDIRECT, "activationError");
 			}
 
 			CustomerDAO customerDAO = new CustomerDAO();
 			Customer customer = customerDAO.findByEmail(email);
 
-			if (customer != null && customer.getActivationToken().equals(activationToken))
-			{
+			if (customer != null && customer.getActivationToken().equals(activationToken)) {
 				customer = customerDAO.activate(customer);
 				return new ActionResponse(ActionResponseType.REDIRECT, "activationSuccessful");
-			}
-			else
-			{
+			} else {
 				return new ActionResponse(ActionResponseType.REDIRECT, "activationError");
 			}
 		}

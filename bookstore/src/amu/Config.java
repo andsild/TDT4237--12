@@ -1,7 +1,6 @@
 package amu;
 
-public class Config
-{
+public class Config {
 	public final static String JDBC_RESOURCE = "jdbc/bluehost";
 	public final static String JDBC_RESOURCE_LOGIN = "jdbc/redhost";
 	public final static String JDBC_RESOURCE_EMAIL = "jdbc/redhostE";

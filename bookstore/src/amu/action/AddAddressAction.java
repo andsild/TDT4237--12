@@ -17,57 +17,53 @@ import amu.model.Customer;
 
 class AddAddressAction implements Action {
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
 
-        // Handle referrals
-        Map<String, String> values = new HashMap<String, String>();
-        request.setAttribute("values", values);
-        if (ActionFactory.hasKey(request.getParameter("from"))) {
-            values.put("from", request.getParameter("from"));
-        }
+		// Handle referrals
+		Map<String, String> values = new HashMap<String, String>();
+		request.setAttribute("values", values);
+		if (ActionFactory.hasKey(request.getParameter("from"))) {
+			values.put("from", request.getParameter("from"));
+		}
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "addAddress");
-            return actionResponse;
-        }
+		if (customer == null) {
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "addAddress");
+			return actionResponse;
+		}
 
-        // Non-idempotent add address request
-        if (request.getMethod().equals("POST")) {
-            List<String> messages = new ArrayList<String>();
-            request.setAttribute("messages", messages);
+		// Non-idempotent add address request
+		if (request.getMethod().equals("POST")) {
+			List<String> messages = new ArrayList<String>();
+			request.setAttribute("messages", messages);
 
-            try
-            {
-            	Config.VALIDATE_ADDRESS.isValid(request.getParameter("address"));
-            }
-            catch(FilterUnitException e)
-            {
-            	messages.add(e.toString());
-            	return new ActionResponse(ActionResponseType.FORWARD, "addAddress");
-            }
-            
-            
-            AddressDAO addressDAO = new AddressDAO();
-            Address address = new Address(customer, request.getParameter("address"));
+			try {
+				Config.VALIDATE_ADDRESS.isValid(request.getParameter("address"));
+			} catch (FilterUnitException e) {
+				messages.add(e.toString());
+				return new ActionResponse(ActionResponseType.FORWARD, "addAddress");
+			}
 
-            if (addressDAO.add(address)) {
-                if (ActionFactory.hasKey(request.getParameter("from"))) {
-                    return new ActionResponse(ActionResponseType.REDIRECT, request.getParameter("from"));
-                } else {
-                    // Return to viewCustomer from addAddress by default
-                    return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
-                }
-            }
+			AddressDAO addressDAO = new AddressDAO();
+			Address address = new Address(customer, request.getParameter("address"));
 
-            messages.add("An error occured.");
-            request.setAttribute("address", address);
-        }
+			if (addressDAO.add(address)) {
+				if (ActionFactory.hasKey(request.getParameter("from"))) {
+					return new ActionResponse(ActionResponseType.REDIRECT, request.getParameter("from"));
+				} else {
+					// Return to viewCustomer from addAddress by default
+					return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+				}
+			}
 
-        // (request.getMethod().equals("GET")) 
-        return new ActionResponse(ActionResponseType.FORWARD, "addAddress");
-    }
+			messages.add("An error occured.");
+			request.setAttribute("address", address);
+		}
+
+		// (request.getMethod().equals("GET"))
+		return new ActionResponse(ActionResponseType.FORWARD, "addAddress");
+	}
 }

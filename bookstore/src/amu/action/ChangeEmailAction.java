@@ -16,59 +16,56 @@ import amu.model.Customer;
 
 class ChangeEmailAction implements Action {
 
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
 
-        if (customer == null) {
-            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-            actionResponse.addParameter("from", "changeEmail");
-            return actionResponse;
-        }
+		if (customer == null) {
+			ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+			actionResponse.addParameter("from", "changeEmail");
+			return actionResponse;
+		}
 
-        if (request.getMethod().equals("POST")) {
-            Map<String, String[]> values = new HashMap<String, String[]>();
-            request.setAttribute("values", values);
+		if (request.getMethod().equals("POST")) {
+			Map<String, String[]> values = new HashMap<String, String[]>();
+			request.setAttribute("values", values);
 
-            List<String> messages = new ArrayList<String>();
-            request.setAttribute("messages", messages);
+			List<String> messages = new ArrayList<String>();
+			request.setAttribute("messages", messages);
 
-            String[] email = request.getParameterValues("email");
-            
-            try
-            {
-            	for(String s : email)
-            		Config.VALIDATE_EMAIL.isValid(s);
-            }
-            catch(FilterUnitException e)
-            {
-            	messages.add(e.toString());
-                return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
-            }
-            
-            values.put("email", email);
+			String[] email = request.getParameterValues("email");
 
-            // Validate that new email is typed in the same both times
-            if (email[0].equals(email[1]) == false) {
-                messages.add("New email and repeated email did not match. Please check for typing errors.");
-                return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
-            }
+			try {
+				for (String s : email)
+					Config.VALIDATE_EMAIL.isValid(s);
+			} catch (FilterUnitException e) {
+				messages.add(e.toString());
+				return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
+			}
 
-            // Validation OK, do business logic
-            CustomerDAO customerDAO = new CustomerDAO();
-            customer.setEmail(email[0]);
-            if (customerDAO.edit(customer) == false) {
-                messages.add("DB update unsuccessful, likely there is already a user with this email address.");
-                return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
-            }
-            
-            // Email change successful, return to viewCustomer
-            return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+			values.put("email", email);
 
-        } 
-        
-        // (request.getMethod().equals("GET")) 
-        return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
-    }
+			// Validate that new email is typed in the same both times
+			if (email[0].equals(email[1]) == false) {
+				messages.add("New email and repeated email did not match. Please check for typing errors.");
+				return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
+			}
+
+			// Validation OK, do business logic
+			CustomerDAO customerDAO = new CustomerDAO();
+			customer.setEmail(email[0]);
+			if (customerDAO.edit(customer) == false) {
+				messages.add("DB update unsuccessful, likely there is already a user with this email address.");
+				return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
+			}
+
+			// Email change successful, return to viewCustomer
+			return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
+
+		}
+
+		// (request.getMethod().equals("GET"))
+		return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
+	}
 }

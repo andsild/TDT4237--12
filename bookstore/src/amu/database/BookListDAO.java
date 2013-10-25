@@ -38,7 +38,7 @@ public class BookListDAO {
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				AuthorDAO authorDAO = new AuthorDAO(); 
+				AuthorDAO authorDAO = new AuthorDAO();
 				book = new Book();
 				book.setId(resultSet.getInt("book.id"));
 				book.setTitle(new Title(resultSet.getInt("title.id"), resultSet.getString("title.name")));
@@ -53,14 +53,11 @@ public class BookListDAO {
 				book.setPrice(resultSet.getFloat("book.price"));
 
 				list.addBook(book);
-				System.out.println(book.toString());
 			}
 			resultSet.first();
 			list.setTitle(resultSet.getString("list.title"));
 			list.setDescription(resultSet.getString("list.description"));
 			list.setCustomer(new CustomerDAO().findByID(resultSet.getInt("list.customer_id")));
-			System.out.println(list.getCustomer().toString());
-			System.out.println("HEEEELLOOO");
 			resultSet.afterLast();
 
 		} catch (SQLException exception) {
@@ -199,7 +196,7 @@ public class BookListDAO {
 	public boolean addBook(Book book, int id) {
 
 		try {
-			if(findByID(id).hasBookByISBN(book.getIsbn13())){
+			if (findByID(id).hasBookByISBN(book.getIsbn13())) {
 				return false;
 			}
 			connection = Database.getConnection("book");

@@ -4,35 +4,35 @@ import java.io.Serializable;
 
 public class Publisher implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
-    private String name;
+	private String name;
 
-    public Publisher() {
-        // Default constructor does nothing
-    }
-    
-    public Publisher(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Publisher() {
+		// Default constructor does nothing
+	}
 
-    public int getId() {
-        return id;
-    }
+	public Publisher(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

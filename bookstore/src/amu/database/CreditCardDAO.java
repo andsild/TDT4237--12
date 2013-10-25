@@ -16,127 +16,118 @@ import amu.model.Customer;
 
 public class CreditCardDAO {
 
-    public List<CreditCard> browse(Customer customer) {
-        List<CreditCard> creditCards = new ArrayList<CreditCard>();
+	public List<CreditCard> browse(Customer customer) {
+		List<CreditCard> creditCards = new ArrayList<CreditCard>();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 
-        try {
-            connection = Database.getConnection("order");
-            String query = "SELECT id, cc_number, expiry_date, cardholder_name FROM credit_card WHERE customer_id=?";
-            statement = connection.prepareStatement(query);
+		try {
+			connection = Database.getConnection("order");
+			String query = "SELECT id, cc_number, expiry_date, cardholder_name FROM credit_card WHERE customer_id=?";
+			statement = connection.prepareStatement(query);
 
-            statement.setInt(1, customer.getId());
+			statement.setInt(1, customer.getId());
 
-            resultSet = statement.executeQuery();
+			resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                Calendar expiryDate = Calendar.getInstance();
-                expiryDate.setTime(resultSet.getDate("expiry_date"));
-                
-                creditCards.add(new CreditCard(
-                        resultSet.getInt("id"), 
-                        customer, 
-                        resultSet.getString("cc_number"), 
-                        expiryDate,
-                        resultSet.getString("cardholder_name")));
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+			while (resultSet.next()) {
+				Calendar expiryDate = Calendar.getInstance();
+				expiryDate.setTime(resultSet.getDate("expiry_date"));
 
-        return creditCards;
-    }
+				creditCards.add(new CreditCard(resultSet.getInt("id"), customer, resultSet.getString("cc_number"), expiryDate, resultSet
+						.getString("cardholder_name")));
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-    public CreditCard read(int id) {
-        CreditCard creditCard = null;
+		return creditCards;
+	}
 
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+	public CreditCard read(int id) {
+		CreditCard creditCard = null;
 
-        try {
-            connection = Database.getConnection("order");
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 
-            String query = "SELECT cc_number, expiry_date, cardholder_name FROM credit_card WHERE id=?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
+		try {
+			connection = Database.getConnection("order");
 
-            resultSet = statement.executeQuery();
+			String query = "SELECT cc_number, expiry_date, cardholder_name FROM credit_card WHERE id=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
 
-            if (resultSet.next()) {
-                                Calendar expiryDate = Calendar.getInstance();
-                expiryDate.setTime(resultSet.getDate("expiry_date"));
-                
-                creditCard = new CreditCard(
-                        id, 
-                        null,
-                        resultSet.getString("cc_number"), 
-                        expiryDate, 
-                        resultSet.getString("cardholder_name")); 
-            } 
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+			resultSet = statement.executeQuery();
 
-        return creditCard;
-    }
-    
-    public boolean add(CreditCard creditCard) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+			if (resultSet.next()) {
+				Calendar expiryDate = Calendar.getInstance();
+				expiryDate.setTime(resultSet.getDate("expiry_date"));
 
-        try {
-            connection = Database.getConnection("order");
+				creditCard = new CreditCard(id, null, resultSet.getString("cc_number"), expiryDate, resultSet.getString("cardholder_name"));
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-            String query = "INSERT INTO credit_card (customer_id, cc_number, expiry_date, cardholder_name) VALUES (?, ?, ?, ?)";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, creditCard.getCustomer().getId());
-            statement.setString(2, creditCard.getCreditCardNumber());
-            statement.setDate(3, new Date(creditCard.getExpiryDate().getTimeInMillis()));
-            statement.setString(4, creditCard.getCardholderName());
+		return creditCard;
+	}
 
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+	public boolean add(CreditCard creditCard) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 
-        return false;
-    }
+		try {
+			connection = Database.getConnection("order");
 
-    public boolean delete(int id, int customer_id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
+			String query = "INSERT INTO credit_card (customer_id, cc_number, expiry_date, cardholder_name) VALUES (?, ?, ?, ?)";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, creditCard.getCustomer().getId());
+			statement.setString(2, creditCard.getCreditCardNumber());
+			statement.setDate(3, new Date(creditCard.getExpiryDate().getTimeInMillis()));
+			statement.setString(4, creditCard.getCardholderName());
 
-        try {
-            connection = Database.getConnection("order");
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-            String query = "DELETE FROM credit_card WHERE id=? AND customer_id=?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
-            statement.setInt(2, customer_id);
+		return false;
+	}
 
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+	public boolean delete(int id, int customer_id) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
 
-        return false;
-    }
+		try {
+			connection = Database.getConnection("order");
+
+			String query = "DELETE FROM credit_card WHERE id=? AND customer_id=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			statement.setInt(2, customer_id);
+
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
+
+		return false;
+	}
 }

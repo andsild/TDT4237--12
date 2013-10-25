@@ -11,22 +11,19 @@ import amu.model.Order;
 class CancelOrderAction implements Action {
 
 	@Override
-	public ActionResponse execute(HttpServletRequest request,
-			HttpServletResponse response) {
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(true);
 		Customer customer = (Customer) session.getAttribute("customer");
 		Order order = (Order) session.getAttribute("order");
 		OrderDAO orderDAO = new OrderDAO();
 
 		if (customer == null || order == null) {
-			return new ActionResponse(ActionResponseType.REDIRECT,
-					"loginCustomer");
+			return new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
 		}
 		if (order.getStatus() == 0) {
 
 			if (orderDAO.removeOrder(order)) {
-				return new ActionResponse(ActionResponseType.REDIRECT,
-						"cancelSuccess");
+				return new ActionResponse(ActionResponseType.REDIRECT, "cancelSuccess");
 			}
 
 		} else {

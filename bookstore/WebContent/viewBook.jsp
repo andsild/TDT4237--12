@@ -93,11 +93,6 @@
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
-						<!-- TODO: 
-							make sure there's authorization for rating, currently any user can..
-							-->
-
-
 
 						<form class="form-inline" role="form" action="addBookToCart.do"
 							method="post">
@@ -205,7 +200,7 @@
 								<b>${item.thumbsUp}</b>
 								<img height="20" width="20" src="./img/thumbUP.jpg"
 								 		onClick='$javascript:markHelpFul(${item.id}, 1)'/>
-								 <img height="20" width="20" src="./img/thumbUP.jpg"
+								 <img height="20" width="20" src="./img/thumbDOWN.jpg"
 								 		onClick='$javascript:markHelpFul(${item.id}, 0)'/>
 								 <b>${item.thumbsDown}</b>
 						</c:forEach>

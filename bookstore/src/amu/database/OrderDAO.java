@@ -38,14 +38,11 @@ public class OrderDAO {
 				AddressDAO addressDAO = new AddressDAO();
 				Calendar createdDate = Calendar.getInstance();
 				createdDate.setTime(resultSet.getDate("created"));
-				orders.add(new Order(resultSet.getInt("id"), customer,
-						addressDAO.read(resultSet.getInt("address_id"),
-								customer.getId()), createdDate, resultSet
-								.getString("value"), resultSet.getInt("status")));
+				orders.add(new Order(resultSet.getInt("id"), customer, addressDAO.read(resultSet.getInt("address_id"), customer.getId()), createdDate,
+						resultSet.getString("value"), resultSet.getInt("status")));
 			}
 		} catch (SQLException exception) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null,
-					exception);
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 		} finally {
 			Database.close(connection, statement, resultSet);
 		}
@@ -59,8 +56,7 @@ public class OrderDAO {
 			connection = Database.getConnection("order");
 
 			String query = "INSERT INTO `order` (customer_id, address_id, created, value, status) VALUES (?, ?, CURDATE(), ?, ?)";
-			statement = connection.prepareStatement(query,
-					Statement.RETURN_GENERATED_KEYS);
+			statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, order.getCustomer().getId());
 			statement.setInt(2, order.getAddress().getId());
 			statement.setBigDecimal(3, new BigDecimal(order.getValue()));
@@ -69,25 +65,21 @@ public class OrderDAO {
 
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
-				System.out.println("Inserted into row: " + resultSet.getInt(1));
 				String itemquery = "INSERT INTO order_items (order_id, book_id, quantity, price, status) VALUES (?, ?, ?, ?, ?)";
 				for (CartItem item : order.getCart().getItems().values()) {
 					statement = connection.prepareStatement(itemquery);
 					statement.setInt(1, resultSet.getInt(1));
 					statement.setInt(2, item.getBook().getId());
 					statement.setInt(3, item.getQuantity());
-					statement.setFloat(4,
-							item.getBook().getPrice() * item.getQuantity());
+					statement.setFloat(4, item.getBook().getPrice() * item.getQuantity());
 					statement.setInt(5, 0);
 					statement.execute();
-					System.out.println("book inserted");
 
 				}
 				return true;
 			}
 		} catch (SQLException exception) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null,
-					exception);
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 		} finally {
 			Database.close(connection, statement, resultSet);
 		}
@@ -110,14 +102,12 @@ public class OrderDAO {
 			BookDAO bookDao = new BookDAO();
 			while (resultSet.next()) {
 				Book book = new Book();
-				System.out.println(resultSet.getString("book_id"));
 				book = bookDao.findByID(resultSet.getString("book_id"));
 				cart.addItem(new CartItem(book, resultSet.getInt("quantity")));
 			}
 
 		} catch (SQLException exception) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null,
-					exception);
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 		} finally {
 			Database.close(connection, statement, resultSet);
 		}
@@ -140,16 +130,12 @@ public class OrderDAO {
 				AddressDAO addressDAO = new AddressDAO();
 				Calendar createdDate = Calendar.getInstance();
 				createdDate.setTime(resultSet.getDate("created"));
-				order = (new Order(resultSet.getInt("id"), customer,
-						addressDAO.read(resultSet.getInt("address_id"),
-								customer.getId()), createdDate,
-						resultSet.getString("value"),
-						resultSet.getInt("status")));
+				order = (new Order(resultSet.getInt("id"), customer, addressDAO.read(resultSet.getInt("address_id"), customer.getId()), createdDate,
+						resultSet.getString("value"), resultSet.getInt("status")));
 				order.setCart(getCart(order));
 			}
 		} catch (SQLException exception) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null,
-					exception);
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 		} finally {
 			Database.close(connection, statement, resultSet);
 		}
@@ -168,8 +154,7 @@ public class OrderDAO {
 				connection = Database.getConnection("order");
 
 				String query = "INSERT INTO `order` (customer_id, address_id, created, value, status, order_id) VALUES (?, ?, CURDATE(), ?, ?, ?)";
-				statement = connection.prepareStatement(query,
-						Statement.RETURN_GENERATED_KEYS);
+				statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 				statement.setInt(1, order.getCustomer().getId());
 				statement.setInt(2, order.getAddress().getId());
 				statement.setBigDecimal(3, new BigDecimal(order.getValue()));
@@ -185,18 +170,15 @@ public class OrderDAO {
 						statement.setInt(1, resultSet.getInt(1));
 						statement.setInt(2, item.getBook().getId());
 						statement.setInt(3, item.getQuantity() * -1);
-						statement.setFloat(4,
-								item.getBook().getPrice() * item.getQuantity());
+						statement.setFloat(4, item.getBook().getPrice() * item.getQuantity());
 						statement.setInt(5, -1);
 						statement.execute();
-						System.out.println("book inserted");
 
 					}
 					return true;
 				}
 			} catch (SQLException exception) {
-				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
-						null, exception);
+				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 			} finally {
 				Database.close(connection, statement, resultSet);
 			}
@@ -223,8 +205,7 @@ public class OrderDAO {
 			}
 
 		} catch (SQLException exception) {
-			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null,
-					exception);
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
 		} finally {
 			Database.close(connection, statement, resultSet);
 		}

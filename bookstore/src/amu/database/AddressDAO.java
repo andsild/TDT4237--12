@@ -14,122 +14,122 @@ import amu.model.Customer;
 
 public class AddressDAO {
 
-    Connection connection = null;
-    PreparedStatement statement = null;
-    ResultSet resultSet = null;
-    
-    public List<Address> browse(Customer customer) {
-        List<Address> addresses = new ArrayList<Address>();
+	Connection connection = null;
+	PreparedStatement statement = null;
+	ResultSet resultSet = null;
 
-        try {
-            connection = Database.getConnection("order");
-            String query = "SELECT id, address FROM address WHERE customer_id=?";
-            statement = connection.prepareStatement(query);
+	public List<Address> browse(Customer customer) {
+		List<Address> addresses = new ArrayList<Address>();
 
-            statement.setInt(1, customer.getId());
+		try {
+			connection = Database.getConnection("order");
+			String query = "SELECT id, address FROM address WHERE customer_id=?";
+			statement = connection.prepareStatement(query);
 
-            resultSet = statement.executeQuery();
+			statement.setInt(1, customer.getId());
 
-            while (resultSet.next()) {
-                addresses.add(new Address(resultSet.getInt("id"), customer, resultSet.getString("address")));
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+			resultSet = statement.executeQuery();
 
-        return addresses;
-    }
+			while (resultSet.next()) {
+				addresses.add(new Address(resultSet.getInt("id"), customer, resultSet.getString("address")));
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-    public Address read(int id, int customer_id) {
-        Address address = null;
+		return addresses;
+	}
 
-        try {
-            connection = Database.getConnection("order");
+	public Address read(int id, int customer_id) {
+		Address address = null;
 
-            String query = "SELECT address FROM address WHERE id=? AND customer_id=?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
-            statement.setInt(2, customer_id);
-           
-            resultSet = statement.executeQuery();
+		try {
+			connection = Database.getConnection("order");
 
-            if (resultSet.next()) {
-                address = new Address(id, null, resultSet.getString("address")); 
-            } 
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+			String query = "SELECT address FROM address WHERE id=? AND customer_id=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			statement.setInt(2, customer_id);
 
-        return address;
-    }
+			resultSet = statement.executeQuery();
 
-    public boolean edit(Address address) {
+			if (resultSet.next()) {
+				address = new Address(id, null, resultSet.getString("address"));
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-        try {
-            connection = Database.getConnection("order");
+		return address;
+	}
 
-            String query = "UPDATE address SET address=? WHERE id=?";
-            statement = connection.prepareStatement(query);
-            statement.setString(1, address.getAddress());
-            statement.setInt(2, address.getId());
+	public boolean edit(Address address) {
 
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+		try {
+			connection = Database.getConnection("order");
 
-        return false;
-    }
-    
-    public boolean add(Address address) {
+			String query = "UPDATE address SET address=? WHERE id=?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, address.getAddress());
+			statement.setInt(2, address.getId());
 
-        try {
-            connection = Database.getConnection("order");
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-            String query = "INSERT INTO address (customer_id, address) VALUES (?, ?)";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, address.getCustomer().getId());
-            statement.setString(2, address.getAddress());
+		return false;
+	}
 
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+	public boolean add(Address address) {
 
-        return false;
-    }
+		try {
+			connection = Database.getConnection("order");
 
-    public boolean delete(int id, int customer_id) {
+			String query = "INSERT INTO address (customer_id, address) VALUES (?, ?)";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, address.getCustomer().getId());
+			statement.setString(2, address.getAddress());
 
-        try {
-            connection = Database.getConnection("order");
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
 
-            String query = "DELETE FROM address WHERE id=? AND customer_id=?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
-            statement.setInt(2, customer_id);
+		return false;
+	}
 
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } catch (SQLException exception) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
-        } finally {
-            Database.close(connection, statement, resultSet);
-        }
+	public boolean delete(int id, int customer_id) {
 
-        return false;
-    }
+		try {
+			connection = Database.getConnection("order");
+
+			String query = "DELETE FROM address WHERE id=? AND customer_id=?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			statement.setInt(2, customer_id);
+
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException exception) {
+			Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
+		} finally {
+			Database.close(connection, statement, resultSet);
+		}
+
+		return false;
+	}
 }

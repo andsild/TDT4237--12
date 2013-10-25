@@ -11,62 +11,62 @@ import java.util.logging.Logger;
 
 public class ActionResponse {
 
-    private final ActionResponseType type;
-    private final String url;
-    private Map<String, String> parameters;
+	private final ActionResponseType type;
+	private final String url;
+	private Map<String, String> parameters;
 
-    public ActionResponse(ActionResponseType type, String url) {
-        this.type = type;
+	public ActionResponse(ActionResponseType type, String url) {
+		this.type = type;
 
-        if (this.type == ActionResponseType.FORWARD) {
-            this.url = "/" + url + ".jsp";
-        } else { // (this.type == ActionResponseType.REDIRECT)
-            this.url = url + ".do";
-        }
+		if (this.type == ActionResponseType.FORWARD) {
+			this.url = "/" + url + ".jsp";
+		} else { // (this.type == ActionResponseType.REDIRECT)
+			this.url = url + ".do";
+		}
 
-        this.parameters = null;
-    }
+		this.parameters = null;
+	}
 
-    public ActionResponseType getType() {
-        return type;
-    }
+	public ActionResponseType getType() {
+		return type;
+	}
 
-    public String getURL() {
-        return url;
-    }
+	public String getURL() {
+		return url;
+	}
 
-    public void addParameter(String name, String value) {
-        if (parameters == null) {
-            parameters = new HashMap<String, String>();
-        }
-        
-        parameters.put(name, value);
-    }
-    
-    public String getParameterString() {
+	public void addParameter(String name, String value) {
+		if (parameters == null) {
+			parameters = new HashMap<String, String>();
+		}
 
-        if (parameters == null) {
-            return "";
-        } else {
-            StringBuilder sb = new StringBuilder("?");
+		parameters.put(name, value);
+	}
 
-            Iterator<Entry<String, String>> it = parameters.entrySet().iterator();
-            while (it.hasNext()) {
-                Entry<String, String> parameter = it.next();
-                
-                try {
-                    sb.append(URLEncoder.encode(parameter.getKey(), "UTF-8"));
-                    sb.append("=");
-                    sb.append(URLEncoder.encode(parameter.getValue(), "UTF-8"));
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(ActionResponse.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                if (it.hasNext()) {
-                    sb.append("&");
-                }
-            }
-            return sb.toString();
-        }
-    }
+	public String getParameterString() {
+
+		if (parameters == null) {
+			return "";
+		} else {
+			StringBuilder sb = new StringBuilder("?");
+
+			Iterator<Entry<String, String>> it = parameters.entrySet().iterator();
+			while (it.hasNext()) {
+				Entry<String, String> parameter = it.next();
+
+				try {
+					sb.append(URLEncoder.encode(parameter.getKey(), "UTF-8"));
+					sb.append("=");
+					sb.append(URLEncoder.encode(parameter.getValue(), "UTF-8"));
+				} catch (UnsupportedEncodingException ex) {
+					Logger.getLogger(ActionResponse.class.getName()).log(Level.SEVERE, null, ex);
+				}
+
+				if (it.hasNext()) {
+					sb.append("&");
+				}
+			}
+			return sb.toString();
+		}
+	}
 }

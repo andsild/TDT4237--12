@@ -14,27 +14,26 @@ import amu.action.ActionResponseType;
 
 public class FrontController extends HttpServlet {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            Action action = ActionFactory.getAction(request);
-            ActionResponse actionResponse = action.execute(request, response);
-            System.out.println("Get url " + actionResponse.getURL());
-            System.out.println("Get parameter: " + actionResponse.getParameterString());
-            if (actionResponse.getType() == ActionResponseType.REDIRECT) {
-                response.sendRedirect(actionResponse.getURL() + actionResponse.getParameterString());
-            } else { // actionResponse.getType() == ActionResponse.Type.FORWARD
-                request.getRequestDispatcher(actionResponse.getURL()).forward(request, response);
-            }
-            
-        } catch (Exception e) {
-            throw new ServletException("Executing action failed.", e);
-        }
-    }
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Action action = ActionFactory.getAction(request);
+			ActionResponse actionResponse = action.execute(request, response);
+			System.out.println("Get url " + actionResponse.getURL());
+			System.out.println("Get parameter: " + actionResponse.getParameterString());
+			if (actionResponse.getType() == ActionResponseType.REDIRECT) {
+				response.sendRedirect(actionResponse.getURL() + actionResponse.getParameterString());
+			} else { // actionResponse.getType() == ActionResponse.Type.FORWARD
+				request.getRequestDispatcher(actionResponse.getURL()).forward(request, response);
+			}
+
+		} catch (Exception e) {
+			throw new ServletException("Executing action failed.", e);
+		}
+	}
 }

@@ -15,8 +15,8 @@ public class BookList implements Serializable {
 	private String description;
 	private int id;
 	private Customer customer;
-	
-	public BookList(int id, String title, String description){
+
+	public BookList(int id, String title, String description) {
 		this.setId(id);
 		this.setTitle(title);
 		this.setDescription(description);

@@ -9,39 +9,39 @@ import amu.database.BookListDAO;
 import amu.model.Customer;
 
 class BookListAction implements Action {
-    
-    @Override
-    public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
-    	HttpSession session = request.getSession(true);
-        Customer customer = (Customer) session.getAttribute("customer");
-    	
-       	if (request.getParameter("id") != null) {
-        	try {
-        		Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
-        		request.setAttribute("bookList", new BookListDAO().findByID(Integer.parseInt(request.getParameter("id"))));
-				
+
+	@Override
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(true);
+		Customer customer = (Customer) session.getAttribute("customer");
+
+		if (request.getParameter("id") != null) {
+			try {
+				Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
+				request.setAttribute("bookList", new BookListDAO().findByID(Integer.parseInt(request.getParameter("id"))));
+
 			} catch (Exception e) {
 				System.out.println("exeption thrown");
 				e.printStackTrace();
 				return new ActionResponse(ActionResponseType.FORWARD, "bookList");
 			}
-		}else if (request.getParameter("customer") != null) {
+		} else if (request.getParameter("customer") != null) {
 			if (customer == null) {
-	            ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
-	            actionResponse.addParameter("from", "bookList");
-	            return actionResponse;
-	        }
+				ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
+				actionResponse.addParameter("from", "bookList");
+				return actionResponse;
+			}
 			try {
-        		request.setAttribute("customerLists", new BookListDAO().getBooklists((customer.getId())));
-				
+				request.setAttribute("customerLists", new BookListDAO().getBooklists((customer.getId())));
+
 			} catch (Exception e) {
 				System.out.println("exeption thrown");
 				e.printStackTrace();
 				return new ActionResponse(ActionResponseType.FORWARD, "bookList");
 			}
 		}
-       	request.setAttribute("bookListArray", new BookListDAO().getBooklists());
-        return new ActionResponse(ActionResponseType.FORWARD, "bookList");
-    }
-    
+		request.setAttribute("bookListArray", new BookListDAO().getBooklists());
+		return new ActionResponse(ActionResponseType.FORWARD, "bookList");
+	}
+
 }

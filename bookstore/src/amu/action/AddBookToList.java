@@ -17,7 +17,7 @@ class AddBookToList implements Action {
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(true);
 		Customer customer = (Customer) session.getAttribute("customer");
-		
+
 		ArrayList<String> messages = new ArrayList<String>();
 		session.setAttribute("messages", messages);
 
@@ -35,12 +35,10 @@ class AddBookToList implements Action {
 				Config.VALIDATE_NUMBERS.isValid(request.getParameter("id"));
 				if (bookListDAO.addBook(bookDAO.findByISBN(request.getParameter("isbn")), Integer.parseInt(request.getParameter("id")))) {
 					messages.add("Book added");
-				}
-				else {
+				} else {
 					messages.add("Error adding book");
 				}
-				
-			
+
 			} catch (Exception e) {
 				messages.add(e.toString());
 				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
