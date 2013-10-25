@@ -39,7 +39,7 @@ class RegisterCustomerAction extends HttpServlet implements Action
 			{
 				Config.VALIDATE_EMAIL.isValid(email);
 				Config.VALIDATE_PASSWORD.isValid(password);
-				Config.VALIDATE_TEXT.isValid(name);
+				Config.VALIDATE_NAME.isValid(name);
 			} catch (FilterUnitException e)
 			{
 				messages.put("error",e.toString());
