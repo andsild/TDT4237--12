@@ -2,7 +2,6 @@ package amu.model;
 
 import java.io.Serializable;
 
-// TODO: Refactor... Add validation, make a real Model class not just POD
 public class Customer implements Serializable {
     /**
 	 * 

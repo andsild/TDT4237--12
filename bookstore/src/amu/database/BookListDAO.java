@@ -39,7 +39,7 @@ public class BookListDAO {
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				AuthorDAO authorDAO = new AuthorDAO(); // TODO:
+				AuthorDAO authorDAO = new AuthorDAO(); 
 				book = new Book();
 				book.setId(resultSet.getInt("book.id"));
 				book.setTitle(new Title(resultSet.getInt("title.id"), resultSet.getString("title.name")));
@@ -52,7 +52,6 @@ public class BookListDAO {
 				book.setDescription(resultSet.getString("book.description"));
 				book.setAuthor(authorDAO.findByBookID(resultSet.getInt("book.id")));
 				book.setPrice(resultSet.getFloat("book.price"));
-				// TODO: Reviews, Categories
 
 				list.addBook(book);
 				System.out.println(book.toString());

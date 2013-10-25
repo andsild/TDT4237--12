@@ -17,7 +17,6 @@ public class RateAction implements Action
 
 	@Override
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO: if logged out when comoing here, a 500 occurs
 		HttpSession session = request.getSession(true);
 		Customer cCustomer = (Customer) session.getAttribute("customer");
 		String sCustomerReview = request.getParameter("rating");
@@ -37,7 +36,6 @@ public class RateAction implements Action
 			return ar;
 		}
 
-		/* is customer verified properly? Is there anyway to bypass? */
 		if (sCustomerReview != null && sIsbn != null && cCustomer != null)
 		{
 			Book bBook = new BookDAO().findByISBN(sIsbn);
@@ -45,12 +43,7 @@ public class RateAction implements Action
 			Rating rNewRating = new Rating(cCustomer, sCustomerReview, bBook.getId());
 			new RatingDAO().register(rNewRating);
 			request.setAttribute("book", bBook);
-			// FIXME: doesn't reload the page like I want it to...
 		}
-//		else {
-//			String sOutput = sCustomerReview + " , " + sIsbn + ", " + cCustomer.toString();
-//			throw new Exception("COULD NOT REGISTER" + sOutput);
-//		}
 		return ar;
 	}
 }

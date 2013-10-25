@@ -69,7 +69,6 @@ public class OrderDAO {
 
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
-				// TODO: Add OrderItems
 				System.out.println("Inserted into row: " + resultSet.getInt(1));
 				String itemquery = "INSERT INTO order_items (order_id, book_id, quantity, price, status) VALUES (?, ?, ?, ?, ?)";
 				for (CartItem item : order.getCart().getItems().values()) {
@@ -180,9 +179,6 @@ public class OrderDAO {
 
 				resultSet = statement.getGeneratedKeys();
 				if (resultSet.next()) {
-					// TODO: Add OrderItems
-					System.out.println("Inserted into row: "
-							+ resultSet.getInt(1));
 					String itemquery = "INSERT INTO order_items (order_id, book_id, quantity, price, status) VALUES (?, ?, ?, ?, ?)";
 					for (CartItem item : order.getCart().getItems().values()) {
 						statement = connection.prepareStatement(itemquery);

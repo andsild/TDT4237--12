@@ -65,8 +65,6 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 					customer.setActivationToken(CustomerDAO.generateActivationCode());
 					customer = customerDAO.register(customer);
 
-					// TODO: tell customer when password is too long
-
 					ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "activateCustomer");
 					actionResponse.addParameter("email", customer.getEmail());
 

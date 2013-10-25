@@ -1,6 +1,7 @@
 package amu.database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,20 +17,20 @@ public class AuthorDAO {
         List<Author> authors = new ArrayList<Author>();
         
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         
         try {
             connection = Database.getConnection();
-            statement = connection.createStatement();
-            //TODO Fix me
             String query = "SELECT "
                     + "author.id, "
                     + "author.name "
                     + "FROM author, author_x_book "
-                    + "WHERE author_x_book.book_id=" + bookID + " "
+                    + "WHERE author_x_book.book_id= ? "
                     + "AND author.id = author_x_book.author_id";
-            resultSet = statement.executeQuery(query);
+            statement = connection.prepareStatement(query);
+            statement.setInt(1,  bookID);
+            resultSet = statement.executeQuery();
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByBookID SQL Query: " + query);
             
             while (resultSet.next()) {
