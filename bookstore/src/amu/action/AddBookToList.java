@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.xml.bind.v2.schemagen.xmlschema.List;
-
 import amu.Config;
 import amu.database.BookDAO;
 import amu.database.BookListDAO;

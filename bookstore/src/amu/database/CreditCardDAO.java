@@ -124,7 +124,6 @@ public class CreditCardDAO {
             connection = Database.getConnection();
 
             String query = "DELETE FROM credit_card WHERE id=? AND customer_id=?";
-            //XXX added customer_id to query, is this acceptable code?
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             statement.setInt(2, customer_id);

@@ -210,6 +210,11 @@
 								 		onClick='$javascript:markHelpFul(${item.id}, 0)'/>
 								 <b>${item.thumbsDown}</b>
 						</c:forEach>
+				<br />
+				<br />
+				<c:forEach items="${messages}" var="message">
+					<p class="alert alert-danger">${message}</p>
+				</c:forEach>
 		</c:otherwise>
 	</c:choose>
 </div>

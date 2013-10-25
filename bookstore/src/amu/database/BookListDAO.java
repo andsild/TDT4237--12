@@ -200,6 +200,9 @@ public class BookListDAO {
 	public boolean addBook(Book book, int id) {
 
 		try {
+			if(findByID(id).hasBookByISBN(book.getIsbn13())){
+				return false;
+			}
 			connection = Database.getConnection();
 
 			String query = "INSERT INTO list_x_book (ID_list, ID_book) VALUES (?, ?)";

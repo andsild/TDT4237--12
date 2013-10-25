@@ -62,12 +62,6 @@ class AddCreditCardAction implements Action {
                     expiryDate,
                     request.getParameter("cardholderName"));
             
-            //XXX: When something goes wrong, the values from the form are sent back so they are not lost, is this a security risk?
-            //Map<String, String> values = new HashMap<String, String>();
-            //request.setAttribute("values", values);
-            //values.put("creditCardNumber", ccNumber);
-            //values.put("expiryDate", request.getParameter("expiry"));
-            //values.put("cardholderName", request.getParameter("cardholderName"));
             
             if (creditCardDAO.add(creditCard)) {
                 return new ActionResponse(ActionResponseType.REDIRECT, "viewCustomer");
