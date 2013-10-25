@@ -28,7 +28,7 @@ public class OrderDAO {
 		List<Order> orders = new ArrayList<Order>();
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("order");
 			String query = "SELECT * FROM `order` WHERE customer_id=? AND order_id = 0";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, customer.getId());
@@ -56,7 +56,7 @@ public class OrderDAO {
 	public boolean add(Order order) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("order");
 
 			String query = "INSERT INTO `order` (customer_id, address_id, created, value, status) VALUES (?, ?, CURDATE(), ?, ?)";
 			statement = connection.prepareStatement(query,
@@ -99,7 +99,7 @@ public class OrderDAO {
 
 		Cart cart = new Cart();
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("order");
 
 			String query = "SELECT * FROM order_items WHERE order_id = ?";
 			statement = connection.prepareStatement(query);
@@ -130,7 +130,7 @@ public class OrderDAO {
 
 		Order order = null;
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("order");
 			String query = "SELECT * FROM `order` WHERE customer_id=? AND id=?";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, customer.getId());
@@ -165,7 +165,7 @@ public class OrderDAO {
 				if (!editOrder(order, -1)) {
 					return false;
 				}
-				connection = Database.getConnection();
+				connection = Database.getConnection("order");
 
 				String query = "INSERT INTO `order` (customer_id, address_id, created, value, status, order_id) VALUES (?, ?, CURDATE(), ?, ?, ?)";
 				statement = connection.prepareStatement(query,
@@ -208,7 +208,7 @@ public class OrderDAO {
 	public boolean editOrder(Order order, int status) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("order");
 
 			String query = "UPDATE `order` SET `status`=? WHERE `id`=?";
 			statement = connection.prepareStatement(query);

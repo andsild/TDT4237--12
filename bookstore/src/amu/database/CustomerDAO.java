@@ -46,7 +46,7 @@ public class CustomerDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("customer");
             statement = connection.createStatement();
 
             String query = "SELECT * FROM customer WHERE email='"
@@ -78,7 +78,7 @@ public class CustomerDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("customer");
 
             String query = "UPDATE customer SET email=?, password=?, name=? WHERE id=?";
             statement = connection.prepareStatement(query);
@@ -107,7 +107,7 @@ public class CustomerDAO {
         Statement statement = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("customer");
             statement = connection.createStatement();
 
             String query = "INSERT INTO customer (email, password, name, activation_token) VALUES ('"
@@ -137,7 +137,7 @@ public class CustomerDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("customer");
             statement = connection.createStatement();
 
             String query = "UPDATE customer SET activation_token=NULL WHERE email='"

@@ -36,7 +36,7 @@ public class HelpfulDAO
         	else { throw new RuntimeException("invalid data"); }
         }
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("opinion");
             statement = connection.prepareStatement(sQuery);
             
             statement.setInt(1,  Integer.parseInt(sReviewID));
@@ -59,7 +59,7 @@ public class HelpfulDAO
 	     ResultSet resultSet = null;
 	        
 	        try {
-	            connection = Database.getConnection();
+	            connection = Database.getConnection("opinion");
 	            
 	            String query = "SELECT fk_customerID, fk_reviewID FROM helpful"
 	            		+ " WHERE fk_customerID = ? AND fk_reviewID = ?";

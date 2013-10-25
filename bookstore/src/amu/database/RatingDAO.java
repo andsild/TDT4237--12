@@ -17,7 +17,7 @@ public class RatingDAO
         PreparedStatement statement = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("opinion");
 
             String query = "INSERT INTO rating (ID, fk_customerID, fk_bookID, ratevalue) VALUES ("
                     + "NULL, ? , ? , ?)";
@@ -47,7 +47,7 @@ public class RatingDAO
         Integer retInt = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("opinion");
 
             String query = "SELECT AVG(ratevalue) AS average FROM rating WHERE fk_bookID = ? "
             		+ " GROUP BY fk_bookID;";
@@ -96,7 +96,7 @@ public class RatingDAO
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("opinion");
             String query = "SELECT * FROM rating WHERE rating.fk_customerID= ? "
                     + " AND rating.fk_bookID= ? ";
 

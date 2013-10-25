@@ -22,7 +22,7 @@ public class AddressDAO {
         List<Address> addresses = new ArrayList<Address>();
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
             String query = "SELECT id, address FROM address WHERE customer_id=?";
             statement = connection.prepareStatement(query);
 
@@ -46,7 +46,7 @@ public class AddressDAO {
         Address address = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "SELECT address FROM address WHERE id=? AND customer_id=?";
             statement = connection.prepareStatement(query);
@@ -92,7 +92,7 @@ public class AddressDAO {
     public boolean add(Address address) {
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "INSERT INTO address (customer_id, address) VALUES (?, ?)";
             statement = connection.prepareStatement(query);
@@ -114,7 +114,7 @@ public class AddressDAO {
     public boolean delete(int id, int customer_id) {
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "DELETE FROM address WHERE id=? AND customer_id=?";
             statement = connection.prepareStatement(query);

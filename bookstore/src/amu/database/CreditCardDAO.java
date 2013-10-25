@@ -24,7 +24,7 @@ public class CreditCardDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
             String query = "SELECT id, cc_number, expiry_date, cardholder_name FROM credit_card WHERE customer_id=?";
             statement = connection.prepareStatement(query);
 
@@ -60,7 +60,7 @@ public class CreditCardDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "SELECT cc_number, expiry_date, cardholder_name FROM credit_card WHERE id=?";
             statement = connection.prepareStatement(query);
@@ -94,7 +94,7 @@ public class CreditCardDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "INSERT INTO credit_card (customer_id, cc_number, expiry_date, cardholder_name) VALUES (?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
@@ -121,7 +121,7 @@ public class CreditCardDAO {
         ResultSet resultSet = null;
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "DELETE FROM credit_card WHERE id=? AND customer_id=?";
             statement = connection.prepareStatement(query);

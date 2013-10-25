@@ -25,7 +25,7 @@ public class BookListDAO {
 		Book book;
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "SELECT * FROM  book, publisher, title, list, list_x_book, customer " + "WHERE list.ID = ? " + "AND book.title_id = title.id "
 					+ "AND book.publisher_id = publisher.id " + "AND book.id = list_x_book.id_book " + "AND list_x_book.ID_list = ? "
@@ -78,7 +78,7 @@ public class BookListDAO {
 		ArrayList<BookList> array = new ArrayList<BookList>();
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "Select * FROM list WHERE customer_id = ?";
 
@@ -109,7 +109,7 @@ public class BookListDAO {
 		ArrayList<BookList> array = new ArrayList<BookList>();
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 			statement = connection.createStatement();
 
 			String query = "Select * FROM list";
@@ -132,7 +132,7 @@ public class BookListDAO {
 	public boolean edit(BookList bookList) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "UPDATE INTO list (customer_id, title, description) VALUES (?, ?, ?)";
 			statement = connection.prepareStatement(query);
@@ -155,7 +155,7 @@ public class BookListDAO {
 	public boolean add(BookList bookList) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "INSERT INTO list (customer_id, title, description) VALUES (?, ?, ?)";
 			statement = connection.prepareStatement(query);
@@ -178,7 +178,7 @@ public class BookListDAO {
 	public boolean delete(int id, int customer_id) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "DELETE FROM booklist WHERE id=? AND customer_id=?";
 			statement = connection.prepareStatement(query);
@@ -203,7 +203,7 @@ public class BookListDAO {
 			if(findByID(id).hasBookByISBN(book.getIsbn13())){
 				return false;
 			}
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "INSERT INTO list_x_book (ID_list, ID_book) VALUES (?, ?)";
 			statement = connection.prepareStatement(query);
@@ -224,7 +224,7 @@ public class BookListDAO {
 	public boolean deleteBook(int id, Book book) {
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("book");
 
 			String query = "DELETE FROM list_x_book WHERE ID_List=? AND ID_book=?";
 			statement = connection.prepareStatement(query);

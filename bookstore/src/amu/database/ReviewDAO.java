@@ -19,7 +19,7 @@ public class ReviewDAO
         PreparedStatement statement = null;
         
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("opinion");
             
             String query = "INSERT INTO review (ID, fk_customerID, fk_bookID, text) VALUES ("
                     + "NULL, ? , ? , ? )";
@@ -46,7 +46,7 @@ public class ReviewDAO
 		ArrayList<HelpfulReview> alHelpful = new ArrayList<HelpfulReview>();
 
 		try {
-			connection = Database.getConnection();
+			connection = Database.getConnection("opinion");
 
 			String sQuery = "SELECT R.id, R.text, SUM(COALESCE(H.thumbsUp, 0)) AS thumbsUp, SUM(COALESCE(H.thumbsDown, 0)) AS thumbsDown "
 					+ "FROM review AS R  "

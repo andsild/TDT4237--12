@@ -22,7 +22,7 @@ public class BookDAO {
         ResultSet resultSet = null;
         
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("book");
             
             String query = "SELECT * FROM book, publisher, title "
                     + "WHERE book.isbn13 = ? AND book.title_id = title.id "
@@ -65,7 +65,7 @@ public class BookDAO {
         ResultSet resultSet = null;
         
         try {
-        	connection = Database.getConnection();
+        	connection = Database.getConnection("book");
             
             String query = "SELECT * FROM book, publisher, title "
                     + "WHERE book.id = ? "
@@ -109,7 +109,7 @@ public class BookDAO {
     	ResultSet resultSet = null;
     	
     	try {
-    		connection = Database.getConnection();
+    		connection = Database.getConnection("book");
     		
     		String sql = "SELECT title.name, book.isbn13 " 
     			+ "FROM title, book, publisher "
