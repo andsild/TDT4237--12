@@ -7,7 +7,6 @@
 
 <link rel="stylesheet" type="text/css" href="/bookstore/css/commentStyle.css" />
 
-<%@page import="amu.database.BookDAO"%>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 	type="text/javascript"></script>
@@ -19,7 +18,7 @@
 		<c:when test="${empty book}">
 			<h2>Book not found!</h2>
 			<div class="index-item">
-				<a href="debug/list_books.jsp">List books</a>
+				<a href="debug/listBooks.do">List books</a>
 			</div>
 		</c:when>
 		<c:otherwise>
