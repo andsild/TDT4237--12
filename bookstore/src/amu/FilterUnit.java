@@ -135,6 +135,7 @@ public class FilterUnit
 	public static final ASCIIRange 	AT						= new ASCIIRange('@','@');
 	public static final ASCIIRange	SPACE					= new ASCIIRange(' ',' ');
 	public static final ASCIIRange	COMMA					= new ASCIIRange(',',',');
+	public static final ASCIIRange 	DASH					= new ASCIIRange('-','-');
 	
 	public static final int 		PASSWORD_MINIMUM_LENGTH	= 8;  
 	public static final int 		PASSWORD_MAXIMUM_LENGTH	= 59;  
@@ -218,6 +219,8 @@ public class FilterUnit
 		filter.addLegalRange(NUMBERS);
 		filter.addLegalRange(SPACE);
 		filter.addLegalRange(DOT);
+		filter.addLegalRange(COMMA);
+		filter.addLegalRange(DASH);
 		
 		return filter;
 	}
@@ -232,5 +235,4 @@ public class FilterUnit
 		
 		return filter;
 	}
-	
 }
