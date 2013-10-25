@@ -25,6 +25,8 @@ class AddCreditCardAction implements Action {
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("customer");
+        
+        System.err.println("Reached this point");
 
         if (customer == null) {
             ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");

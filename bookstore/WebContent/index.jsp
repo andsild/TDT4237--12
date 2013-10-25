@@ -5,7 +5,7 @@
     <div class = "index-item"><a href="viewCustomer.do">View profile</a></div>
 
     <h2>Bookstore:</h2>
-    <div class = "index-item"><a href="debug/list_books.jsp">List books</a></div>
+    <div class = "index-item"><a href="listBooks.do">List books</a></div>
     <div class = "index-item"><a href="customerSupport.do">Complaints</a></div>
 
     <h2>Debugging:</h2>

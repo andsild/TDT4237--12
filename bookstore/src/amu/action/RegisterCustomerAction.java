@@ -39,6 +39,9 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 				Config.VALIDATE_TEXT.isValid(name);
 			} catch (FilterUnitException e) {
 				messages.put("error", "Invalid input");
+				System.err.println(e.toString());
+				System.err.println(e.getInvalidText());
+				System.err.println("Invalid input");
 				return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
 			}
 			CustomerDAO customerDAO = new CustomerDAO();

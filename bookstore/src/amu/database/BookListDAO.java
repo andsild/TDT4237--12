@@ -27,9 +27,8 @@ public class BookListDAO {
 		try {
 			connection = Database.getConnection("book");
 
-			String query = "SELECT * FROM  book, publisher, title, list, list_x_book, customer " + "WHERE list.ID = ? " + "AND book.title_id = title.id "
-					+ "AND book.publisher_id = publisher.id " + "AND book.id = list_x_book.id_book " + "AND list_x_book.ID_list = ? "
-					+ "AND list.customer_id = customer.id ";
+			String query = "SELECT * FROM  book, publisher, title, list, list_x_book " + "WHERE list.ID = ? " + "AND book.title_id = title.id "
+					+ "AND book.publisher_id = publisher.id " + "AND book.id = list_x_book.id_book " + "AND list_x_book.ID_list = ? ";
 
 			statement = connection.prepareStatement(query);
 
@@ -59,7 +58,7 @@ public class BookListDAO {
 			resultSet.first();
 			list.setTitle(resultSet.getString("list.title"));
 			list.setDescription(resultSet.getString("list.description"));
-			list.setCustomer(new CustomerDAO().findByEmail(resultSet.getString("customer.email")));
+			list.setCustomer(new CustomerDAO().findByID(resultSet.getInt("list.customer_id")));
 			System.out.println(list.getCustomer().toString());
 			System.out.println("HEEEELLOOO");
 			resultSet.afterLast();
