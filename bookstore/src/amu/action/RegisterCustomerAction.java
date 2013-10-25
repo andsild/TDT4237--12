@@ -40,17 +40,9 @@ class RegisterCustomerAction extends HttpServlet implements Action
 				Config.VALIDATE_EMAIL.isValid(email);
 				Config.VALIDATE_PASSWORD.isValid(password);
 				Config.VALIDATE_TEXT.isValid(name);
-<<<<<<< HEAD
-			} catch (FilterUnitException e) {
-				messages.put("error", "Invalid input");
-				System.err.println(e.toString());
-				System.err.println(e.getInvalidText());
-				System.err.println("Invalid input");
-=======
 			} catch (FilterUnitException e)
 			{
 				messages.put("error",e.toString());
->>>>>>> branch 'filip' of https://github.com/andsild/TDT4237--12.git
 				return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
 			}
 			CustomerDAO customerDAO = new CustomerDAO();
