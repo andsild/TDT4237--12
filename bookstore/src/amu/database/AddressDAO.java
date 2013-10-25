@@ -70,7 +70,7 @@ public class AddressDAO {
     public boolean edit(Address address) {
 
         try {
-            connection = Database.getConnection();
+            connection = Database.getConnection("order");
 
             String query = "UPDATE address SET address=? WHERE id=?";
             statement = connection.prepareStatement(query);
