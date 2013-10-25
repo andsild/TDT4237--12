@@ -136,6 +136,8 @@ public class FilterUnit
 	public static final ASCIIRange	SPACE					= new ASCIIRange(' ',' ');
 	public static final ASCIIRange	COMMA					= new ASCIIRange(',',',');
 	public static final ASCIIRange 	DASH					= new ASCIIRange('-','-');
+	public static final ASCIIRange 	CONTRACTION				= new ASCIIRange('\'','\'');
+	//public static final ASCIIRange 	
 	
 	public static final int 		PASSWORD_MINIMUM_LENGTH	= 8;  
 	public static final int 		PASSWORD_MAXIMUM_LENGTH	= 59;  
@@ -232,6 +234,28 @@ public class FilterUnit
 		filter.addLegalRange(SPACE);
 		filter.addLegalRange(DOT);
 		filter.addLegalRange(COMMA);
+		
+		return filter;
+	}
+	
+	public static FilterUnit getCreditcardNumberValidatior()
+	{
+		FilterUnit filter = new FilterUnit();
+		
+		filter.addLegalRange(NUMBERS);
+		filter.setMaximumLength(16);
+		filter.setMinimumLength(16);
+		
+		return filter;
+	}
+	
+	public static FilterUnit getNameValidator()
+	{
+		FilterUnit filter = new FilterUnit();
+		
+		filter.addSeveralLegalRanges(getNorwegianAlphabet());
+		filter.addLegalRange(DASH);
+		filter.addLegalRange(CONTRACTION);
 		
 		return filter;
 	}

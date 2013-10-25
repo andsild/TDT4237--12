@@ -33,7 +33,7 @@ class ChangeNameAction implements Action {
             request.setAttribute("messages", messages);
             
             try {
-            	Config.VALIDATE_TEXT.isValid(request.getParameter("name"));
+            	Config.VALIDATE_NAME.isValid(request.getParameter("name"));
             }
             catch(FilterUnitException e)
             {

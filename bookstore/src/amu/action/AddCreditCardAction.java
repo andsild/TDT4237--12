@@ -41,8 +41,8 @@ class AddCreditCardAction implements Action {
             {
             	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryYear"));
             	Config.VALIDATE_NUMBERS.isValid(request.getParameter("expiryMonth"));
-            	Config.VALIDATE_NUMBERS.isValid(request.getParameter("creditCardNumber"));
-            	Config.VALIDATE_TEXT.isValid(request.getParameter("cardholderName"));
+            	Config.VALIDATE_NAME.isValid(request.getParameter("cardholderName"));
+            	Config.VALIDATE_CREDITCARD_NUMBER.isValid(request.getParameter("creditCardNumber"));
             }
             catch(FilterUnitException e)
             {
