@@ -15,7 +15,8 @@ import amu.Mailer;
 import amu.database.CustomerDAO;
 import amu.model.Customer;
 
-class RegisterCustomerAction extends HttpServlet implements Action {
+class RegisterCustomerAction extends HttpServlet implements Action
+{
 
 	/**
 	 * 
@@ -23,40 +24,43 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		Map<String, String> messages = new HashMap<String, String>();
 		request.setAttribute("messages", messages);
-		
 
-		if (request.getMethod().equals("POST")) {
-			try {
+		if (request.getMethod().equals("POST"))
+		{
+			try
+			{
 				Config.VALIDATE_EMAIL.isValid(email);
 				Config.VALIDATE_PASSWORD.isValid(password);
 				Config.VALIDATE_TEXT.isValid(name);
-			} catch (FilterUnitException e) {
-				messages.put("error", "Invalid input");
+			} catch (FilterUnitException e)
+			{
+				messages.put("error",e.toString());
 				return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
 			}
 			CustomerDAO customerDAO = new CustomerDAO();
 			Customer customer = customerDAO.findByEmail(email);
 
-
-			if (customer == null) {
+			if (customer == null)
+			{
 				String remoteAddr = request.getRemoteAddr();
 				ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
 				reCaptcha.setPrivateKey(Config.CAPTCHA_PRIVATE_KEY);
-
 
 				String challenge = request.getParameter("recaptcha_challenge_field");
 				String uresponse = request.getParameter("recaptcha_response_field");
 
 				ReCaptchaResponse reCaptchaResponse = reCaptcha.checkAnswer(remoteAddr, challenge, uresponse);
 
-				if (reCaptchaResponse.isValid()) {
+				if (reCaptchaResponse.isValid())
+				{
 
 					customer = new Customer();
 					customer.setEmail(email);
@@ -79,17 +83,26 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 					Mailer.send(customer.getEmail(), "Activation required", sb.toString());
 
 					return actionResponse;
-				} else {
+				}
+				else
+				{
 					String error = reCaptchaResponse.getErrorMessage();
-					if (error.equals("incorrect-captcha-sol")) {
+					if (error.equals("incorrect-captcha-sol"))
+					{
 						messages.put("error", "Incorrect captcha, please try again");
-					} else if (error.equals("captcha-timeout")) {
+					}
+					else if (error.equals("captcha-timeout"))
+					{
 						messages.put("error", "Captcha timeout");
-					} else {
+					}
+					else
+					{
 						messages.put("error", reCaptchaResponse.getErrorMessage());
 					}
 				}
-			} else {
+			}
+			else
+			{
 				return new ActionResponse(ActionResponseType.REDIRECT, "registrationError");
 			}
 		}

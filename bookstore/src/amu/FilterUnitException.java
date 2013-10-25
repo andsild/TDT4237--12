@@ -10,6 +10,15 @@ public class FilterUnitException extends Exception
 	
 	public String getInvalidText()
 	{
+		if(this instanceof IllegalRegexException)
+			return "The string: "+invalidText+" contains an illegal regex";
+		if(this instanceof IllegalCharacterException)
+			return "The string: "+invalidText+" contains an illegal character";
+		if(this instanceof FailedRegexException)
+			return "The string: "+invalidText+" is not the correct format";
+		if(this instanceof IllegalStringLengthException)
+			return "The string: "+invalidText+" is not the correct length";
+		
 		return invalidText;
 	}
 }

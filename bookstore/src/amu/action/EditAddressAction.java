@@ -40,7 +40,7 @@ class EditAddressAction implements Action {
         	}
         	catch(FilterUnitException e)
         	{
-        		messages.add("Invalid address");
+        		messages.add(e.toString());
         		return new ActionResponse(ActionResponseType.FORWARD, "editAddress");
         	}
         	

@@ -38,6 +38,7 @@ class DeleteCreditCardAction implements Action {
             }
             catch(FilterUnitException e)
             {
+            	messages.add(e.toString());
             	return new ActionResponse(ActionResponseType.FORWARD, "deleteCreditCard");
             }
 

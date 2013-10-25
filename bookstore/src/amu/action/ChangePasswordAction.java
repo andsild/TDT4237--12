@@ -38,7 +38,7 @@ class ChangePasswordAction implements Action {
             }
             catch(FilterUnitException e)
             {
-            	messages.add("Invalid password(s)");
+            	messages.add(e.toString());
             	return new ActionResponse(ActionResponseType.FORWARD, "changePassword");
             }
 

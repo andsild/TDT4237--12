@@ -17,6 +17,10 @@ class AddToCartAction implements Action {
 	public ActionResponse execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		String sIsbn, sQuantity;
+		
+		sIsbn = request.getParameter("isbn");
+		sQuantity = request.getParameter("quantity");
 
 		Cart cart = (Cart) session.getAttribute("cart");
 
@@ -26,17 +30,17 @@ class AddToCartAction implements Action {
 		}
 		ActionResponse r = new ActionResponse(ActionResponseType.REDIRECT,
 				"viewBook");
-				r.addParameter("isbn", request.getParameter("isbn"));
+				r.addParameter("isbn", sIsbn);
 		try {
 
 			
-			if (request.getParameter("isbn") != null && Integer.parseInt(request.getParameter("quantity")) > 0) 
+			if (sIsbn != null && Integer.parseInt(request.getParameter("quantity")) > 0) 
 			{
-				Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
-				Config.VALIDATE_NUMBERS.isValid(request.getParameter("quantity"));
+				Config.VALIDATE_NUMBERS.isValid(sIsbn);
+				Config.VALIDATE_NUMBERS.isValid(sQuantity);
 				
 				BookDAO bookDAO = new BookDAO();
-				Book book = bookDAO.findByISBN(request.getParameter("isbn"));
+				Book book = bookDAO.findByISBN(sIsbn);
 
 				cart.addItem(new CartItem(book, Integer.parseInt(request
 						.getParameter("quantity"))));

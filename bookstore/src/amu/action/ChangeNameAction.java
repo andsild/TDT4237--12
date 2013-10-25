@@ -37,7 +37,7 @@ class ChangeNameAction implements Action {
             }
             catch(FilterUnitException e)
             {
-            	messages.put("name", "Stop dicking around, give me a proper name");
+            	messages.put("error", e.toString());
             	return new ActionResponse(ActionResponseType.FORWARD, "changeName");
             }
             
