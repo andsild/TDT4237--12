@@ -43,8 +43,6 @@ public class Review
 	}
 	public void setReview(String sReview)
 	{
-			//TODO: make sure in range
-			//this.sReview = sReview;
 			if(sReview == null) { throw new NullPointerException("ratevalue is null"); }
 			
 			this.sReview = sReview; 

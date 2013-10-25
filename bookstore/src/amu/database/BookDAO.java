@@ -19,23 +19,23 @@ public class BookDAO {
         Book book = null;
         
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         
         try {
             connection = Database.getConnection();
-            statement = connection.createStatement();
             
             String query = "SELECT * FROM book, publisher, title "
-                    + "WHERE book.isbn13 = '"
-                    + isbn + "' "
-                    + "AND book.title_id = title.id "
+                    + "WHERE book.isbn13 = ? AND book.title_id = title.id "
                     + "AND book.publisher_id = publisher.id;";
-            resultSet = statement.executeQuery(query);
+            statement = connection.prepareStatement(query);
+            
+            statement.setString(1,  isbn);
+            resultSet = statement.executeQuery();
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
             
             if (resultSet.next()) {
-                AuthorDAO authorDAO = new AuthorDAO(); // TODO:
+                AuthorDAO authorDAO = new AuthorDAO(); 
                 
                 book = new Book();
                 book.setId(resultSet.getInt("book.id"));
@@ -49,7 +49,6 @@ public class BookDAO {
                 book.setDescription(resultSet.getString("book.description"));
                 book.setAuthor(authorDAO.findByBookID(resultSet.getInt("book.id")));
                 book.setPrice(resultSet.getFloat("book.price"));
-                // TODO: Reviews, Categories
             }
         } catch (SQLException exception) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, exception);
@@ -63,24 +62,24 @@ public class BookDAO {
         Book book = null;
         
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
         
         try {
         	connection = Database.getConnection();
-            statement = connection.createStatement();
             
             String query = "SELECT * FROM book, publisher, title "
-                    + "WHERE book.id = '"
-                    + ID + "' "
+                    + "WHERE book.id = ? "
                     + "AND book.title_id = title.id "
                     + "AND book.publisher_id = publisher.id;";
-            resultSet = statement.executeQuery(query);
+            statement = connection.prepareStatement(query);
+            statement.setInt(1,  Integer.parseInt(ID));
+            resultSet = statement.executeQuery();
             
             Logger.getLogger(this.getClass().getName()).log(Level.FINE, "findByISBN SQL Query: " + query);
             
             if (resultSet.next()) {
-                AuthorDAO authorDAO = new AuthorDAO(); // TODO:
+                AuthorDAO authorDAO = new AuthorDAO(); 
                 
                 book = new Book();
                 book.setId(resultSet.getInt("book.id"));
@@ -94,7 +93,6 @@ public class BookDAO {
                 book.setDescription(resultSet.getString("book.description"));
                 book.setAuthor(authorDAO.findByBookID(resultSet.getInt("book.id")));
                 book.setPrice(resultSet.getFloat("book.price"));
-                // TODO: Reviews, Categories
                 
             }
         } catch (SQLException exception) {

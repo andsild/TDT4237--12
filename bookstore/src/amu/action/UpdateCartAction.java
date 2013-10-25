@@ -41,7 +41,6 @@ class UpdateCartAction implements Action {
 			for (int i = 0; i < isbn.length; i++) {
 				CartItem item = cart.getItemByISBN(isbn[i]);
 				if (item == null) {
-					//TODO Is this reachable code? And shall it add a new item when the item is not in the cart?
 					BookDAO bookDAO = new BookDAO();
 					Book book = bookDAO.findByISBN(isbn[i]);
 					cart.addItem(new CartItem(book, Integer.parseInt(request.getParameter("quantity"))));

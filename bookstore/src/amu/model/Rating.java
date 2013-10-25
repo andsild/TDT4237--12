@@ -43,9 +43,16 @@ public class Rating
 	}
 	public void setRating(String sRateValue)
 	{
-			//TODO: make sure in range
-			//this.sRateValue = sRateValue;
 			if(sRateValue == null) { throw new NullPointerException("ratevalue is null"); }
+			
+			try
+			{
+				Integer i = Integer.parseInt(sRateValue);
+				
+				if(i < 0 || i > 5) { throw new RuntimeException("bad rate value"); }
+			}
+			catch(Exception e) { this.sRateValue = "3"; }
+			
 			this.sRateValue = sRateValue; 
 	}
 	

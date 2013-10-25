@@ -18,8 +18,6 @@ class ViewBookAction implements Action {
 	@Override
 	public ActionResponse execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO: should this page deal with the rating stuff, too?
-
 		try {
 			Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
 

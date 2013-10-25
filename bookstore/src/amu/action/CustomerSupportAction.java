@@ -55,7 +55,6 @@ class CustomerSupportAction implements Action {
                     request.getParameter("content"), 
                     request.getParameter("fromAddr"), 
                     request.getParameter("fromName"));
-            // TODO: Send receipt to customer
             return new ActionResponse(ActionResponseType.REDIRECT, "customerSupportSuccessful");
             }
             else {

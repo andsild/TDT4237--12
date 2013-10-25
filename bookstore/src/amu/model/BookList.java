@@ -23,7 +23,6 @@ public class BookList implements Serializable {
 	}
 
 	public BookList() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Customer getCustomer() {
@@ -75,7 +74,6 @@ public class BookList implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-		//TODO input validation
 	}
 
 	public int getId() {

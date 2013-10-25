@@ -12,8 +12,6 @@ public class Order {
     private int status;
     private Cart cart;
     
-    // TODO: Add OrderItems
-
     public Order(int id, Customer customer, Address address, Calendar createdDate, String value, int status) {
         this.id = id;
         this.customer = customer;
