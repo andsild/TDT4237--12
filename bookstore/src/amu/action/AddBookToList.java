@@ -42,6 +42,7 @@ class AddBookToList implements Action {
 				
 			
 			} catch (Exception e) {
+				messages.add(e.toString());
 				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
 			}
 

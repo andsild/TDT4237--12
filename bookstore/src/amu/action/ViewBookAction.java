@@ -19,7 +19,6 @@ class ViewBookAction implements Action {
 	public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			Config.VALIDATE_NUMBERS.isValid(request.getParameter("isbn"));
-
 		} catch (FilterUnitException e) {
 			return new ActionResponse(ActionResponseType.FORWARD, "viewCustomer");
 		}

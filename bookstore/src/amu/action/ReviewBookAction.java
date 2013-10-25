@@ -62,7 +62,7 @@ public class ReviewBookAction implements Action {
             	}
             	catch(FilterUnitException e)
             	{
-            		messages.put("error","Invalid isbn or review");
+            		messages.put("error",e.toString());
             		return ar;
             	}
             	

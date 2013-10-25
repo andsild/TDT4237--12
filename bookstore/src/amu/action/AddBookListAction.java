@@ -22,8 +22,10 @@ class AddBookListAction implements Action {
 	@Override
 	public ActionResponse execute(HttpServletRequest request,
 			HttpServletResponse response) {
+		List<String> messages = new ArrayList<String>();
 		HttpSession session = request.getSession(true);
 		Customer customer = (Customer) session.getAttribute("customer");
+		request.setAttribute("messages", messages);
 
 		// Handle referrals
 		Map<String, String> values = new HashMap<String, String>();
@@ -37,6 +39,7 @@ class AddBookListAction implements Action {
 			}
 			catch(FilterUnitException e)
 			{
+				messages.add(e.toString());
 				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
 			}
 			
@@ -51,8 +54,6 @@ class AddBookListAction implements Action {
 		}
 		// Non-idempotent add address request
 		if (request.getMethod().equals("POST")) {
-			List<String> messages = new ArrayList<String>();
-			request.setAttribute("messages", messages);
 
 			String remoteAddr = request.getRemoteAddr();
 			ReCaptchaImpl reCaptcha = new ReCaptchaImpl();

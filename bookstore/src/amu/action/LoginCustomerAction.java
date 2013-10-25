@@ -39,7 +39,7 @@ class LoginCustomerAction implements Action {
 				Config.VALIDATE_EMAIL.isValid(request.getParameter("email"));
 				Config.VALIDATE_PASSWORD.isValid(request.getParameter("password"));
 			} catch (Exception e) {
-				messages.put("error", "Password or Email was incorrect.");
+				messages.put("error", e.toString());
 				return new ActionResponse(ActionResponseType.FORWARD, "loginCustomer");
 			}
 

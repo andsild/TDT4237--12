@@ -25,8 +25,9 @@ class AddCreditCardAction implements Action {
     public ActionResponse execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(true);
         Customer customer = (Customer) session.getAttribute("customer");
-        
-        System.err.println("Reached this point");
+
+        Map<String, String> messages = new HashMap<String, String>();
+        request.setAttribute("messages", messages);
 
         if (customer == null) {
             ActionResponse actionResponse = new ActionResponse(ActionResponseType.REDIRECT, "loginCustomer");
@@ -35,8 +36,6 @@ class AddCreditCardAction implements Action {
         }
         
         if (request.getMethod().equals("POST")) {
-            Map<String, String> messages = new HashMap<String, String>();
-            request.setAttribute("messages", messages);
             
             try
             {
@@ -47,7 +46,7 @@ class AddCreditCardAction implements Action {
             }
             catch(FilterUnitException e)
             {
-            	messages.put("error", "Invalid input");
+            	messages.put("error", e.toString());
             	return new ActionResponse(ActionResponseType.REDIRECT, "viewProfile");
             }
             

@@ -43,7 +43,7 @@ class ChangeEmailAction implements Action {
             }
             catch(FilterUnitException e)
             {
-            	messages.add("Invalid email(s).");
+            	messages.add(e.toString());
                 return new ActionResponse(ActionResponseType.FORWARD, "changeEmail");
             }
             
