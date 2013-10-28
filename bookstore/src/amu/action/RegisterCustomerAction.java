@@ -80,7 +80,7 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 
 					StringBuilder sb = new StringBuilder();
 					sb.append("Welcome to Amu-Darya, the really insecure bookstore!\n\n");
-					sb.append("To activate your account, click <a href='http://");
+					sb.append("To activate your account, click <a href='https://");
 					sb.append(request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/");
 					sb.append(actionResponse.getURL() + actionResponse.getParameterString());
 					sb.append("&activationToken=" + customer.getActivationToken());
