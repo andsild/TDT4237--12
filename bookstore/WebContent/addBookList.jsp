@@ -10,12 +10,12 @@
 		<form role="form" action="addBookList.do" method="post">
 			<div class="form-group">
 				<label for="title">Subject</label> <input class="form-control" id="subject"
-					name="title" type="text" placeholder="title" required />
+					name="title" type="text" placeholder="title" pattern="{3,50}" title="Length 3-50" required />
 			</div>
 			<div class="form-group">
 			<label for="description">Description</label>
 				<textarea class="form-control"
-					name="description" rows="10" required ></textarea>
+					name="description" rows="10" maxlength="254" required ></textarea>
 			</div>
 			<div id="recaptcha_widget" style="display: none">
 				<div id="recaptcha_image"></div>

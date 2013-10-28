@@ -30,16 +30,29 @@ class RegisterCustomerAction extends HttpServlet implements Action {
 		String name = request.getParameter("name");
 		Map<String, String> messages = new HashMap<String, String>();
 		request.setAttribute("messages", messages);
+		ActionResponse forward = new ActionResponse(ActionResponseType.FORWARD, "registerCustomer");
 
 		if (request.getMethod().equals("POST")) {
 			try {
 				Config.VALIDATE_EMAIL.isValid(email);
+			} catch (FilterUnitException e) {
+				messages.put("error", "Invalid email");
+				return forward;
+			}
+			try {
 				Config.VALIDATE_PASSWORD.isValid(password);
+			} catch (FilterUnitException e) {
+				messages.put("error", "Invalid password, password needs to be atleast 8 characters");
+				return forward;
+			}
+			try {
 				Config.VALIDATE_NAME.isValid(name);
 			} catch (FilterUnitException e) {
-				messages.put("error", e.toString());
-				return new ActionResponse(ActionResponseType.FORWARD, "registerCustomer");
+				messages.put("error", "Invalid name");
+				return forward;
 			}
+			
+			
 			CustomerDAO customerDAO = new CustomerDAO();
 			Customer customer = customerDAO.findByEmail(email);
 

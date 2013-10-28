@@ -159,6 +159,8 @@ public class FilterUnit {
 		filter.addLegalRange(NUMBERS);
 		filter.addLegalRange(DOT);
 		filter.addLegalRange(AT);
+		filter.setMinimumLength(3);
+		filter.setMaximumLength(254);
 
 		return filter;
 	}
@@ -182,6 +184,7 @@ public class FilterUnit {
 
 		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(SPACE);
 
 		return filter;
 	}
@@ -192,6 +195,23 @@ public class FilterUnit {
 		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 
 		return filter;
+	}
+	public static FilterUnit getTextFieldValidator(){
+		FilterUnit filter = new FilterUnit();
+		
+		filter.addSeveralLegalRanges(getNorwegianAlphabet());
+		filter.addLegalRange(NUMBERS);
+		filter.addLegalRange(SPACE);
+		filter.addLegalRange(DOT);
+		filter.addLegalRange(COMMA);
+		filter.addLegalRange(DASH);
+		
+		filter.setMinimumLength(2);
+		filter.setMaximumLength(254);
+		
+		return filter;
+
+		
 	}
 
 	public static FilterUnit getAddressValidator() {
@@ -234,7 +254,10 @@ public class FilterUnit {
 		filter.addSeveralLegalRanges(getNorwegianAlphabet());
 		filter.addLegalRange(DASH);
 		filter.addLegalRange(CONTRACTION);
-
+		filter.addLegalRange(SPACE);
+		filter.setMinimumLength(3);
+		filter.setMaximumLength(50);
+		
 		return filter;
 	}
 }

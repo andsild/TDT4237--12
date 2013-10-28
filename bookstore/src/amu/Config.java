@@ -28,6 +28,7 @@ public class Config {
 	public final static FilterUnit VALIDATE_EMAIL = FilterUnit.getMailValidator();
 	public final static FilterUnit VALIDATE_PASSWORD = FilterUnit.getPasswordValidator();
 	public final static FilterUnit VALIDATE_TEXT_AND_NUMBERS = FilterUnit.getTextAndNumberValidator();
+	public final static FilterUnit VALIDATE_TEXTFIELD = FilterUnit.getTextFieldValidator();
 
 	public final static FilterUnit VALIDATE_ADDRESS = FilterUnit.getAddressValidator();
 	public final static FilterUnit VALIDATE_CREDITCARD_NUMBER = FilterUnit.getCreditcardNumberValidatior();

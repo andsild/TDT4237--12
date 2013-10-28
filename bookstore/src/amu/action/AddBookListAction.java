@@ -24,22 +24,27 @@ class AddBookListAction implements Action {
 		List<String> messages = new ArrayList<String>();
 		HttpSession session = request.getSession(true);
 		Customer customer = (Customer) session.getAttribute("customer");
+		ActionResponse forward = new ActionResponse(ActionResponseType.FORWARD, "addBookList");
 		request.setAttribute("messages", messages);
 
 		// Handle referrals
 		Map<String, String> values = new HashMap<String, String>();
 		request.setAttribute("values", values);
 		if (ActionFactory.hasKey(request.getParameter("from"))) {
-			try {
-				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("from"));
-				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("title"));
-				Config.VALIDATE_TEXT_AND_NUMBERS.isValid(request.getParameter("description"));
-			} catch (FilterUnitException e) {
-				messages.add(e.toString());
-				return new ActionResponse(ActionResponseType.REDIRECT, "bookList");
-			}
 
 			values.put("from", request.getParameter("from"));
+		}
+		try {
+			Config.VALIDATE_NAME.isValid(request.getParameter("title"));
+		} catch (FilterUnitException e) {
+			messages.add("Invalid title, max character are 50, and no special characters.");
+			return forward;
+		}
+		try {
+			Config.VALIDATE_TEXTFIELD.isValid(request.getParameter("description"));
+		} catch (FilterUnitException e) {
+			messages.add("Invalid description, max characters are 254, and no special characters.");
+			return forward;
 		}
 
 		if (customer == null) {

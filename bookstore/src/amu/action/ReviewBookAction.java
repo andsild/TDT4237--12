@@ -29,6 +29,7 @@ public class ReviewBookAction implements Action {
 
 		String sReview = request.getParameter("review");
 		Map<String, String> messages = new HashMap<String, String>();
+		session.setAttribute("messages", messages);
 
 		if (sReview != null && cCustomer != null && sIsbn != null) {
 
@@ -49,7 +50,7 @@ public class ReviewBookAction implements Action {
 			if (reCaptchaResponse.isValid()) {
 				try {
 					Config.VALIDATE_NUMBERS.isValid(sIsbn);
-					Config.VALIDATE_TEXT_AND_NUMBERS.isValid(sReview);
+					Config.VALIDATE_TEXTFIELD.isValid(sReview);
 				} catch (FilterUnitException e) {
 					messages.put("error", e.toString());
 					return ar;
